@@ -24,12 +24,14 @@ from jinja2 import Environment, FileSystemLoader, StrictUndefined
 from askmike.answer.config import EMPTY_TEXT, NEXT_STEP, OFF_TOPIC_TEXT
 from askmike.answer.evidence import canonical_subject
 from askmike.answer.render import ARROW, FIXED, load_fallback
+from askmike.service.results import results_view
 
 HERE = Path(__file__).resolve().parent
 TEMPLATES = HERE / "templates"
 STATIC = HERE / "static"
 STYLE = STATIC / "style.css"
 SAVED_LINE = "Questions are saved so Mike can read them."  # the page's one line about the visitor log
+RESULTS_DESCRIPTION = "How Ask Mike is measured: retrieval, answer and cost results from its public evals."
 ASKED_KINDS = ("question", "handoff")  # inputs shown back as typed; a jd shows its requirements, never the posting
 
 _env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=True, undefined=StrictUndefined,
@@ -116,6 +118,13 @@ def fallback_page(units: dict) -> str:
     Caddy serves while the app is down."""
     return _render("answer.html", page="answer", box=True, asked="", requirements=[], arrow=ARROW,
                    next_step=linked(NEXT_STEP), **_fallback_view(units))
+
+
+def results_page(facts: dict) -> str:
+    """The results page: the evals of record from facts.json (askmike/service/results.py). Raises KeyError for a
+    missing fact."""
+    return _render("results.html", title="Results", page="results", description=RESULTS_DESCRIPTION,
+                   **results_view(facts))
 
 
 def evidence_page(unit: dict) -> str:

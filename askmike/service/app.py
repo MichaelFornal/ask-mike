@@ -4,7 +4,9 @@ Routes (there are no others; /docs and /openapi.json are 404):
 - `GET /`: the home page, the box posting `q` to /ask.
 - `POST /ask`: the answer page. Its status is the desk's (200; 429 with Retry-After; 503).
 - `GET /evidence/{unit_id}`: one corpus unit; an unknown id gets the off-topic line and the box, with 404.
+- `GET /results`: the evals of record, rendered from facts.json once at start (askmike/service/results.py).
 - `GET /health`: the desk's health, as JSON.
+- Every GET route also answers HEAD, so an uptime monitor or link checker doesn't read a 405 as down.
 - `/static/*`: the stylesheet. Caddy serves it on the box; the app serves it for a local run.
 
 Every HTML route answers with a page, never an error page. POST /ask wraps everything it does in a catch-all that
@@ -38,7 +40,7 @@ from starlette.staticfiles import StaticFiles
 
 from askmike.answer.config import MAX_INPUT_CHARS
 from askmike.service import desk as desk_mod
-from askmike.service import pages
+from askmike.service import pages, results
 from askmike.service.config import ServiceConfig, from_env
 from askmike.service.limits import client_key
 
@@ -130,16 +132,18 @@ async def _read_form(request: Request) -> tuple[str, str | None]:
     return q, prev
 
 
-def create_app(config: ServiceConfig | None = None, desk=None) -> FastAPI:
+def create_app(config: ServiceConfig | None = None, desk=None, facts_path: Path | None = None) -> FastAPI:
     """With no arguments, config comes from the environment and the desk is built here. A refusal (DeskRefused, or
     a bad env) stops the process. The unit has Restart=always and RestartSec=2, but systemd's default start limit (5 starts in
     10 s) trips on a fast refusal and the unit stays failed until someone intervenes; Caddy serves fallback.html
-    meanwhile. Tests pass a desk."""
+    meanwhile. Tests pass a desk. The results page is built here from facts_path (default: the repo's facts.json),
+    so a fact it needs and the file lacks raises KeyError and the app never starts."""
     if desk is None:
         desk = desk_mod.build_desk(config or from_env())
     units = pages.load_units(desk_mod.CORPUS / "units.jsonl")
     home_html, not_found_html = pages.home_page(), pages.not_found_page()
     fallback_html = pages.fallback_page(units)
+    results_html = pages.results_page(results.load_facts(facts_path or REPO / "facts.json"))
 
     app = FastAPI(title="Ask Mike", docs_url=None, redoc_url=None, openapi_url=None)
     app.add_middleware(RequestLog, fallback_html=fallback_html)
@@ -149,7 +153,7 @@ def create_app(config: ServiceConfig | None = None, desk=None) -> FastAPI:
     async def no_such_page(request: Request, exc: StarletteHTTPException):
         return HTMLResponse(not_found_html, status_code=exc.status_code, headers=exc.headers)
 
-    @app.get("/")
+    @app.api_route("/", methods=["GET", "HEAD"])
     def home(request: Request):
         _note(request, route="home")
         return HTMLResponse(home_html)
@@ -171,7 +175,12 @@ def create_app(config: ServiceConfig | None = None, desk=None) -> FastAPI:
         _note(request, outcome=served.outcome.outcome, served_from=served.served_from)
         return response
 
-    @app.get("/evidence/{unit_id}")
+    @app.api_route("/results", methods=["GET", "HEAD"])
+    def results_route(request: Request):
+        _note(request, route="results")
+        return HTMLResponse(results_html)
+
+    @app.api_route("/evidence/{unit_id}", methods=["GET", "HEAD"])
     def evidence(request: Request, unit_id: str):
         _note(request, route="evidence")
         unit = units.get(unit_id)
@@ -179,7 +188,7 @@ def create_app(config: ServiceConfig | None = None, desk=None) -> FastAPI:
             return HTMLResponse(not_found_html, status_code=404)
         return HTMLResponse(pages.evidence_page(unit))
 
-    @app.get("/health")
+    @app.api_route("/health", methods=["GET", "HEAD"])
     def health(request: Request):
         _note(request, route="health")
         try:

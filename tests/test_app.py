@@ -336,7 +336,7 @@ def test_docs_and_openapi_are_404():
         assert r.status_code == 404 and OFF_TOPIC_TEXT in Page(r.text).lines, path
         assert "swagger" not in r.text.lower() and "openapi" not in r.text.lower(), path
     assert sorted(getattr(rt, "path", "") for rt in c.app.routes) == [
-        "/", "/ask", "/evidence/{unit_id}", "/health", "/static"]
+        "/", "/ask", "/evidence/{unit_id}", "/health", "/results", "/static"]
 
 
 def test_request_log_holds_no_address_and_no_text(capsys):
@@ -451,3 +451,38 @@ def test_any_route_that_raises_gets_the_fallback_page(monkeypatch, capsys):
     (rec,) = [json.loads(x) for x in err.splitlines()]
     assert (rec["route"], rec["status"], rec["outcome"]) == ("evidence", 200, "error") and "Zephyrine" not in err
     assert (rec["error"], rec["where"]) == ("KeyError", where(broken, "the raise the log names"))
+
+
+# ---- the results page and HEAD --------------------------------------------------------------------------------------
+
+def _facts() -> dict:
+    return json.loads((REPO / "facts.json").read_text(encoding="utf-8"))
+
+
+def test_results_page_is_served_from_facts():
+    c, _ = client_for()
+    r = c.get("/results")
+    assert r.status_code == 200 and r.headers["content-type"].startswith("text/html")
+    assert _facts()["m1_jdreq_R4_report_recall_at_10"]["display"] in "\n".join(Page(r.text).lines)
+
+
+def test_every_get_route_answers_head():
+    c, _ = client_for()
+    for path in ("/", "/results", f"/evidence/{U0}", "/health"):
+        r = c.head(path)
+        assert r.status_code == 200 and r.content == b"", path
+
+
+def test_results_takes_no_post():
+    c, _ = client_for()
+    r = c.post("/results")
+    assert r.status_code == 405 and OFF_TOPIC_TEXT in Page(r.text).lines
+
+
+def test_create_app_refuses_facts_missing_a_results_key(tmp_path):
+    facts = _facts()
+    del facts["m2_haiku_support_rate"]
+    p = tmp_path / "facts.json"
+    p.write_text(json.dumps(facts), encoding="utf-8")
+    with pytest.raises(KeyError, match="m2_haiku_support_rate"):
+        create_app(desk=FakeDesk(), facts_path=p)

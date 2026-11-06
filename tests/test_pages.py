@@ -57,7 +57,7 @@ def test_fallback_html_matches_fallback_json_and_passes_every_text_gate(part, fa
     assert NEXT_STEP in p.lines and p.lines.count(pages.SAVED_LINE) == 1
     assert [(f["method"], f["action"]) for f in p.attrs("form")] == [("post", "/ask")]
     assert [d.get("name") for d in p.attrs("textarea")] == ["q"] and p.attrs("input") == []
-    assert {h for h, _ in p.links} <= {"#main", "/", "https://forn.al/", "https://forn.al/resume.pdf",
+    assert {h for h, _ in p.links} <= {"#main", "/", "/results", "https://forn.al/", "https://forn.al/resume.pdf",
                                        "mailto:mike@forn.al", *(f"/evidence/{u}" for u in FB["units"])}
     assert p.lines.index(NEXT_STEP) > p.lines.index(p.section()[-1])  # the next step follows the claims
 
@@ -135,7 +135,8 @@ def test_next_step_and_fixed_emails_are_the_only_links_made_from_text():
     url = Claim("direct", "", "", "Mike's notes live at https://forn.al/notes and mike@forn.al.", (U0,))
     p = Page(pages.answer_page(out(kept=(url,)), CORPUS, "Where are the invented notes?", VISIT))
     assert p.items("ol") == [f"{url.text} [{U0}]"]
-    assert [h for h, _ in p.links if h not in ("#main", "/", "https://forn.al/") and not h.startswith("/evidence/")
+    assert [h for h, _ in p.links if h not in ("#main", "/", "/results", "https://forn.al/")
+            and not h.startswith("/evidence/")
             ] == ["https://forn.al/resume.pdf", "mailto:mike@forn.al"]  # NEXT_STEP's two, nothing from the claim
 
 
@@ -176,3 +177,12 @@ def test_config_check_exits_2_on_a_bad_env(env, monkeypatch, capsys):
     assert main(["config-check"]) == 2
     got = capsys.readouterr()
     assert got.out == "" and got.err.startswith("config-check: ") and "ASK_" in got.err
+
+
+def test_every_page_links_results():
+    units = pages.load_units(REPO / "corpus" / "units.jsonl")
+    built = {"home": pages.home_page(), "not-found": pages.not_found_page(),
+             "answer": pages.answer_page(out("handoff", kind="handoff"), units, "Invented pay question?", None),
+             "evidence": pages.evidence_page(CORPUS[U0]), "fallback": pages.fallback_page(units)}
+    for name, html in built.items():
+        assert "/results" in [href for href, _ in Page(html).links], name

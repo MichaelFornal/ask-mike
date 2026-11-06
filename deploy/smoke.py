@@ -10,6 +10,8 @@ Checks, in order:
 - A handoff question gets HANDOFF_TEXT, and an input of MAX_INPUT_CHARS + 1 characters gets TOO_LONG_TEXT. Both are
   fixed lines the app serves before any model call or rate limit.
 - GET /evidence/<the fallback's first unit> and GET /static/style.css: status 200.
+- GET /results: status 200, and its visible text shows this checkout's recall@10 for hybrid search (the
+  m1_jdreq_R4_report_recall_at_10 display in facts.json), so the page is this release's. HEAD /: status 200.
 - With --ask: the question gets an answer page or the fallback, either one with NEXT_STEP. That is one model call
   (Haiku, for a question) unless the answer is cached.
 - Last, the burst: it re-asks the --ask question until the per-address limit answers 429 with the fallback page
@@ -91,11 +93,11 @@ def read_page(raw: bytes) -> tuple[list[str], bool]:
     return [x for x in lines if x], p.has_prev
 
 
-def fetch(url, data: bytes | None = None, headers=None, timeout=120.0):
+def fetch(url, data: bytes | None = None, headers=None, timeout=120.0, method: str | None = None):
     """(status, headers, raw body); an HTTP error status is returned, not raised."""
     try:
-        with urllib.request.urlopen(urllib.request.Request(url, data=data, headers=dict(headers or {})),
-                                    timeout=timeout) as r:
+        with urllib.request.urlopen(urllib.request.Request(url, data=data, headers=dict(headers or {}),
+                                                           method=method), timeout=timeout) as r:
             return r.status, r.headers, r.read()
     except urllib.error.HTTPError as e:
         return e.code, e.headers, e.read()
@@ -153,6 +155,20 @@ def check_evidence(base, unit_id: str) -> list[str]:
 def check_static(base) -> list[str]:
     status, _, _ = fetch(f"{base}/static/style.css")
     return [] if status == 200 else [f"/static/style.css: status {status}"]
+
+
+def check_results(base, facts: dict) -> list[str]:
+    status, _, raw = fetch(f"{base}/results")
+    if status != 200:
+        return [f"/results: status {status}"]
+    want = facts["m1_jdreq_R4_report_recall_at_10"]["display"]
+    lines, _ = read_page(raw)
+    return [] if want in "\n".join(lines) else [f"/results: does not show recall@10 {want} from this checkout's facts"]
+
+
+def check_head(base) -> list[str]:
+    status, _, _ = fetch(f"{base}/", method="HEAD")
+    return [] if status == 200 else [f"HEAD /: status {status}"]
 
 
 def check_ask(base, q: str) -> tuple[list[str], bool]:
@@ -215,7 +231,13 @@ def main(argv=None) -> int:
         problems += check_health(base, want)
     problems += (check_home(base) + check_fixed(base, HANDOFF_Q, HANDOFF_TEXT, "handoff")
                  + check_fixed(base, "a" * (MAX_INPUT_CHARS + 1), TOO_LONG_TEXT, "too long")
-                 + check_evidence(base, FALLBACK["units"][0]) + check_static(base))
+                 + check_evidence(base, FALLBACK["units"][0]) + check_static(base) + check_head(base))
+    try:
+        facts = json.loads((REPO / "facts.json").read_text(encoding="utf-8"))
+    except (OSError, ValueError) as e:
+        problems.append(f"local: cannot read this checkout's facts.json ({type(e).__name__})")
+    else:
+        problems += check_results(base, facts)
     if args.ask:
         got, answered = check_ask(base, args.ask)
         problems += got

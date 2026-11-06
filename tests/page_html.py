@@ -6,7 +6,7 @@ import re
 from html.parser import HTMLParser
 
 BLOCK = frozenset("html head title body div header nav main section form label button p li ol ul h1 h2 h3 footer"
-                  " textarea".split())
+                  " textarea table thead tbody tr th td".split())
 CAPTURE = frozenset({"section", "title", "li"})
 
 

@@ -1012,6 +1012,7 @@ FB = load_fallback()
 QUESTION = "Has Mike built an invented queue for nightly jobs?"
 VISIT = "AbCdEfGhIjKlMnOpQrStUv"
 CLAIM = Claim("direct", "", "", "Mike wrote an invented importer for the depot.", (FB["units"][0],))
+FACTS = json.loads((REPO / "facts.json").read_text(encoding="utf-8"))
 SHAS = {"git_sha": "g" * 40, "corpus_sha": "c" * 64, "index_sha": "i" * 64, "template_sha": ANSWER_TEMPLATE_SHA}
 
 
@@ -1024,6 +1025,7 @@ class Box(BaseHTTPRequestHandler):
     """A fake live Ask Mike behind Caddy: the app's real pages, Caddy's CSP on every response, and an ask limit keyed
     on the socket address whatever X-Forwarded-For says (Caddy replaces that header), unless honor_xff."""
     csp, limit_after, honor_xff, answers, health, limited_html = CSP, 3, False, True, None, None
+    results, head_ok = True, True
     asks: dict = {}
     posts: list = []
     forged: list = []
@@ -1050,7 +1052,14 @@ class Box(BaseHTTPRequestHandler):
             return self._send(200, pages.evidence_page(UNITS[path.removeprefix("/evidence/")]).encode())
         if path == "/static/style.css":
             return self._send(200, b"body{}", "text/css")
+        if path == "/results" and Box.results:
+            return self._send(200, pages.results_page(FACTS).encode())
         self._send(404, pages.not_found_page().encode())
+
+    def do_HEAD(self):
+        self.send_response(200 if Box.head_ok else 405)
+        self.send_header("Content-Length", "0")
+        self.end_headers()
 
     def do_POST(self):
         n = int(self.headers.get("Content-Length") or 0)
@@ -1077,6 +1086,7 @@ class Box(BaseHTTPRequestHandler):
 @pytest.fixture
 def box():
     Box.csp, Box.limit_after, Box.honor_xff, Box.answers, Box.health, Box.limited_html = CSP, 3, False, True, None, None
+    Box.results, Box.head_ok = True, True
     Box.asks, Box.posts, Box.forged = {}, [], []
     srv = ThreadingHTTPServer(("127.0.0.1", 0), Box)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
@@ -1099,7 +1109,8 @@ def test_smoke_against_a_fake_box(box):
     problems = (s.check_health(box, SHAS) + s.check_home(box)
                 + s.check_fixed(box, s.HANDOFF_Q, HANDOFF_TEXT, "handoff")
                 + s.check_fixed(box, "a" * (MAX_INPUT_CHARS + 1), TOO_LONG_TEXT, "too long")
-                + s.check_evidence(box, FB["units"][0]) + s.check_static(box))
+                + s.check_evidence(box, FB["units"][0]) + s.check_static(box)
+                + s.check_results(box, FACTS) + s.check_head(box))
     assert problems == []
     assert Box.asks == {}  # the fixed lines take no ask: no model call
     got, answered = s.check_ask(box, QUESTION)
@@ -1188,3 +1199,25 @@ def test_smoke_reads_the_local_shas(monkeypatch, tmp_path):
                                       "index_sha": hashlib.sha256(b"i").hexdigest(),
                                       "template_sha": load_answer_settings().template_sha}
     assert seen == [(["git", "rev-parse", "HEAD"], tmp_path)]
+
+
+def test_smoke_reports_a_missing_results_page_and_a_head_refusal(box):
+    s = smoke()
+    Box.results, Box.head_ok = False, False
+    assert s.check_results(box, FACTS) == ["/results: status 404"]
+    assert s.check_head(box) == ["HEAD /: status 405"]
+
+
+def test_smoke_reports_a_results_page_that_lacks_the_local_recall():
+    s = smoke()
+    stale = {**FACTS, "m1_jdreq_R4_report_recall_at_10": {**FACTS["m1_jdreq_R4_report_recall_at_10"],
+                                                          "display": "0.4242"}}
+    srv = ThreadingHTTPServer(("127.0.0.1", 0), Box)
+    threading.Thread(target=srv.serve_forever, daemon=True).start()
+    try:
+        base = f"http://127.0.0.1:{srv.server_address[1]}"
+        Box.results = True
+        assert s.check_results(base, stale) == ["/results: does not show recall@10 0.4242 from this checkout's facts"]
+    finally:
+        srv.shutdown()
+        srv.server_close()

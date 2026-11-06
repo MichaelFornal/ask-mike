@@ -525,6 +525,19 @@ td .ci {
 .ci { color: var(--muted); }
 .scroll + .note { margin-top: var(--s2); }
 
+/* Ask Mike's results page: a label per row, its figure right-aligned. */
+.results th[scope="row"] {
+  font-size: inherit;
+  font-weight: 400;
+  color: var(--ink);
+  vertical-align: top;
+  padding-top: var(--s2);
+}
+.results tbody tr + tr th, .results tbody tr + tr td { border-top: 1px solid var(--highlight); }
+.results h2 { margin-top: var(--s5); }
+.results .reports { padding-left: 1.25rem; }
+.results td .ci { min-width: 0; white-space: nowrap; }
+
 /* ---- charts (forn.al's magnitude bars, drawn as SVG) ------------------- */
 
 table.chart { max-width: 40rem; margin: 0 0 var(--s2); }

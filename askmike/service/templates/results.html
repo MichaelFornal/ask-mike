@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% block main %}
+<h1>How Ask Mike is measured</h1>
+<p class="lede">Every number on this page comes from the evals in the public repo, and each one is stored with the command that produced it.</p>
+<div class="results">
+<h2>What the evals cover</h2>
+<div class="scroll">
+<table>
+<tbody>
+{% for label, shown in sizes %}
+<tr><th scope="row">{{ label }}</th><td class="n">{{ shown[0] }}{% if shown[1] %} <span class="ci">{{ shown[1] }}</span>{% endif %}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<h2>Finding the evidence</h2>
+<p class="prose">For each requirement in a held-out job description: the share of the relevant evidence found in the top ten results (recall), and whether any of it was (coverage). Ranges are {{ ci_pct }} intervals.</p>
+<div class="scroll">
+<table>
+<tbody>
+{% for label, shown in retrieval %}
+<tr><th scope="row">{{ label }}</th><td class="n">{{ shown[0] }}{% if shown[1] %} <span class="ci">{{ shown[1] }}</span>{% endif %}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<h2>Answers</h2>
+<p class="prose">Each model answered every eval item. A claim reaches a visitor only after the grounding, honesty, slop and privacy gates, and an audit reruns the honesty, slop and privacy checks on what a visitor would see.</p>
+<div class="scroll">
+<table>
+<thead>
+<tr><th scope="col">Measure</th>{% for name in models %}<th scope="col" class="n">{{ name }}</th>{% endfor %}</tr>
+</thead>
+<tbody>
+{% for label, cells in model_rows %}
+<tr><th scope="row">{{ label }}</th>{% for shown in cells %}<td class="n">{{ shown[0] }}{% if shown[1] %} <span class="ci">{{ shown[1] }}</span>{% endif %}</td>{% endfor %}</tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<h2>Cost and speed</h2>
+<p class="prose">Measured on live API calls with the setup that serves this site.</p>
+<div class="scroll">
+<table>
+<tbody>
+{% for label, shown in cost %}
+<tr><th scope="row">{{ label }}</th><td class="n">{{ shown[0] }}{% if shown[1] %} <span class="ci">{{ shown[1] }}</span>{% endif %}</td></tr>
+{% endfor %}
+</tbody>
+</table>
+</div>
+<h2>The full reports</h2>
+<ul class="reports">
+{% for text, href in reports %}
+<li><a href="{{ href }}">{{ text }}</a></li>
+{% endfor %}
+</ul>
+</div>
+{% endblock %}
