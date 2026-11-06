@@ -1,0 +1,7 @@
+{
+  "experience": [
+    {"id": "acme", "title": "Senior Software Engineer", "company": "ACME Robotics", "location": "Remote",
+     "start": "Apr 2021", "end": "Present", "descriptor": "", "bullets": [{"id": "b1", "text": "Built things."}]}
+  ],
+  "projects": [{"id": "widget", "name": "Widget Index", "what": "search", "year": "2023", "line2": "", "bullets": []}]
+}

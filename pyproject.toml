@@ -1,0 +1,31 @@
+[project]
+name = "ask-mike"
+version = "0.1.0"
+description = "Ask Mike: an evidence corpus and answerer about Michael Fornal"
+license = "MIT"
+requires-python = ">=3.12,<3.13"
+dependencies = [
+    "anthropic>=2.4.0,<3",
+    "fastapi>=0.142,<0.143",
+    "fastembed>=0.8.1,<0.9",
+    "jinja2>=3.1,<4",
+    "sqlite-vec>=0.1.9,<0.2",
+    "uvicorn>=0.54,<0.55",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["askmike"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+markers = ["model: downloads and runs a real model (run with -m model)"]
+addopts = "-m 'not model'"

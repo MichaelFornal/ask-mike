@@ -1,0 +1,606 @@
+/* Ask Mike — stylesheet. Copied whole from Deal Terms Desk site/static/style.css at commit 36b0c66 (2026-10-12) on
+ * 2026-11-05: forn.al's design system, already carried over by DTD. Ask Mike adds one marked section at the end for
+ * its own pages; nothing above it is changed. The rules below name DTD's pages (Results, Method, agreements): those
+ * selectors match nothing here and are kept so the copy stays diffable against its source.
+ */
+
+/* Deal Terms Desk — stylesheet
+ *
+ * This is forn.al's design system (https://forn.al/styles.css), carried over whole: its tokens, its system font
+ * stacks and its three rules.
+ *
+ * 1. NO BORDERS. No rules, boxes, cards, panels, shadows or radii. Hierarchy comes from whitespace, type size,
+ *    weight and indentation.
+ * 2. NO HUE. No accent colour. A state (answered, not stated, budget spent) is said in words and weight. The tier
+ *    labels are words too: "human-labelled (MAUD)" and "machine-built" are what the numbers contract requires, and a
+ *    colour beside them would say nothing the words do not.
+ * 3. MONO CARRIES THE PAGE. Anything a machine produced is monospace: the model's claims, scores, section paths and
+ *    every figure. Serif is for sentences people wrote: the contract text quoted back, the visitor's question, and
+ *    the prose on Method.
+ *
+ * forn.al has no forms; this desk does. The only exceptions to the rules are the ones a form needs:
+ *  (a) a text field is a shift in the paper (--highlight), nothing more;
+ *  (b) the submit button is the page's one filled shape: ink on paper, square;
+ *  (c) focus is a 2px ink outline on everything focusable;
+ *  (d) a Results table wider than a phone scrolls inside its own region, so the page never does.
+ *
+ * No inline style anywhere: the CSP is style-src 'self'. Chart bars are SVG attributes, not style.
+ */
+
+:root {
+  --paper:    #FCFCFC;
+  --ink:      #111213;
+  --muted:    #5E626A;
+  --faint:    #9AA0A8;
+  --highlight: #F0F0EE;
+  --bar:      #24262A;
+
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+          "Liberation Mono", monospace;
+  --serif: "Iowan Old Style", "Palatino Linotype", Palatino, "Book Antiqua",
+           Georgia, serif;
+
+  --measure: 42rem;
+  --wide: 52rem;
+  --widest: 64rem; /* Results only: its ladder table has ten columns */
+
+  --s1: 0.25rem;
+  --s2: 0.5rem;
+  --s3: 0.875rem;
+  --s4: 1.5rem;
+  --s5: 2.5rem;
+  --s6: 4rem;
+  --s7: 6rem;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:    #0E0F10;
+    --ink:      #E9E9E7;
+    --muted:    #9CA1A8;
+    --faint:    #656A71;
+    --highlight: #1B1D1F;
+    --bar:      #D2D2CE;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--mono);
+  font-size: 15px;
+  line-height: 1.75;
+  font-variant-numeric: tabular-nums;
+  -webkit-font-smoothing: antialiased;
+}
+
+.page {
+  max-width: var(--wide);
+  margin: 0 auto;
+  padding: var(--s5) var(--s4) var(--s7);
+}
+body[data-page="results"] .page { max-width: var(--widest); }
+
+/* ---- masthead ---------------------------------------------------------- */
+
+.top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s4);
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--s6);
+}
+
+.who {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.top nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s2) var(--s3);
+  font-size: 0.75rem;
+  color: var(--muted);
+  min-width: 0;
+}
+.top nav a[aria-current="page"] { color: var(--ink); }
+
+/* Off screen until a keyboard reaches it, then the first thing on the page. */
+.skip {
+  position: absolute;
+  left: var(--s4);
+  top: -10rem;
+  padding: var(--s1) var(--s2);
+  background: var(--paper);
+  font-size: 0.8125rem;
+}
+.skip:focus { top: var(--s2); }
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---- type -------------------------------------------------------------- */
+
+h1 {
+  font-family: var(--mono);
+  font-size: clamp(1.5rem, 4.4vw, 2.375rem);
+  font-weight: 600;
+  line-height: 1.16;
+  letter-spacing: -0.025em;
+  margin: 0 0 var(--s4);
+  max-width: 24ch;
+  text-wrap: balance;
+}
+
+h2 {
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin: var(--s6) 0 var(--s3);
+  letter-spacing: -0.01em;
+  scroll-margin-top: var(--s4);
+}
+
+/* Section labels: the structural device that replaces rules and boxes. */
+.label {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 var(--s3);
+}
+
+.lede {
+  font-family: var(--serif);
+  font-size: 1.1875rem;
+  line-height: 1.55;
+  max-width: var(--measure);
+  margin: 0 0 var(--s5);
+  font-variant-numeric: oldstyle-nums;
+}
+
+.prose {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  max-width: var(--measure);
+  margin: 0 0 var(--s3);
+  font-variant-numeric: oldstyle-nums;
+}
+
+.note {
+  font-size: 0.75rem;
+  color: var(--muted);
+  max-width: var(--measure);
+  margin: 0 0 var(--s5);
+}
+
+/* A tier label is what makes a number honest, so it is --muted, never --faint: at this size --faint fails AA. */
+.tier {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* ---- links and controls ------------------------------------------------ */
+
+a {
+  color: inherit;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--faint);
+}
+a:hover { text-decoration-thickness: 2px; text-decoration-color: currentColor; }
+
+.top a { text-decoration: none; }
+.top a:hover { text-decoration: underline; text-decoration-thickness: 1px; }
+
+:focus-visible { outline: 2px solid var(--ink); outline-offset: 3px; }
+
+/* A button that is not the form's submit reads as a link: example questions, candidate deals, "show more". */
+.linkish {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.22em;
+  text-decoration-color: var(--faint);
+}
+.linkish:hover { text-decoration-thickness: 2px; text-decoration-color: currentColor; }
+
+/* ---- the form: exceptions (a), (b), (c) -------------------------------- */
+
+.desk-form {
+  display: grid;
+  gap: var(--s4);
+  max-width: var(--measure);
+  margin: 0 0 var(--s5);
+}
+
+.field label {
+  display: block;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin: 0 0 var(--s2);
+}
+
+textarea, input {
+  display: block;
+  width: 100%;
+  font: inherit;
+  color: var(--ink);
+  background: var(--highlight);
+  border: 0;
+  border-radius: 0;
+  padding: var(--s2) var(--s3);
+  margin: 0;
+}
+textarea:focus-visible, input:focus-visible { outline-offset: 0; }
+::placeholder { color: var(--muted); opacity: 1; }
+
+/* The question is a person's sentence, so it is set in serif; an agreement's name is the machine's label for it. */
+#question, #q {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.55;
+}
+textarea {
+  resize: vertical;
+  min-height: 5.5em;
+  field-sizing: content;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--s3);
+  align-items: flex-end;
+}
+.row .field { flex: 1 1 18rem; min-width: 0; }
+
+button[type="submit"] {
+  font: inherit;
+  font-weight: 600;
+  color: var(--paper);
+  background: var(--ink);
+  border: 0;
+  border-radius: 0;
+  padding: var(--s2) var(--s4);
+  cursor: pointer;
+}
+button[type="submit"]:disabled { background: var(--muted); cursor: progress; }
+
+.field-note { font-size: 0.75rem; color: var(--muted); margin: var(--s2) 0 0; }
+.desk-form > .field-note { margin-top: calc(var(--s2) - var(--s4)); } /* under the field it describes, not a row away */
+.field-note.problem { color: var(--ink); font-weight: 600; }
+
+/* ---- answers ----------------------------------------------------------- */
+
+.answer, .results {
+  max-width: var(--measure);
+  scroll-margin-top: var(--s4);
+}
+.answer:not(:empty), .results:not(:empty) { margin: 0 0 var(--s6); }
+
+/* A state is said in words and weight: no colour (rule 2). */
+.state { font-weight: 600; margin: 0 0 var(--s3); }
+.meta { font-size: 0.75rem; color: var(--muted); margin: 0 0 var(--s3); }
+
+.reading .label { margin-bottom: var(--s2); }
+.reading .wait {
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--muted);
+  margin: 0;
+}
+/* Three dots that fill in one at a time. The mono font makes three of them exactly 3ch wide. */
+.dots {
+  display: inline-block;
+  width: 0;
+  overflow: hidden;
+  vertical-align: bottom;
+  animation: dots 1.6s steps(4, jump-none) infinite;
+}
+@keyframes dots { to { width: 3ch; } }
+
+.deal-head { margin: 0 0 var(--s4); }
+.deal-head .name { display: block; font-weight: 600; }
+.deal-head .when { font-size: 0.8125rem; color: var(--muted); }
+
+.claims {
+  list-style: none;
+  counter-reset: claim;
+  padding: 0;
+  margin: 0 0 var(--s4);
+}
+.claims > li {
+  counter-increment: claim;
+  position: relative;
+  padding-left: 2.25em;
+  margin: 0 0 var(--s5);
+}
+.claims > li::before {
+  content: counter(claim);
+  position: absolute;
+  left: 0;
+  color: var(--muted);
+  font-weight: 600;
+}
+.claim-text { margin: 0 0 var(--s3); }
+
+/* The contract's own words: serif, set in by indentation rather than a rule (rule 1). */
+.quote {
+  font-family: var(--serif);
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  margin: 0 0 var(--s2) var(--s4);
+  font-variant-numeric: oldstyle-nums;
+  overflow-wrap: break-word;
+}
+.cite { font-size: 0.75rem; color: var(--muted); margin: 0 0 0 var(--s4); }
+
+.checked { font-size: 0.8125rem; margin: 0 0 var(--s2); }
+
+.candidates { list-style: none; padding: 0; margin: 0 0 var(--s4); }
+.candidates li { margin: 0 0 var(--s2); }
+
+/* ---- examples ---------------------------------------------------------- */
+
+.examples { max-width: var(--measure); margin: 0 0 var(--s6); }
+.family { margin: 0 0 var(--s4); }
+.family h3 {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  margin: 0 0 var(--s1);
+}
+.family ul { list-style: none; padding: 0; margin: 0; }
+.family li { margin: 0 0 var(--s1); }
+.family .linkish {
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-variant-numeric: oldstyle-nums;
+}
+
+/* ---- headline figures (forn.al's ticker, without the roll) ------------- */
+
+.figures { margin: 0 0 var(--s6); }
+.tick {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 1fr));
+  gap: var(--s5) var(--s4);
+  margin: 0 0 var(--s4);
+}
+.tick .v {
+  display: block;
+  font-size: clamp(1.375rem, 4.4vw, 2rem);
+  font-weight: 600;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-decoration: none;
+}
+.tick a.v:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+.tick .v .ci {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0;
+  color: var(--muted);
+  margin-top: var(--s1);
+}
+.tick .k {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 1.5;
+  margin-top: var(--s2);
+}
+.tick .tier { display: block; margin-top: var(--s1); }
+.figures .more { font-size: 0.8125rem; margin: 0; }
+
+/* ---- search ------------------------------------------------------------ */
+
+.hits { list-style: none; padding: 0; margin: 0; counter-reset: hit; }
+.hit { margin: 0 0 var(--s5); counter-increment: hit; }
+.hit-head { font-size: 0.8125rem; margin: 0 0 var(--s2); }
+.hit-head::before { content: counter(hit); color: var(--muted); font-weight: 600; margin-right: var(--s3); }
+.passage {
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.6;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  font-variant-numeric: oldstyle-nums;
+  margin: 0 0 var(--s2);
+}
+.passage.clamped {
+  max-height: 12.8em; /* eight lines */
+  overflow: hidden;
+  -webkit-mask-image: linear-gradient(to bottom, #000 65%, transparent);
+  mask-image: linear-gradient(to bottom, #000 65%, transparent);
+}
+.passage.open { max-height: none; -webkit-mask-image: none; mask-image: none; }
+.hit .more { font-size: 0.75rem; margin: 0 0 var(--s2); }
+.hit .meta { margin: 0; }
+
+/* ---- contents ---------------------------------------------------------- */
+
+.contents ul {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--s5);
+  columns: 2 14rem;
+  column-gap: var(--s4);
+  font-size: 0.8125rem;
+}
+.contents li { break-inside: avoid; }
+
+/* ---- results tables: exception (d) ------------------------------------- */
+
+.scroll {
+  overflow-x: auto;
+  max-width: 100%;
+  margin: 0 0 var(--s2);
+  container-type: inline-size;
+}
+/* A table with many columns keeps readable columns and scrolls sideways instead; its caption stays as wide as the
+   visible region, so the title wraps where it can be read rather than scrolling off with the table. */
+table.wide { min-width: 46rem; }
+table.wide td:not(.n):not(:first-child) { min-width: 12rem; }
+.scroll caption { max-width: 100cqw; }
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+caption {
+  caption-side: top;
+  text-align: left;
+  font-weight: 600;
+  padding: 0 0 var(--s3);
+}
+caption .tier, th .tier { display: block; margin-top: var(--s1); }
+th {
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--muted);
+  text-align: left;
+  vertical-align: bottom;
+  padding: 0 var(--s3) var(--s2) 0;
+}
+td {
+  text-align: left;
+  vertical-align: top;
+  padding: var(--s2) var(--s3) var(--s2) 0;
+}
+th:last-child, td:last-child { padding-right: 0; }
+th.n, td.n { text-align: right; }
+td.n { white-space: nowrap; }
+/* An interval sits under its value. 21ch holds "(0.4666 to 0.5123)" on one line, and breaks a change's
+   "(−0.1264 to −0.0826; no measurable change)" after the semicolon, never inside a number. */
+td .ci {
+  display: block;
+  font-size: 0.75rem;
+  color: var(--muted);
+  white-space: normal;
+  min-width: 21ch;
+}
+.ci { color: var(--muted); }
+.scroll + .note { margin-top: var(--s2); }
+
+/* ---- charts (forn.al's magnitude bars, drawn as SVG) ------------------- */
+
+table.chart { max-width: 40rem; margin: 0 0 var(--s2); }
+.chart th[scope="row"] {
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--muted);
+  white-space: nowrap;
+  vertical-align: top;
+  padding: var(--s2) var(--s3) var(--s2) 0;
+}
+.chart thead th { padding: 0; }
+.chart .track { width: 100%; vertical-align: top; padding-top: calc(var(--s2) + 0.3em); }
+.chart svg { display: block; width: 100%; height: 14px; overflow: visible; }
+/* In a chart the bar is the picture, so the value and its interval stay on one line beside it. */
+.chart td.n { padding-left: var(--s3); }
+.chart td .ci { display: inline; min-width: 0; margin-left: var(--s2); white-space: nowrap; }
+.chart .bar { fill: var(--bar); }
+.chart .range { stroke: var(--muted); stroke-width: 1.5; }
+
+/* ---- footer ------------------------------------------------------------ */
+
+.foot {
+  margin-top: var(--s7);
+  font-size: 0.75rem;
+  color: var(--muted);
+  line-height: 2;
+  max-width: var(--measure);
+}
+.foot p { margin: 0 0 var(--s2); }
+.foot .disclaimer { color: var(--ink); font-weight: 600; }
+
+@media (max-width: 40rem) {
+  body { font-size: 14px; }
+  .page { padding: var(--s4) var(--s3) var(--s6); }
+  .top { margin-bottom: var(--s5); }
+  h2 { margin-top: var(--s5); }
+  .row button[type="submit"] { width: 100%; }
+  /* A phone has no room for label, bar and interval on one line: the interval goes under its value. */
+  .chart th[scope="row"] { white-space: normal; }
+  .chart .track { min-width: 5rem; }
+  .chart td .ci { display: block; margin-left: 0; white-space: normal; }
+  .chart td.n { white-space: normal; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+  .dots { width: auto; }
+}
+
+@media print {
+  :root {
+    --paper: #fff; --ink: #000; --muted: #333; --faint: #555;
+    --highlight: #eee; --bar: #000;
+  }
+  body { font-size: 11pt; }
+  .page, body[data-page="results"] .page { max-width: none; padding: 0; }
+  .top nav, .skip, .desk-form, .examples, .more { display: none; }
+  .passage { max-height: none; -webkit-mask-image: none; mask-image: none; }
+  .scroll { overflow: visible; }
+  a { text-decoration: none; }
+  main a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 0.85em; }
+  .claims > li, .hit, tr { break-inside: avoid; }
+  h1, h2, caption { break-after: avoid; }
+}
+
+/* ---- Ask Mike additions ---------------------------------------------------
+ * Pages with no JavaScript: a hidden follow-up field, the visitor's question as typed, and the next step.
+ */
+
+input[type="hidden"] { display: none; }
+
+.asked { white-space: pre-wrap; overflow-wrap: anywhere; }
+
+.answer .claims > li { margin-bottom: var(--s4); }
+.claims .cite { display: inline; margin: 0 0 0 var(--s2); }
+.claims .cite a { white-space: nowrap; } /* an id breaks between ids, never at its own hyphen */
+
+.next { font-size: 0.8125rem; max-width: var(--measure); margin: 0 0 var(--s6); }

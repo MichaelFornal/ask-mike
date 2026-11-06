@@ -1,0 +1,8 @@
+{
+ "total_usd_month": 25.00,
+ "server_usd_month": 7.09,
+ "dtd_model_cap_usd_month": 2.91,
+ "day_cap_share": 0.1,
+ "source": "spec §7 and DTD deploy/hosting.json",
+ "checked": "2026-11-05"
+}

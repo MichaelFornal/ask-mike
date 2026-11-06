@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="light dark">
+<title>{% if title %}{{ title }} · {% endif %}Ask Mike</title>
+<meta name="description" content="{{ description }}">
+<link rel="stylesheet" href="{{ style_href }}">
+</head>
+<body data-page="{{ page }}">
+<a class="skip" href="#main">Skip to content</a>
+<div class="page">
+<header class="top">
+<a class="who" href="/">Ask Mike</a>
+<nav aria-label="Pages"><a href="https://forn.al/">forn.al</a></nav>
+</header>
+<main id="main">
+{% block main %}{% endblock %}
+{% if box %}
+<form class="desk-form" method="post" action="/ask">
+<div class="field">
+<label for="q">{% if prev %}Ask a follow-up{% else %}Your question or a job description{% endif %}</label>
+<textarea id="q" name="q" rows="3" required></textarea>
+</div>
+{% if prev %}
+<input type="hidden" name="prev" value="{{ prev }}">
+{% endif %}
+<div class="row">
+<button type="submit">Ask →</button>
+</div>
+<p class="field-note">{{ saved_line }}</p>
+</form>
+{% endif %}
+</main>
+</div>
+</body>
+</html>

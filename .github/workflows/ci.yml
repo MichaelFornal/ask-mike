@@ -1,0 +1,21 @@
+name: ci
+on:
+  push:
+  pull_request:
+
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install
+        run: uv sync --frozen
+      - name: Tests
+        run: uv run pytest -q
+      - name: Report gate (docs/m1/REPORT.md equals its render from facts.json, no stray digits)
+        run: uv run pytest -q tests/test_report_m1.py
+      - name: Report gate (docs/m2/REPORT.md equals its render from facts.json, no stray digits)
+        run: uv run pytest -q tests/test_report_m2.py
+      - name: Copy check (every number in README.md, docs/m1/REPORT.md and docs/m2/REPORT.md comes from facts.json)
+        run: uv run python -m askmike.facts.copycheck README.md docs/m1/REPORT.md docs/m2/REPORT.md

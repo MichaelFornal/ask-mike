@@ -1,0 +1,25 @@
+# Installed as /etc/systemd/system/ask.service by deploy/push.sh. Ported from Deal Terms Desk's unit on
+# 2026-11-05: Ask Mike's user, directories, env file, app, port (Deal Terms Desk holds 8000) and memory
+# cap. The hardening is the same.
+[Unit]
+Description=Ask Mike
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+User=ask
+Group=ask
+WorkingDirectory=/srv/ask/current
+EnvironmentFile=/etc/ask/env
+ExecStart=/srv/ask/current/.venv/bin/uvicorn --factory askmike.service.app:create_app --host 127.0.0.1 --port 8001 --workers 1 --no-access-log --forwarded-allow-ips 127.0.0.1
+Restart=always
+RestartSec=2
+MemoryMax=1200M
+NoNewPrivileges=true
+ProtectSystem=strict
+ProtectHome=true
+PrivateTmp=true
+ReadWritePaths=/var/lib/ask
+
+[Install]
+WantedBy=multi-user.target

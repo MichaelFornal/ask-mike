@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block main %}
+<p class="label">Evidence {{ unit_id }}</p>
+<h1>{{ subject }}</h1>
+{% if when %}
+<p class="meta">{{ when }}</p>
+{% endif %}
+<p class="lede">{{ claim }}</p>
+{% if detail %}
+<p class="prose">{{ detail }}</p>
+{% endif %}
+{% endblock %}

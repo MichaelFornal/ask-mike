@@ -1,0 +1,29 @@
+{
+  "roles": [
+    {"company": "Acme Robotics", "title": "Software Engineer", "start": "2021-03", "end": "present",
+     "evidence": [
+      {"id": "acme-queue", "claim": "Built a job queue that moved 1,200 jobs a day", "metric": "1,200 jobs a day",
+       "bullet": "Replaced cron scripts with a queue worker.", "stack": ["python3", "Decimal"], "tags": ["backend"], "strength": "high"},
+      {"id": "acme-ai", "claim": "AI-assisted the invoice review flow", "metric": "",
+       "bullet": "Added a review step.", "stack": ["k8s"], "tags": [], "strength": "mid"}
+     ]}
+  ],
+  "projects": [
+    {"name": "Widget Index", "start": "2023-01", "end": "2023-06",
+     "evidence": [
+      {"id": "widget-search", "claim": "Indexed 40,000 widgets for search", "metric": "40,000 widgets",
+       "bullet": "Built a small inverted index.", "stack": ["Rust"], "tags": [], "strength": "high"}
+     ]}
+  ],
+  "skill_depth": [
+    {"term": "Python", "depth": "strong", "aliases": ["python3"], "roles": [], "evidence": [], "note": ""},
+    {"term": "Kubernetes", "depth": "familiar", "aliases": ["k8s"], "roles": [], "evidence": [], "note": ""},
+    {"term": "Rust", "depth": "none", "aliases": [], "roles": [], "evidence": [], "note": ""}
+  ],
+  "education": [
+    {"school": "Example State University", "credential": "BS", "field": "Computer Science", "location": "Springfield",
+     "years": "2012-2016", "highlights": [], "minor": "", "coursework": []}
+  ],
+  "narrative": {},
+  "counted_facts": {}
+}

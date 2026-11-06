@@ -1,0 +1,7 @@
+#!/bin/sh
+# Scan staged files for private patterns before every commit (see CLAUDE.md).
+if [ -z "$ASK_PRIVATE_DIR" ]; then
+  echo "set ASK_PRIVATE_DIR (see CLAUDE.md)"
+  exit 1
+fi
+exec uv run --frozen python tools/scan_public.py --staged

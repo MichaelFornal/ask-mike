@@ -1,0 +1,8 @@
+{"gold": [], "id": "q-ev-1", "kind": "evidence", "split": "report", "synthetic": false, "text": "Invented recruiter question q-ev-1 about widgets?"}
+{"gold": [], "id": "q-ev-2", "kind": "evidence", "split": "report", "synthetic": false, "text": "Invented recruiter question q-ev-2 about widgets?"}
+{"gold": [], "id": "q-ev-3", "kind": "evidence", "split": "report", "synthetic": false, "text": "Invented recruiter question q-ev-3 about widgets?"}
+{"gold": [], "id": "q-ev-7", "kind": "evidence", "split": "tune", "synthetic": false, "text": "Invented recruiter question q-ev-7 about widgets?"}
+{"gold": ["u-16"], "id": "q-pe-1", "kind": "personal", "split": "report", "synthetic": false, "text": "Invented recruiter question q-pe-1 about widgets?"}
+{"gold": ["u-18"], "id": "q-pe-2", "kind": "personal", "split": "report", "synthetic": true, "text": "Invented recruiter question q-pe-2 about widgets?"}
+{"gold": ["u-18"], "id": "q-pe-5", "kind": "personal", "split": "tune", "synthetic": true, "text": "Invented recruiter question q-pe-5 about widgets?"}
+{"gold": [], "id": "q-ho-1", "kind": "handoff", "split": "report", "synthetic": false, "text": "Invented recruiter question q-ho-1 about widgets?"}

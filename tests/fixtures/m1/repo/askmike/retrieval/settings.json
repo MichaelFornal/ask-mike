@@ -1,0 +1,9 @@
+{
+  "depth": 20,
+  "rrf_k0": 60,
+  "rule": "invented",
+  "evidence": {},
+  "tuned_on": {
+    "split": "tune"
+  }
+}

@@ -1,0 +1,28 @@
+# Private material never lives in this repo; it lives in $ASK_PRIVATE_DIR (outside every git tree).
+# These rules are a second line of defense if something is copied in by mistake.
+raw/
+!tests/fixtures/raw/
+private/
+*.local.txt
+*.local.json
+denylist.local*
+MANIFEST.json
+logs/
+*.db
+*.db-wal
+*.db-shm
+.env
+.env.*
+
+# Agent working notes (plans, briefs, reviews); never published
+.superpowers/
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+build/
+
+# The static fallback page, built into each release on the box by deploy/push.sh
+site/dist/

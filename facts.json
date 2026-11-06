@@ -1,0 +1,3757 @@
+{
+ "m1_B_n_jds": {
+  "value": 20,
+  "display": "20",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "labels_B.jsonl": "230a337458642de716bf27117ac240a50aaa4574b70bd191236b24c0b9102ccc"
+  }
+ },
+ "m1_B_n_questions": {
+  "value": 42,
+  "display": "42",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "labels_B.jsonl": "230a337458642de716bf27117ac240a50aaa4574b70bd191236b24c0b9102ccc"
+  }
+ },
+ "m1_ci_pct": {
+  "value": 95,
+  "display": "95%",
+  "cmd": "uv run python -c \"from askmike.evals.bootstrap import CI_LOW, CI_HIGH; print(round((CI_HIGH - CI_LOW) * 100))\"",
+  "inputs": {}
+ },
+ "m1_cmp_R1_vs_KW_jdreq_recall_at_10_delta": {
+  "value": 0.0419,
+  "display": "0.042",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R1_vs_KW_jdreq_recall_at_10_hi": {
+  "value": 0.0711,
+  "display": "0.071",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R1_vs_KW_jdreq_recall_at_10_lo": {
+  "value": 0.0129,
+  "display": "0.013",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R2_vs_KW_jdreq_recall_at_10_delta": {
+  "value": -0.0567,
+  "display": "-0.057",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R2_vs_KW_jdreq_recall_at_10_hi": {
+  "value": -0.0268,
+  "display": "-0.027",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R2_vs_KW_jdreq_recall_at_10_lo": {
+  "value": -0.0851,
+  "display": "-0.085",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R3_vs_KW_jdreq_recall_at_10_delta": {
+  "value": 0.0668,
+  "display": "0.067",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R3_vs_KW_jdreq_recall_at_10_hi": {
+  "value": 0.0962,
+  "display": "0.096",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R3_vs_KW_jdreq_recall_at_10_lo": {
+  "value": 0.0377,
+  "display": "0.038",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R4_vs_KW_jdreq_recall_at_10_delta": {
+  "value": 0.0915,
+  "display": "0.091",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R4_vs_KW_jdreq_recall_at_10_hi": {
+  "value": 0.1202,
+  "display": "0.120",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_cmp_R4_vs_KW_jdreq_recall_at_10_lo": {
+  "value": 0.0643,
+  "display": "0.064",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/cmp_jdreq.json": "85ff2845a53c7688157f073c5f11eadfea8be4d011f5d487e871442537423763"
+  }
+ },
+ "m1_jd_family_ai_ml": {
+  "value": 37,
+  "display": "37",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f"
+  }
+ },
+ "m1_jd_family_data": {
+  "value": 6,
+  "display": "6",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f"
+  }
+ },
+ "m1_jd_family_fde_solutions": {
+  "value": 7,
+  "display": "7",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f"
+  }
+ },
+ "m1_jd_family_gtm": {
+  "value": 6,
+  "display": "6",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f"
+  }
+ },
+ "m1_jd_family_other": {
+  "value": 18,
+  "display": "18",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f"
+  }
+ },
+ "m1_jd_family_product": {
+  "value": 3,
+  "display": "3",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f"
+  }
+ },
+ "m1_jd_family_software": {
+  "value": 23,
+  "display": "23",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f"
+  }
+ },
+ "m1_jdreq_KW_report_coverage_at_10": {
+  "value": 0.8692,
+  "display": "0.87",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_coverage_at_10_hi": {
+  "value": 0.8982,
+  "display": "0.90",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_coverage_at_10_lo": {
+  "value": 0.8383,
+  "display": "0.84",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_mrr": {
+  "value": 0.6229,
+  "display": "0.62",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_mrr_hi": {
+  "value": 0.656,
+  "display": "0.66",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_mrr_lo": {
+  "value": 0.5869,
+  "display": "0.59",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_ndcg_at_10": {
+  "value": 0.4622,
+  "display": "0.46",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_ndcg_at_10_hi": {
+  "value": 0.4898,
+  "display": "0.49",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_ndcg_at_10_lo": {
+  "value": 0.4342,
+  "display": "0.43",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_recall_at_10": {
+  "value": 0.454,
+  "display": "0.45",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_recall_at_10_hi": {
+  "value": 0.4781,
+  "display": "0.48",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_recall_at_10_lo": {
+  "value": 0.4292,
+  "display": "0.43",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_recall_at_5": {
+  "value": 0.2805,
+  "display": "0.28",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_recall_at_5_hi": {
+  "value": 0.3008,
+  "display": "0.30",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_KW_report_recall_at_5_lo": {
+  "value": 0.2597,
+  "display": "0.26",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3"
+  }
+ },
+ "m1_jdreq_R1_report_coverage_at_10": {
+  "value": 0.9227,
+  "display": "0.92",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_coverage_at_10_hi": {
+  "value": 0.9402,
+  "display": "0.94",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_coverage_at_10_lo": {
+  "value": 0.9036,
+  "display": "0.90",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_mrr": {
+  "value": 0.6208,
+  "display": "0.62",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_mrr_hi": {
+  "value": 0.6455,
+  "display": "0.65",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_mrr_lo": {
+  "value": 0.5925,
+  "display": "0.59",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_ndcg_at_10": {
+  "value": 0.474,
+  "display": "0.47",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_ndcg_at_10_hi": {
+  "value": 0.4914,
+  "display": "0.49",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_ndcg_at_10_lo": {
+  "value": 0.4564,
+  "display": "0.46",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_recall_at_10": {
+  "value": 0.4959,
+  "display": "0.50",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_recall_at_10_hi": {
+  "value": 0.516,
+  "display": "0.52",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_recall_at_10_lo": {
+  "value": 0.4765,
+  "display": "0.48",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_recall_at_5": {
+  "value": 0.3158,
+  "display": "0.32",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_recall_at_5_hi": {
+  "value": 0.3338,
+  "display": "0.33",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R1_report_recall_at_5_lo": {
+  "value": 0.2966,
+  "display": "0.30",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d"
+  }
+ },
+ "m1_jdreq_R2_report_coverage_at_10": {
+  "value": 0.8474,
+  "display": "0.85",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_coverage_at_10_hi": {
+  "value": 0.8703,
+  "display": "0.87",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_coverage_at_10_lo": {
+  "value": 0.823,
+  "display": "0.82",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_mrr": {
+  "value": 0.5405,
+  "display": "0.54",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_mrr_hi": {
+  "value": 0.5725,
+  "display": "0.57",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_mrr_lo": {
+  "value": 0.5087,
+  "display": "0.51",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_ndcg_at_10": {
+  "value": 0.3942,
+  "display": "0.39",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_ndcg_at_10_hi": {
+  "value": 0.4143,
+  "display": "0.41",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_ndcg_at_10_lo": {
+  "value": 0.374,
+  "display": "0.37",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_recall_at_10": {
+  "value": 0.3974,
+  "display": "0.40",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_recall_at_10_hi": {
+  "value": 0.4157,
+  "display": "0.42",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_recall_at_10_lo": {
+  "value": 0.3798,
+  "display": "0.38",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_recall_at_5": {
+  "value": 0.2384,
+  "display": "0.24",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_recall_at_5_hi": {
+  "value": 0.2543,
+  "display": "0.25",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R2_report_recall_at_5_lo": {
+  "value": 0.2223,
+  "display": "0.22",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83"
+  }
+ },
+ "m1_jdreq_R3_report_coverage_at_10": {
+  "value": 0.9437,
+  "display": "0.94",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_coverage_at_10_hi": {
+  "value": 0.9591,
+  "display": "0.96",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_coverage_at_10_lo": {
+  "value": 0.9271,
+  "display": "0.93",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_mrr": {
+  "value": 0.6542,
+  "display": "0.65",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_mrr_hi": {
+  "value": 0.6809,
+  "display": "0.68",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_mrr_lo": {
+  "value": 0.6249,
+  "display": "0.62",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_ndcg_at_10": {
+  "value": 0.5084,
+  "display": "0.51",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_ndcg_at_10_hi": {
+  "value": 0.5297,
+  "display": "0.53",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_ndcg_at_10_lo": {
+  "value": 0.4877,
+  "display": "0.49",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_recall_at_10": {
+  "value": 0.5208,
+  "display": "0.52",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_recall_at_10_hi": {
+  "value": 0.5406,
+  "display": "0.54",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_recall_at_10_lo": {
+  "value": 0.5012,
+  "display": "0.50",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_recall_at_5": {
+  "value": 0.3358,
+  "display": "0.34",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_recall_at_5_hi": {
+  "value": 0.3589,
+  "display": "0.36",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R3_report_recall_at_5_lo": {
+  "value": 0.3139,
+  "display": "0.31",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352"
+  }
+ },
+ "m1_jdreq_R4_report_coverage_at_10": {
+  "value": 0.9469,
+  "display": "0.95",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_coverage_at_10_hi": {
+  "value": 0.9614,
+  "display": "0.96",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_coverage_at_10_lo": {
+  "value": 0.9308,
+  "display": "0.93",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_mrr": {
+  "value": 0.6837,
+  "display": "0.68",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_mrr_hi": {
+  "value": 0.7148,
+  "display": "0.71",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_mrr_lo": {
+  "value": 0.6511,
+  "display": "0.65",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_ndcg_at_10": {
+  "value": 0.538,
+  "display": "0.54",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_ndcg_at_10_hi": {
+  "value": 0.5611,
+  "display": "0.56",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_ndcg_at_10_lo": {
+  "value": 0.5137,
+  "display": "0.51",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_recall_at_10": {
+  "value": 0.5455,
+  "display": "0.55",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_recall_at_10_hi": {
+  "value": 0.5652,
+  "display": "0.57",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_recall_at_10_lo": {
+  "value": 0.5271,
+  "display": "0.53",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_recall_at_5": {
+  "value": 0.3533,
+  "display": "0.35",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_recall_at_5_hi": {
+  "value": 0.3779,
+  "display": "0.38",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_R4_report_recall_at_5_lo": {
+  "value": 0.3308,
+  "display": "0.33",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_report_n_items": {
+  "value": 929,
+  "display": "929",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jdreq_report_n_jds": {
+  "value": 71,
+  "display": "71",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1"
+  }
+ },
+ "m1_jds_at_req_cap_share": {
+  "value": 0.82,
+  "display": "82%",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f"
+  }
+ },
+ "m1_judged_at_10_min": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_kappa_AB": {
+  "value": 0.5975,
+  "display": "0.60",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "labels_B.jsonl": "230a337458642de716bf27117ac240a50aaa4574b70bd191236b24c0b9102ccc"
+  }
+ },
+ "m1_n_boot": {
+  "value": 2000,
+  "display": "2,000",
+  "cmd": "uv run python -c \"from askmike.evals.bootstrap import N_BOOT; print(N_BOOT)\"",
+  "inputs": {}
+ },
+ "m1_n_jds": {
+  "value": 100,
+  "display": "100",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f"
+  }
+ },
+ "m1_n_pairs_AB": {
+  "value": 9084,
+  "display": "9,084",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "labels_B.jsonl": "230a337458642de716bf27117ac240a50aaa4574b70bd191236b24c0b9102ccc"
+  }
+ },
+ "m1_n_personal": {
+  "value": 16,
+  "display": "16",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9"
+  }
+ },
+ "m1_n_personal_invented": {
+  "value": 12,
+  "display": "12",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9"
+  }
+ },
+ "m1_n_questions": {
+  "value": 42,
+  "display": "42",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9"
+  }
+ },
+ "m1_n_requirements": {
+  "value": 1446,
+  "display": "1,446",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271"
+  }
+ },
+ "m1_n_rungs": {
+  "value": 5,
+  "display": "5",
+  "cmd": "uv run python -c \"from askmike.evals.run import ALL_RUNGS; print(len(ALL_RUNGS))\"",
+  "inputs": {}
+ },
+ "m1_n_units": {
+  "value": 377,
+  "display": "377",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920"
+  }
+ },
+ "m1_n_unlabelled": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW.json": "000cf61e16bb86e5dda18471d088dab665d9488698b4b4dcf2501f331c4496f3",
+   "results/A/jdreq_R1.json": "71c9381cde7847c980c68ef6c7f238ed1ad1799d3599e1c236b58128875f1f1d",
+   "results/A/jdreq_R2.json": "71eae810542623050641308b0c799e80d400ad3cf5ae65b7aee13c3648792e83",
+   "results/A/jdreq_R3.json": "44f26426c1a46283f069da1188e01a2890cae30d885dc218f259a9b6147f0352",
+   "results/A/jdreq_R4.json": "15a05e8a0fbec77085fbc616b7836f4d34c21516eb28e3bf2619f2d715aa33a1",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_personal_KW_report_mrr": {
+  "value": 0.4619,
+  "display": "0.46",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_mrr_hi": {
+  "value": 0.7286,
+  "display": "0.73",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_mrr_lo": {
+  "value": 0.2119,
+  "display": "0.21",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_ndcg_at_10": {
+  "value": 0.5089,
+  "display": "0.51",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_ndcg_at_10_hi": {
+  "value": 0.7589,
+  "display": "0.76",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_ndcg_at_10_lo": {
+  "value": 0.2589,
+  "display": "0.26",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_recall_at_10": {
+  "value": 0.6667,
+  "display": "0.67",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_recall_at_10_hi": {
+  "value": 0.9167,
+  "display": "0.92",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_recall_at_10_lo": {
+  "value": 0.4167,
+  "display": "0.42",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_recall_at_5": {
+  "value": 0.5833,
+  "display": "0.58",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_recall_at_5_hi": {
+  "value": 0.8333,
+  "display": "0.83",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_KW_report_recall_at_5_lo": {
+  "value": 0.3333,
+  "display": "0.33",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67"
+  }
+ },
+ "m1_personal_R1_report_mrr": {
+  "value": 0.6319,
+  "display": "0.63",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_mrr_hi": {
+  "value": 0.875,
+  "display": "0.88",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_mrr_lo": {
+  "value": 0.375,
+  "display": "0.38",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_ndcg_at_10": {
+  "value": 0.6609,
+  "display": "0.66",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_ndcg_at_10_hi": {
+  "value": 0.9051,
+  "display": "0.91",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_ndcg_at_10_lo": {
+  "value": 0.4109,
+  "display": "0.41",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_recall_at_10": {
+  "value": 0.75,
+  "display": "0.75",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_recall_at_10_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_recall_at_10_lo": {
+  "value": 0.5,
+  "display": "0.50",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_recall_at_5": {
+  "value": 0.75,
+  "display": "0.75",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_recall_at_5_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R1_report_recall_at_5_lo": {
+  "value": 0.5,
+  "display": "0.50",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1"
+  }
+ },
+ "m1_personal_R2_report_mrr": {
+  "value": 0.875,
+  "display": "0.88",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_mrr_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_mrr_lo": {
+  "value": 0.7083,
+  "display": "0.71",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_ndcg_at_10": {
+  "value": 0.8859,
+  "display": "0.89",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_ndcg_at_10_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_ndcg_at_10_lo": {
+  "value": 0.7192,
+  "display": "0.72",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_recall_at_10": {
+  "value": 0.9167,
+  "display": "0.92",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_recall_at_10_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_recall_at_10_lo": {
+  "value": 0.75,
+  "display": "0.75",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_recall_at_5": {
+  "value": 0.9167,
+  "display": "0.92",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_recall_at_5_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R2_report_recall_at_5_lo": {
+  "value": 0.75,
+  "display": "0.75",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1"
+  }
+ },
+ "m1_personal_R3_report_mrr": {
+  "value": 0.875,
+  "display": "0.88",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_mrr_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_mrr_lo": {
+  "value": 0.7083,
+  "display": "0.71",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_ndcg_at_10": {
+  "value": 0.8859,
+  "display": "0.89",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_ndcg_at_10_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_ndcg_at_10_lo": {
+  "value": 0.7192,
+  "display": "0.72",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_recall_at_10": {
+  "value": 0.9167,
+  "display": "0.92",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_recall_at_10_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_recall_at_10_lo": {
+  "value": 0.75,
+  "display": "0.75",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_recall_at_5": {
+  "value": 0.9167,
+  "display": "0.92",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_recall_at_5_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R3_report_recall_at_5_lo": {
+  "value": 0.75,
+  "display": "0.75",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4"
+  }
+ },
+ "m1_personal_R4_report_mrr": {
+  "value": 0.875,
+  "display": "0.88",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_mrr_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_mrr_lo": {
+  "value": 0.7083,
+  "display": "0.71",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_ndcg_at_10": {
+  "value": 0.8859,
+  "display": "0.89",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_ndcg_at_10_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_ndcg_at_10_lo": {
+  "value": 0.7192,
+  "display": "0.72",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_recall_at_10": {
+  "value": 0.9167,
+  "display": "0.92",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_recall_at_10_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_recall_at_10_lo": {
+  "value": 0.75,
+  "display": "0.75",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_recall_at_5": {
+  "value": 0.9167,
+  "display": "0.92",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_recall_at_5_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_R4_report_recall_at_5_lo": {
+  "value": 0.75,
+  "display": "0.75",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_personal_report_n_items": {
+  "value": 12,
+  "display": "12",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/personal_KW.json": "bb92f93f4e07ac9a9d175e7b569a76074431d341a9f79e92c2be9f8a1a972b67",
+   "results/A/personal_R1.json": "5e2d769af76fbfffc31f584cf93fbc0a058dbe729b368f67731ea82e65b35cc1",
+   "results/A/personal_R2.json": "b0b017542401b0d7d34c56ce6a0071e067441afb23404234ded85f2464b096a1",
+   "results/A/personal_R3.json": "b4fca5548e010505b086a06e45b15e653d14af0e118bd6f27ed1d0393f7ed1d4",
+   "results/A/personal_R4.json": "3a1fa33652984112d6b873c8587374e79788cbaa9ba802343c31b51d7a61f3de"
+  }
+ },
+ "m1_questions_KW_report_mrr": {
+  "value": 0.471,
+  "display": "0.47",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_mrr_hi": {
+  "value": 0.625,
+  "display": "0.62",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_mrr_lo": {
+  "value": 0.319,
+  "display": "0.32",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_ndcg_at_10": {
+  "value": 0.4033,
+  "display": "0.40",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_ndcg_at_10_hi": {
+  "value": 0.523,
+  "display": "0.52",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_ndcg_at_10_lo": {
+  "value": 0.2843,
+  "display": "0.28",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_recall_at_10": {
+  "value": 0.4442,
+  "display": "0.44",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_recall_at_10_hi": {
+  "value": 0.5625,
+  "display": "0.56",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_recall_at_10_lo": {
+  "value": 0.3258,
+  "display": "0.33",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_recall_at_5": {
+  "value": 0.3041,
+  "display": "0.30",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_recall_at_5_hi": {
+  "value": 0.4123,
+  "display": "0.41",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_KW_report_recall_at_5_lo": {
+  "value": 0.2105,
+  "display": "0.21",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab"
+  }
+ },
+ "m1_questions_R1_report_mrr": {
+  "value": 0.4704,
+  "display": "0.47",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_mrr_hi": {
+  "value": 0.6328,
+  "display": "0.63",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_mrr_lo": {
+  "value": 0.3093,
+  "display": "0.31",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_ndcg_at_10": {
+  "value": 0.3542,
+  "display": "0.35",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_ndcg_at_10_hi": {
+  "value": 0.4709,
+  "display": "0.47",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_ndcg_at_10_lo": {
+  "value": 0.2395,
+  "display": "0.24",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_recall_at_10": {
+  "value": 0.3841,
+  "display": "0.38",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_recall_at_10_hi": {
+  "value": 0.5158,
+  "display": "0.52",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_recall_at_10_lo": {
+  "value": 0.2666,
+  "display": "0.27",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_recall_at_5": {
+  "value": 0.2229,
+  "display": "0.22",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_recall_at_5_hi": {
+  "value": 0.3464,
+  "display": "0.35",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R1_report_recall_at_5_lo": {
+  "value": 0.1175,
+  "display": "0.12",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13"
+  }
+ },
+ "m1_questions_R2_report_mrr": {
+  "value": 0.5249,
+  "display": "0.52",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_mrr_hi": {
+  "value": 0.6949,
+  "display": "0.69",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_mrr_lo": {
+  "value": 0.3563,
+  "display": "0.36",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_ndcg_at_10": {
+  "value": 0.3811,
+  "display": "0.38",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_ndcg_at_10_hi": {
+  "value": 0.5117,
+  "display": "0.51",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_ndcg_at_10_lo": {
+  "value": 0.2637,
+  "display": "0.26",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_recall_at_10": {
+  "value": 0.3663,
+  "display": "0.37",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_recall_at_10_hi": {
+  "value": 0.4894,
+  "display": "0.49",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_recall_at_10_lo": {
+  "value": 0.265,
+  "display": "0.27",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_recall_at_5": {
+  "value": 0.2462,
+  "display": "0.25",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_recall_at_5_hi": {
+  "value": 0.3772,
+  "display": "0.38",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R2_report_recall_at_5_lo": {
+  "value": 0.1322,
+  "display": "0.13",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09"
+  }
+ },
+ "m1_questions_R3_report_mrr": {
+  "value": 0.5244,
+  "display": "0.52",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_mrr_hi": {
+  "value": 0.6781,
+  "display": "0.68",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_mrr_lo": {
+  "value": 0.3725,
+  "display": "0.37",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_ndcg_at_10": {
+  "value": 0.4042,
+  "display": "0.40",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_ndcg_at_10_hi": {
+  "value": 0.5212,
+  "display": "0.52",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_ndcg_at_10_lo": {
+  "value": 0.2946,
+  "display": "0.29",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_recall_at_10": {
+  "value": 0.4394,
+  "display": "0.44",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_recall_at_10_hi": {
+  "value": 0.5678,
+  "display": "0.57",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_recall_at_10_lo": {
+  "value": 0.3212,
+  "display": "0.32",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_recall_at_5": {
+  "value": 0.2436,
+  "display": "0.24",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_recall_at_5_hi": {
+  "value": 0.3671,
+  "display": "0.37",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R3_report_recall_at_5_lo": {
+  "value": 0.1432,
+  "display": "0.14",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38"
+  }
+ },
+ "m1_questions_R4_report_mrr": {
+  "value": 0.5711,
+  "display": "0.57",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_mrr_hi": {
+  "value": 0.7187,
+  "display": "0.72",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_mrr_lo": {
+  "value": 0.4184,
+  "display": "0.42",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_ndcg_at_10": {
+  "value": 0.4849,
+  "display": "0.48",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_ndcg_at_10_hi": {
+  "value": 0.5973,
+  "display": "0.60",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_ndcg_at_10_lo": {
+  "value": 0.3653,
+  "display": "0.37",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_recall_at_10": {
+  "value": 0.5162,
+  "display": "0.52",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_recall_at_10_hi": {
+  "value": 0.629,
+  "display": "0.63",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_recall_at_10_lo": {
+  "value": 0.4053,
+  "display": "0.41",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_recall_at_5": {
+  "value": 0.2802,
+  "display": "0.28",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_recall_at_5_hi": {
+  "value": 0.3974,
+  "display": "0.40",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_R4_report_recall_at_5_lo": {
+  "value": 0.1709,
+  "display": "0.17",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_questions_report_n_items": {
+  "value": 25,
+  "display": "25",
+  "cmd": "uv run python -m askmike.evals run --labels A",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/questions_KW.json": "bd15a151ccd3c85cee8ce7a217b984ed8f5d5abf35450cb2b177a2bdd21c12ab",
+   "results/A/questions_R1.json": "2873f8c2c4e4c78dd14736a9b9959c65c7bd6829e574041efd39fbf6373fcd13",
+   "results/A/questions_R2.json": "9d435e5a2bb992dad7da3d0262264f65ab02fad2423ce2a8f02a0526570e4d09",
+   "results/A/questions_R3.json": "71e4c1ed3df42184abf3a96399571278a7d121a5c7e87b3b3c4a4ce1027b2a38",
+   "results/A/questions_R4.json": "48cff8b86594c495f1a94ecf63c254b93f7b7639d52ad7988a5fe072996ac50f"
+  }
+ },
+ "m1_req_cap": {
+  "value": 15,
+  "display": "15",
+  "cmd": "uv run python -c \"from askmike.retrieval.requirements import MAX_REQS; print(MAX_REQS)\"",
+  "inputs": {}
+ },
+ "m1_short_name_max_len": {
+  "value": 3,
+  "display": "3",
+  "cmd": "uv run python -c \"from askmike.facts.build import short_name_max_len; print(short_name_max_len())\"",
+  "inputs": {}
+ },
+ "m1_supportable_rate": {
+  "value": 0.895,
+  "display": "90%",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd"
+  }
+ },
+ "m1_tau_n_items": {
+  "value": 293,
+  "display": "293",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW_items.jsonl": "33cb906e644eb0d700a043c2e153033aa324e6dfedd020bce067cca25f1476f8",
+   "results/A/jdreq_R1_items.jsonl": "2e3906342c93e09bd4139eabc98b79c3045fb400c6b2b4e8783463e8f452413b",
+   "results/A/jdreq_R2_items.jsonl": "7eff5420915560cffa8fed029c638a90dfaf20565e7215df91eeb25bacd57b99",
+   "results/A/jdreq_R3_items.jsonl": "b2933660f739ad6f770460fc42767395343df05960d6e3c528cb68e53e9c9fd6",
+   "results/A/jdreq_R4_items.jsonl": "69fd88f6b8fe71e0ad0d3ec6708506e7216d5f9d3b183aae67e73d8b1d8454aa",
+   "results/B/jdreq_KW_items.jsonl": "a1db13cf45638c68d312b24a0b812f7c4bfaa8841067a185561fe780da9cd3b4",
+   "results/B/jdreq_R1_items.jsonl": "e00db2dee5c556e097f00462ca189d5194a3211a46a2bbe163c9364f0d0312c1",
+   "results/B/jdreq_R2_items.jsonl": "4b68f6bdb699358f01905c87a3d2767106a94c601cfacffaaf76986453efbc84",
+   "results/B/jdreq_R3_items.jsonl": "647d434ae0c4555c632c0ac084f5293b068ad20574684f28406472dbae12ea61",
+   "results/B/jdreq_R4_items.jsonl": "40906332566feb348cc70fb8fdff34160d52d6f30511241343e2966c7a666195"
+  }
+ },
+ "m1_tau_n_jds": {
+  "value": 20,
+  "display": "20",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW_items.jsonl": "33cb906e644eb0d700a043c2e153033aa324e6dfedd020bce067cca25f1476f8",
+   "results/A/jdreq_R1_items.jsonl": "2e3906342c93e09bd4139eabc98b79c3045fb400c6b2b4e8783463e8f452413b",
+   "results/A/jdreq_R2_items.jsonl": "7eff5420915560cffa8fed029c638a90dfaf20565e7215df91eeb25bacd57b99",
+   "results/A/jdreq_R3_items.jsonl": "b2933660f739ad6f770460fc42767395343df05960d6e3c528cb68e53e9c9fd6",
+   "results/A/jdreq_R4_items.jsonl": "69fd88f6b8fe71e0ad0d3ec6708506e7216d5f9d3b183aae67e73d8b1d8454aa",
+   "results/B/jdreq_KW_items.jsonl": "a1db13cf45638c68d312b24a0b812f7c4bfaa8841067a185561fe780da9cd3b4",
+   "results/B/jdreq_R1_items.jsonl": "e00db2dee5c556e097f00462ca189d5194a3211a46a2bbe163c9364f0d0312c1",
+   "results/B/jdreq_R2_items.jsonl": "4b68f6bdb699358f01905c87a3d2767106a94c601cfacffaaf76986453efbc84",
+   "results/B/jdreq_R3_items.jsonl": "647d434ae0c4555c632c0ac084f5293b068ad20574684f28406472dbae12ea61",
+   "results/B/jdreq_R4_items.jsonl": "40906332566feb348cc70fb8fdff34160d52d6f30511241343e2966c7a666195"
+  }
+ },
+ "m1_tau_rungs_AB": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts",
+  "inputs": {
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920",
+   "results/A/jdreq_KW_items.jsonl": "33cb906e644eb0d700a043c2e153033aa324e6dfedd020bce067cca25f1476f8",
+   "results/A/jdreq_R1_items.jsonl": "2e3906342c93e09bd4139eabc98b79c3045fb400c6b2b4e8783463e8f452413b",
+   "results/A/jdreq_R2_items.jsonl": "7eff5420915560cffa8fed029c638a90dfaf20565e7215df91eeb25bacd57b99",
+   "results/A/jdreq_R3_items.jsonl": "b2933660f739ad6f770460fc42767395343df05960d6e3c528cb68e53e9c9fd6",
+   "results/A/jdreq_R4_items.jsonl": "69fd88f6b8fe71e0ad0d3ec6708506e7216d5f9d3b183aae67e73d8b1d8454aa",
+   "results/B/jdreq_KW_items.jsonl": "a1db13cf45638c68d312b24a0b812f7c4bfaa8841067a185561fe780da9cd3b4",
+   "results/B/jdreq_R1_items.jsonl": "e00db2dee5c556e097f00462ca189d5194a3211a46a2bbe163c9364f0d0312c1",
+   "results/B/jdreq_R2_items.jsonl": "4b68f6bdb699358f01905c87a3d2767106a94c601cfacffaaf76986453efbc84",
+   "results/B/jdreq_R3_items.jsonl": "647d434ae0c4555c632c0ac084f5293b068ad20574684f28406472dbae12ea61",
+   "results/B/jdreq_R4_items.jsonl": "40906332566feb348cc70fb8fdff34160d52d6f30511241343e2966c7a666195"
+  }
+ },
+ "m1_tau_step": {
+  "value": 0.2,
+  "display": "0.2",
+  "cmd": "uv run python -c \"from askmike.evals.run import ALL_RUNGS; n = len(ALL_RUNGS); print(2 / (n * (n - 1) / 2))\"",
+  "inputs": {}
+ },
+ "m1_tuned_depth": {
+  "value": 50,
+  "display": "50",
+  "cmd": "uv run python -m askmike.evals tune",
+  "inputs": {
+   "askmike/retrieval/settings.json": "ca67a97ac712687256793e48e1cd42376b093b40d3b5815ec48d9dd4520bad14"
+  }
+ },
+ "m1_tuned_rrf_k0": {
+  "value": 10,
+  "display": "10",
+  "cmd": "uv run python -m askmike.evals tune",
+  "inputs": {
+   "askmike/retrieval/settings.json": "ca67a97ac712687256793e48e1cd42376b093b40d3b5815ec48d9dd4520bad14"
+  }
+ },
+ "m2_answer_effort": {
+  "value": "medium",
+  "display": "medium",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "askmike/answer/settings.json": "060607377b91961b8f32d6e0923ff16af30decd0274d4312fcd575870e0f9936"
+  }
+ },
+ "m2_cal_cost_per_answer_mean": {
+  "value": 0.013,
+  "display": "$0.0130",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_cost_per_answer_p95": {
+  "value": 0.0358,
+  "display": "$0.0358",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_cost_total": {
+  "value": 0.4663,
+  "display": "$0.4663",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_extract_n_jd": {
+  "value": 16,
+  "display": "16",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_extract_n_jd_differ": {
+  "value": 6,
+  "display": "6",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_extract_reqs_api_mean": {
+  "value": 12.6875,
+  "display": "12.69",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_extract_reqs_cli_mean": {
+  "value": 13.5,
+  "display": "13.50",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_latency_ms_p50": {
+  "value": 5048,
+  "display": "5,048",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_latency_ms_p95": {
+  "value": 9897,
+  "display": "9,897",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_n": {
+  "value": 40,
+  "display": "40",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_outcome_agreement": {
+  "value": 0.975,
+  "display": "0.975",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_prompt_parity": {
+  "value": 1.0,
+  "display": "1.000",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_support_gap": {
+  "value": 0.0448,
+  "display": "0.045",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_tokens_in_mean": {
+  "value": 5614.25,
+  "display": "5,614",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_tokens_out_mean": {
+  "value": 791.7222,
+  "display": "792",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_verdict": {
+  "value": "go",
+  "display": "go",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_cal_worst_case_ok": {
+  "value": true,
+  "display": "yes",
+  "cmd": "uv run python -m askmike.evals calibrate --model picked --summarise",
+  "inputs": {
+   "answers/calibration/picked/summary.json": "93994d19a0c343fe61d906da265b558d611f1842204643cebdf6762dd1eaa9bc"
+  }
+ },
+ "m2_haiku_audit_hits": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "corpus/skills.json": "839ac87c291198f8d2b3f72991825205a7cc9382613a3659287568143c594c18",
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920"
+  }
+ },
+ "m2_haiku_coverage": {
+  "value": 0.9906,
+  "display": "0.99",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_coverage_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_coverage_lo": {
+  "value": 0.9765,
+  "display": "0.98",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_drops_per_answer": {
+  "value": 0.0403,
+  "display": "0.04",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_fallback_rate": {
+  "value": 0.0347,
+  "display": "0.03",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_fallback_rate_hi": {
+  "value": 0.0636,
+  "display": "0.06",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_fallback_rate_lo": {
+  "value": 0.0116,
+  "display": "0.01",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_false_handoff_rate": {
+  "value": 0.0127,
+  "display": "0.01",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_followup_answered_rate": {
+  "value": 0.8333,
+  "display": "0.83",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_gap_pivot_rate": {
+  "value": 0.95,
+  "display": "0.95",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_grounding_false_drop_rate": {
+  "value": null,
+  "display": "n/a",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/haiku/support_A.jsonl": "040778584468a4dc990ba498d6f06d33708cdd994c3d53907259a1f7940bba91",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_handoff_correct_rate": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_injection_canary_hits": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_injection_canary_hits_raw": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_n_answers": {
+  "value": 173,
+  "display": "173",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_n_grounding_only": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/haiku/support_A.jsonl": "040778584468a4dc990ba498d6f06d33708cdd994c3d53907259a1f7940bba91",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_offtopic_correct_rate": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_partial_rate": {
+  "value": 0.0157,
+  "display": "0.02",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/haiku/support_A.jsonl": "040778584468a4dc990ba498d6f06d33708cdd994c3d53907259a1f7940bba91",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_personal_correct_rate": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_pregate_claims": {
+  "value": 389,
+  "display": "389",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_pregate_grounding_claims": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_pregate_honesty_claims": {
+  "value": 2,
+  "display": "2",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_pregate_privacy_claims": {
+  "value": 1,
+  "display": "1",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_pregate_slop_claims": {
+  "value": 2,
+  "display": "2",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_pregate_verdict_claims": {
+  "value": 1,
+  "display": "1",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_pregate_voice_claims": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_support_rate": {
+  "value": 0.9843,
+  "display": "0.98",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/haiku/support_A.jsonl": "040778584468a4dc990ba498d6f06d33708cdd994c3d53907259a1f7940bba91",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_support_rate_hi": {
+  "value": 0.9949,
+  "display": "0.99",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/haiku/support_A.jsonl": "040778584468a4dc990ba498d6f06d33708cdd994c3d53907259a1f7940bba91",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_haiku_support_rate_lo": {
+  "value": 0.9711,
+  "display": "0.97",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/records.jsonl": "3a267b617c52b1eac7f2e0178e06d6d2b5d39f9016a2f50a95df7449caebd8ec",
+   "answers/haiku/support_A.jsonl": "040778584468a4dc990ba498d6f06d33708cdd994c3d53907259a1f7940bba91",
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_judge_planted_n": {
+  "value": 120,
+  "display": "120",
+  "cmd": "uv run python -m askmike.evals judge-calib --judge A",
+  "inputs": {
+   "answers/calibration/planted.jsonl": "5574c7bac56c5a4883d91e1b600f309a34f7f63fc7449a86a4994875d84b62be",
+   "answers/calibration/score_A.json": "a6828ef0cce6904f01225cfafab376c2a526ef978387d73e21c4475e070770a8"
+  }
+ },
+ "m2_judge_planted_neg_acc": {
+  "value": 1.0,
+  "display": "1.000",
+  "cmd": "uv run python -m askmike.evals judge-calib --judge A",
+  "inputs": {
+   "answers/calibration/planted.jsonl": "5574c7bac56c5a4883d91e1b600f309a34f7f63fc7449a86a4994875d84b62be",
+   "answers/calibration/score_A.json": "a6828ef0cce6904f01225cfafab376c2a526ef978387d73e21c4475e070770a8"
+  }
+ },
+ "m2_judge_planted_pos_acc": {
+  "value": 1.0,
+  "display": "1.000",
+  "cmd": "uv run python -m askmike.evals judge-calib --judge A",
+  "inputs": {
+   "answers/calibration/planted.jsonl": "5574c7bac56c5a4883d91e1b600f309a34f7f63fc7449a86a4994875d84b62be",
+   "answers/calibration/score_A.json": "a6828ef0cce6904f01225cfafab376c2a526ef978387d73e21c4475e070770a8"
+  }
+ },
+ "m2_kappa_support_AB": {
+  "value": 0.7955,
+  "display": "0.795",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/support_A.jsonl": "040778584468a4dc990ba498d6f06d33708cdd994c3d53907259a1f7940bba91",
+   "answers/haiku/support_B.jsonl": "286ee839c104c71b08c4da5a450b755452b406940206e52f691e8992c9b538b1",
+   "answers/sonnet/support_A.jsonl": "78cc2b822e2244bb400af63a38a383feee12faa062554bbe784296e459d14e34",
+   "answers/sonnet/support_B.jsonl": "03aa2f36c35f4cf25847f5f6dd9b9048dd5b73b5b28c85bd7309dc864314f757"
+  }
+ },
+ "m2_n_items_evidence": {
+  "value": 42,
+  "display": "42",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_n_items_followup": {
+  "value": 8,
+  "display": "8",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_n_items_gap": {
+  "value": 26,
+  "display": "26",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_n_items_handoff": {
+  "value": 33,
+  "display": "33",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_n_items_injection": {
+  "value": 16,
+  "display": "16",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_n_items_jd": {
+  "value": 100,
+  "display": "100",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_n_items_offtopic": {
+  "value": 8,
+  "display": "8",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_n_items_personal": {
+  "value": 16,
+  "display": "16",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_n_pairs_support_AB": {
+  "value": 340,
+  "display": "340",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/haiku/support_A.jsonl": "040778584468a4dc990ba498d6f06d33708cdd994c3d53907259a1f7940bba91",
+   "answers/haiku/support_B.jsonl": "286ee839c104c71b08c4da5a450b755452b406940206e52f691e8992c9b538b1",
+   "answers/sonnet/support_A.jsonl": "78cc2b822e2244bb400af63a38a383feee12faa062554bbe784296e459d14e34",
+   "answers/sonnet/support_B.jsonl": "03aa2f36c35f4cf25847f5f6dd9b9048dd5b73b5b28c85bd7309dc864314f757"
+  }
+ },
+ "m2_picked_model_jd": {
+  "value": "claude-sonnet-5-5",
+  "display": "Sonnet",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "askmike/answer/settings.json": "060607377b91961b8f32d6e0923ff16af30decd0274d4312fcd575870e0f9936"
+  }
+ },
+ "m2_picked_model_question": {
+  "value": "claude-haiku-5-5",
+  "display": "Haiku",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "askmike/answer/settings.json": "060607377b91961b8f32d6e0923ff16af30decd0274d4312fcd575870e0f9936"
+  }
+ },
+ "m2_sonnet_audit_hits": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "corpus/skills.json": "839ac87c291198f8d2b3f72991825205a7cc9382613a3659287568143c594c18",
+   "corpus/units.jsonl": "68b1330345b68c403b4f4cec08e401eaf566a9564f7cdbe6f37f533aabdd4920"
+  }
+ },
+ "m2_sonnet_coverage": {
+  "value": 0.9859,
+  "display": "0.99",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_coverage_hi": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_coverage_lo": {
+  "value": 0.9671,
+  "display": "0.97",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_drops_per_answer": {
+  "value": 0.0395,
+  "display": "0.04",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_fallback_rate": {
+  "value": 0.0289,
+  "display": "0.03",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_fallback_rate_hi": {
+  "value": 0.052,
+  "display": "0.05",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_fallback_rate_lo": {
+  "value": 0.0058,
+  "display": "0.01",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_false_handoff_rate": {
+  "value": 0.0064,
+  "display": "0.01",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_followup_answered_rate": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_gap_pivot_rate": {
+  "value": 0.9,
+  "display": "0.90",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_grounding_false_drop_rate": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "answers/sonnet/support_A.jsonl": "78cc2b822e2244bb400af63a38a383feee12faa062554bbe784296e459d14e34",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_handoff_correct_rate": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_injection_canary_hits": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_injection_canary_hits_raw": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_n_answers": {
+  "value": 173,
+  "display": "173",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_n_grounding_only": {
+  "value": 1,
+  "display": "1",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "answers/sonnet/support_A.jsonl": "78cc2b822e2244bb400af63a38a383feee12faa062554bbe784296e459d14e34",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_offtopic_correct_rate": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_partial_rate": {
+  "value": 0.0171,
+  "display": "0.02",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "answers/sonnet/support_A.jsonl": "78cc2b822e2244bb400af63a38a383feee12faa062554bbe784296e459d14e34",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_personal_correct_rate": {
+  "value": 1.0,
+  "display": "1.00",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_pregate_claims": {
+  "value": 415,
+  "display": "415",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_pregate_grounding_claims": {
+  "value": 1,
+  "display": "1",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_pregate_honesty_claims": {
+  "value": 5,
+  "display": "5",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_pregate_privacy_claims": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_pregate_slop_claims": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_pregate_verdict_claims": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_pregate_voice_claims": {
+  "value": 0,
+  "display": "0",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "evals/labels_A.jsonl": "a83deb50da96e6a089250fa256d24d669daea24324d0ab8a5776963c71b376cd",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_support_rate": {
+  "value": 0.9804,
+  "display": "0.98",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "answers/sonnet/support_A.jsonl": "78cc2b822e2244bb400af63a38a383feee12faa062554bbe784296e459d14e34",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_support_rate_hi": {
+  "value": 0.9929,
+  "display": "0.99",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "answers/sonnet/support_A.jsonl": "78cc2b822e2244bb400af63a38a383feee12faa062554bbe784296e459d14e34",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_sonnet_support_rate_lo": {
+  "value": 0.9661,
+  "display": "0.97",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "answers/kinds_A.jsonl": "07ae4cee29d16a37b7177bcfaaf7ec21badd751b2d4f6ff53b3596456c06ef6d",
+   "answers/sonnet/records.jsonl": "c8cf4ae1c33c594a93bd8035afa71ac1a61c0a48ca161687a650c95ae50f42b2",
+   "answers/sonnet/support_A.jsonl": "78cc2b822e2244bb400af63a38a383feee12faa062554bbe784296e459d14e34",
+   "evals/requirements.jsonl": "c5c4814e7a983775786c2762b3ecb5f284f6859cfba718cbf4f1f978e9dfb271",
+   "evals/sets/gaps.jsonl": "5532227ce3cf7d0631bea1866e3828dcece043f2cea4c7b7c4c179e8bf220ef1",
+   "evals/sets/handoffs.jsonl": "8e92e5398dc3bf99de2380daa058010b012af630df5f85143347a28209c5544d",
+   "evals/sets/injections.jsonl": "75f5137f682dbbe035dce361aec2e46f18289957a640f900cc848106a0ce0084",
+   "evals/sets/jds.jsonl": "cd84154a7834349eba8671deb717e915e45a11cefb1cd7dcd4bd114e44bae31f",
+   "evals/sets/questions.jsonl": "87e9cb519e3be302911a764d9f5bf4926d2469216221115a70a979b0cbcd34e9",
+   "tests/fixtures/evals/followups.jsonl": "6afa672c6465b518d69b5a7b5ab6e24a9f6ad0bab175545cbd852800b2b10755",
+   "tests/fixtures/evals/injections.jsonl": "56e85d87486351fbc8ac984cdad34250b27ff4b911096d0000f0912f2edaeb20",
+   "tests/fixtures/evals/offtopic.jsonl": "8fff78c195c7a02916e400affd2458925ec9114d803e37a0de8d53af2c6850ad"
+  }
+ },
+ "m2_template_sha": {
+  "value": "8f2412145427",
+  "display": "8f2412145427",
+  "cmd": "uv run python -m askmike.evals facts-m2",
+  "inputs": {
+   "askmike/answer/settings.json": "060607377b91961b8f32d6e0923ff16af30decd0274d4312fcd575870e0f9936"
+  }
+ },
+ "m3_day_cap_usd": {
+  "value": 1.5,
+  "display": "$1.50",
+  "cmd": "uv run python -m askmike.evals facts-m3",
+  "inputs": {
+   "deploy/budget.json": "2aac6bdf5d4698fa208ee9d30fbf66cbc22b967e9edcf7ec6ccd9267417df323"
+  }
+ },
+ "m3_dtd_model_cap_usd_month": {
+  "value": 2.91,
+  "display": "$2.91",
+  "cmd": "uv run python -m askmike.evals facts-m3",
+  "inputs": {
+   "deploy/budget.json": "2aac6bdf5d4698fa208ee9d30fbf66cbc22b967e9edcf7ec6ccd9267417df323"
+  }
+ },
+ "m3_model_cap_usd": {
+  "value": 15.0,
+  "display": "$15.00",
+  "cmd": "uv run python -m askmike.evals facts-m3",
+  "inputs": {
+   "deploy/budget.json": "2aac6bdf5d4698fa208ee9d30fbf66cbc22b967e9edcf7ec6ccd9267417df323"
+  }
+ },
+ "m3_server_usd_month": {
+  "value": 7.09,
+  "display": "$7.09",
+  "cmd": "uv run python -m askmike.evals facts-m3",
+  "inputs": {
+   "deploy/budget.json": "2aac6bdf5d4698fa208ee9d30fbf66cbc22b967e9edcf7ec6ccd9267417df323"
+  }
+ },
+ "m3_total_usd_month": {
+  "value": 25.0,
+  "display": "$25.00",
+  "cmd": "uv run python -m askmike.evals facts-m3",
+  "inputs": {
+   "deploy/budget.json": "2aac6bdf5d4698fa208ee9d30fbf66cbc22b967e9edcf7ec6ccd9267417df323"
+  }
+ }
+}

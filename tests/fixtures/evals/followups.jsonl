@@ -1,0 +1,8 @@
+{"id": "fu-01", "first": "Has Mike built a retrieval system?", "followup": "How did he test it?"}
+{"id": "fu-02", "first": "What has Mike built with Python?", "followup": "Which of those is he proudest of?"}
+{"id": "fu-03", "first": "Has Mike shipped software that other people use?", "followup": "Who used it?"}
+{"id": "fu-04", "first": "Has Mike worked with SQL databases?", "followup": "What did he build on them?"}
+{"id": "fu-05", "first": "Tell me about Mike's evaluation work.", "followup": "Why did he build it that way?"}
+{"id": "fu-06", "first": "Has Mike worked on data pipelines?", "followup": "How large were they?"}
+{"id": "fu-07", "first": "Has Mike built anything with large language models?", "followup": "What broke along the way?"}
+{"id": "fu-08", "first": "Has Mike deployed a service to a cloud server?", "followup": "How does he keep it running?"}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block main %}
+<h1 class="visually-hidden">Answer</h1>
+{% if asked %}
+<p class="label">You asked</p>
+<p class="prose asked">{{ asked }}</p>
+{% elif requirements %}
+<p class="label">Requirements read from your job description</p>
+<ul class="candidates">
+{% for r in requirements %}
+<li>{{ r }}</li>
+{% endfor %}
+</ul>
+{% endif %}
+<section class="answer" aria-label="Answer">
+{% if fixed %}
+<p class="state">{% for text, href in fixed %}{% if href %}<a href="{{ href }}">{{ text }}</a>{% else %}{{ text }}{% endif %}{% endfor %}</p>
+{% else %}
+{% if intro %}
+<p class="claim-text">{{ intro }}</p>
+{% endif %}
+<ol class="claims">
+{% for line in lines %}
+<li><p class="claim-text">{% if line.need %}{{ line.need }} {{ arrow }} {% endif %}{{ line.text }} <span class="cite">[{% for u in line.units %}<a href="/evidence/{{ u|urlencode }}">{{ u }}</a>{% if not loop.last %}, {% endif %}{% endfor %}]</span></p></li>
+{% endfor %}
+</ol>
+{% endif %}
+</section>
+<p class="next">{% for text, href in next_step %}{% if href %}<a href="{{ href }}">{{ text }}</a>{% else %}{{ text }}{% endif %}{% endfor %}</p>
+{% endblock %}
