@@ -53,3 +53,28 @@ def test_load_facts_reads_the_file(tmp_path):
     p = tmp_path / "facts.json"
     p.write_text(json.dumps({"k": {"value": 1, "display": "1"}}), encoding="utf-8")
     assert load_facts(p) == {"k": {"value": 1, "display": "1"}}
+
+
+def _row(section: str, key: str) -> str:
+    """The label of the row in a results_view section whose figure is the fact's display."""
+    view = results_view(FACTS)
+    (label,) = [label for label, (fig, _) in view[section] if fig.startswith(FACTS[key]["display"])]
+    return label
+
+
+def test_budget_row_says_it_covers_both_projects():
+    assert "both" in _row("cost", "m3_total_usd_month")
+
+
+def test_lede_names_facts_json_not_the_evals_as_every_number_s_source():
+    lede = next(x for x in Page(pages.results_page(FACTS)).lines if x.startswith("Every number on this page"))
+    assert "facts.json" in lede and "from the evals" not in lede
+
+
+def test_recall_row_names_the_method_its_figure_measures():
+    assert "skill alias" in _row("retrieval", "m1_jdreq_R4_report_recall_at_10")
+
+
+def test_latency_rows_say_they_are_model_time_not_the_visitor_s_wait():
+    for key in ("m2_cal_latency_ms_p50", "m2_cal_latency_ms_p95"):
+        assert _row("cost", key).startswith("Model time"), key

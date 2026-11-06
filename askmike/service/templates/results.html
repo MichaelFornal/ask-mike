@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 {% block main %}
 <h1>How Ask Mike is measured</h1>
-<p class="lede">Every number on this page comes from the evals in the public repo, and each one is stored with the command that produced it.</p>
+<p class="lede">Every number on this page comes from facts.json in the public repo, and each one is stored with the command that produced it.</p>
 <div class="results">
 <h2>What the evals cover</h2>
 <div class="scroll">
@@ -39,7 +39,7 @@
 </table>
 </div>
 <h2>Cost and speed</h2>
-<p class="prose">Measured on live API calls with the setup that serves this site.</p>
+<p class="prose">Cost and model time were measured on live API calls with the setup that serves this site. The caps are the ones the server enforces; the all-in figure also covers the server and Deal Terms Desk, which share it.</p>
 <div class="scroll">
 <table>
 <tbody>

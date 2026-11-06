@@ -22,9 +22,10 @@ KIND_WORDS = {"question": "questions", "jd": "job descriptions"}
 SIZES = (("Evidence units, each reviewed by Mike", "m1_n_units"),
          ("Job descriptions in the evals", "m1_n_jds"),
          ("Requirements read from them", "m1_n_requirements"))
-RETRIEVAL = (("Recall@10, hybrid search", "m1_jdreq_R4_report_recall_at_10"),
+# R4 in docs/m1/REPORT.md: hybrid search (BM25 + embeddings, RRF) plus skill-alias expansion. Plain hybrid is R3.
+RETRIEVAL = (("Recall@10, hybrid search with skill aliases", "m1_jdreq_R4_report_recall_at_10"),
              ("Recall@10, keyword-match baseline", "m1_jdreq_KW_report_recall_at_10"),
-             ("Coverage@10, hybrid search", "m1_jdreq_R4_report_coverage_at_10"),
+             ("Coverage@10, hybrid search with skill aliases", "m1_jdreq_R4_report_coverage_at_10"),
              ("Coverage@10, keyword-match baseline", "m1_jdreq_KW_report_coverage_at_10"))
 MODEL_ROWS = (("Support rate (judge A)", "support_rate"),
               ("Requirement coverage", "coverage"),
@@ -34,10 +35,10 @@ MODEL_ROWS = (("Support rate (judge A)", "support_rate"),
               ("Fallback rate", "fallback_rate"))
 COST = (("Cost per answer, mean", "m2_cal_cost_per_answer_mean", ""),
         ("Cost per answer, p95", "m2_cal_cost_per_answer_p95", ""),
-        ("Time to answer, median", "m2_cal_latency_ms_p50", " ms"),
-        ("Time to answer, p95", "m2_cal_latency_ms_p95", " ms"),
+        ("Model time per answer, median", "m2_cal_latency_ms_p50", " ms"),
+        ("Model time per answer, p95", "m2_cal_latency_ms_p95", " ms"),
         ("Model spend cap, per month", "m3_model_cap_usd", ""),
-        ("All-in budget per month, shared server included", "m3_total_usd_month", ""))
+        ("All-in per month for both apps on the shared server", "m3_total_usd_month", ""))
 
 
 def load_facts(path: Path) -> dict:
