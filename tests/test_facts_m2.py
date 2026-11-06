@@ -26,6 +26,8 @@ SETS = ("jd", "evidence", "personal", "handoff", "gap", "injection", "offtopic",
 CAL = ("n", "outcome_agreement", "support_gap", "prompt_parity", "cost_per_answer_mean", "cost_per_answer_p95",
        "cost_total", "tokens_in_mean", "tokens_out_mean", "latency_ms_p50", "latency_ms_p95", "worst_case_ok",
        "verdict",
+       # what the cap's ledger booked, every call of every run (a rerun's replaced calls included)
+       "spend_total",
        # the final review's extraction comparison: API extraction against M1's requirements, by count
        "extract_reqs_api_mean", "extract_reqs_cli_mean", "extract_n_jd_differ", "extract_n_jd")
 DRIFT = ("m2_drift_reqs_old", "m2_drift_reqs_new", "m2_drift_matched_share")
@@ -104,7 +106,8 @@ def test_values_on_the_fixture(m2_facts, m2_dirs):
     assert v["m2_kappa_support_AB"] is not None and v["m2_n_pairs_support_AB"] > 0
     assert (v["m2_cal_verdict"], v["m2_cal_outcome_agreement"], v["m2_cal_prompt_parity"]) == ("go", 1.0, 1.0)
     assert v["m2_cal_support_gap"] == 0.0 and v["m2_cal_worst_case_ok"] is True and d["m2_cal_worst_case_ok"] == "yes"
-    assert d["m2_cal_cost_total"].startswith("$")
+    assert d["m2_cal_cost_total"].startswith("$") and d["m2_cal_spend_total"].startswith("$")
+    assert v["m2_cal_spend_total"] == pytest.approx(v["m2_cal_cost_total"])  # one run, so the two agree
     # the fixture's API extraction found one requirement fewer than M1 on the first sampled posting
     jds = [i for i in cal.sample(items_of(work), 40) if i.set == "jd"]
     assert v["m2_cal_extract_n_jd"] == len(jds) >= 2 and v["m2_cal_extract_n_jd_differ"] == 1
@@ -282,6 +285,8 @@ def _unjudged(model):
      r"calibration verdict is stop: outcome agreement"),
     (_summary(lambda s: s.update(model={"question": HAIKU, "jd": HAIKU})), r"calibration ran on .* not the pick"),
     (_summary(lambda s: s.pop("extract_n_jd_differ")), r"calibration summary has no extract_n_jd_differ"),
+    (_summary(lambda s: s.update(spend_total=None)), r"no spend ledger"),
+    (_summary(lambda s: s.update(spend_total=s["cost_total"] / 2)), r"spend ledger booked .* less than"),
 ])
 def test_facts_m2_refuses(m2_dirs, tmp_path, break_it, match):
     work, repo = _copy(m2_dirs, tmp_path)

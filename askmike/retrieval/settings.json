@@ -4,21 +4,21 @@
   "rule": "Highest mean recall@10 of R4 on tune-split jdreq items with a non-empty judge-A label (ties: smaller depth, then larger k0); R3 uses the same setting.",
   "evidence": {
     "R3": {
-      "d20_k10": 0.5025,
-      "d20_k60": 0.5018,
-      "d50_k10": 0.5156,
-      "d50_k60": 0.5054
+      "d20_k10": 0.5158,
+      "d20_k60": 0.5158,
+      "d50_k10": 0.5389,
+      "d50_k60": 0.5139
     },
     "R4": {
-      "d20_k10": 0.5369,
-      "d20_k60": 0.5366,
-      "d50_k10": 0.5442,
-      "d50_k60": 0.5311
+      "d20_k10": 0.5605,
+      "d20_k60": 0.5597,
+      "d50_k10": 0.5668,
+      "d50_k60": 0.5437
     }
   },
   "tuned_on": {
     "split": "tune",
-    "items": 375,
+    "items": 367,
     "clusters": 29,
     "labels": "A"
   }

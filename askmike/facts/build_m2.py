@@ -56,7 +56,7 @@ RATES = ("handoff_correct_rate", "false_handoff_rate", "offtopic_correct_rate", 
          "personal_correct_rate", "followup_answered_rate")
 CAL = ("n", "outcome_agreement", "support_gap", "prompt_parity", "cost_per_answer_mean", "cost_per_answer_p95",
        "cost_total", "tokens_in_mean", "tokens_out_mean", "latency_ms_p50", "latency_ms_p95", "worst_case_ok",
-       "extract_n_jd", "extract_reqs_api_mean", "extract_reqs_cli_mean", "extract_n_jd_differ")
+       "extract_n_jd", "extract_reqs_api_mean", "extract_reqs_cli_mean", "extract_n_jd_differ", "spend_total")
 
 SETTINGS, UNITS, SKILLS = "askmike/answer/settings.json", "corpus/units.jsonl", "corpus/skills.json"
 FIXTURE_PREFIX = "tests/fixtures/evals/"
@@ -96,7 +96,7 @@ def display(key: str, value) -> str:
         return value
     if key in SHARES:
         return f"{value * 100:.0f}%"
-    if key.startswith("m2_cal_cost"):
+    if key.startswith(("m2_cal_cost", "m2_cal_spend")):
         return f"${value:.4f}"
     if isinstance(value, int) or key in WHOLE:
         return f"{value:,.0f}"
@@ -311,6 +311,14 @@ def build_m2(work: Path, repo: Path, cfg=None) -> dict[str, dict]:
     if missing:
         raise FactsRefused(f"calibration summary has no {', '.join(missing)}; rerun calibrate --model {cal.PICKED} "
                            f"--summarise")
+    # the report calls spend_total "every calibration call": it must be the cap's ledger, and that ledger must
+    # hold at least every call behind the records
+    if s["spend_total"] is None:
+        raise FactsRefused(f"the calibration has no spend ledger (calibration/{cal.PICKED}/spend.jsonl), so its "
+                           f"booked spend is unknown; rerun calibrate --model {cal.PICKED} --summarise")
+    if s["spend_total"] < s["cost_total"] - 1e-9:
+        raise FactsRefused(f"the spend ledger booked ${s['spend_total']:.4f}, less than the ${s['cost_total']:.4f} "
+                           f"the calibration records' calls cost; a call went unbooked")
     for key in CAL:
         put(f"m2_cal_{key}", s[key], CMD_CALIBRATE, CAL_SUMMARY)
     put("m2_cal_verdict", verdict, CMD_CALIBRATE, CAL_SUMMARY)

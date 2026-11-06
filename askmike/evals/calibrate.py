@@ -313,6 +313,19 @@ def summarise(items, api_records, cli_records, api_support, cli_support, prices,
     }
 
 
+def keep_call_ms(new: dict, old: dict | None) -> dict:
+    """A rerun's record, its ledger-answered calls given the ms of the run that made them. The ledger keeps replies,
+    not timings, so a call it answered took no time; its twin in the earlier record (same kind, same usage, timed)
+    is the live call, and its ms is the latency a visitor would wait."""
+    olds = [c for c in (old or {}).get("calls") or [] if c.get("ms")]
+    for c in new.get("calls") or []:
+        if c.get("live") is False:
+            twin = next((o for o in olds if o.get("kind") == c.get("kind") and o.get("usage") == c.get("usage")), None)
+            if twin is not None:
+                c["ms"] = twin["ms"]
+    return new
+
+
 # ---- the summary from the private files, and when it goes stale ------------------
 
 def _sha256(path: Path) -> str | None:
@@ -326,11 +339,15 @@ def _verdict_rows(path: Path) -> dict:
 def summarise_files(answers, slug: str, model, items, prices, slugs=MODEL_SLUGS) -> dict:
     """summarise() over the files under `answers` (work/answers): the API records and judge-A verdicts in
     calibration/<slug>/, each item compared with its own model's claude -p record and verdicts in <model slug>/.
+    `spend_total` is the sum of calibration/<slug>/spend.jsonl, what the cap booked for every call of every run
+    (None when no ledger exists); `cost_total` counts only the calls behind the records, so a rerun that replaced
+    an item's answer leaves spend_total the larger.
     `inputs` holds the sha256 of every file read (None for one that did not exist), keyed by its name under
     `answers`, so stale_inputs can tell when the summary no longer matches the files."""
     answers = Path(answers)
     api_name, sup_name = f"calibration/{slug}/records.jsonl", f"calibration/{slug}/support_A.jsonl"
-    names, cli_by_model = [api_name, sup_name], {}
+    spend_name = f"calibration/{slug}/spend.jsonl"
+    names, cli_by_model = [api_name, sup_name, spend_name], {}
     for m in models_of(model):
         recs, rows = f"{slugs[m]}/records.jsonl", f"{slugs[m]}/support_A.jsonl"
         names += [recs, rows]
@@ -338,7 +355,9 @@ def summarise_files(answers, slug: str, model, items, prices, slugs=MODEL_SLUGS)
     api = read_jsonl(answers / api_name)
     cli_records, cli_support = cli_side(api, cli_by_model)
     s = summarise(items, api, cli_records, _verdict_rows(answers / sup_name), cli_support, prices, model=model)
-    return dict(s, inputs={n: _sha256(answers / n) for n in sorted(names)})
+    spend = answers / spend_name
+    spend_total = sum(r["cost_usd"] for r in read_jsonl(spend)) if spend.exists() else None
+    return dict(s, spend_total=spend_total, inputs={n: _sha256(answers / n) for n in sorted(names)})
 
 
 def stale_inputs(answers, summary: dict) -> list[str]:

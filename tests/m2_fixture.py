@@ -26,7 +26,7 @@ from askmike.evals import support as sup
 from askmike.evals.answer_sets import load_items
 from askmike.evals.judge import JUDGE_A
 from askmike.evals.steps import read_jsonl, write_jsonl
-from askmike.llm.prices import load_prices
+from askmike.llm.prices import cost_usd, load_prices
 
 HAIKU, SONNET = "claude-haiku-5-5", "claude-sonnet-5-5"
 PERSON = "person-work-authorization"
@@ -166,6 +166,9 @@ def write_picked_calibration(work: Path, model: dict) -> dict:
     _write(out / "records.jsonl", recs)
     _write(out / "support_A.jsonl", verdicts)
     prices = {m: load_prices(m) for m in cal.models_of(model)}
+    # one run: the cap's ledger booked each recorded call once
+    _write(out / "spend.jsonl", [{"ts": 0, "kind": c["kind"], "cost_usd": cost_usd(prices[r["model"]], c["usage"])}
+                                 for r in recs for c in r["calls"]])
     s = cal.summarise_files(ans, cal.PICKED, model, chosen, prices)
     (out / "summary.json").write_text(json.dumps(s, indent=1, sort_keys=True), encoding="utf-8")
     return s

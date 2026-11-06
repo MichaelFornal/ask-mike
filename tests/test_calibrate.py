@@ -352,6 +352,7 @@ def test_summarise_files_records_its_inputs_and_goes_stale(tmp_path):
     s = cal.summarise_files(answers, "picked", SPLIT, items, SPLIT_PRICES, slugs={"claude-q": "q", "claude-j": "j"})
     assert s["n_compared"] == 2 and not s["complete"] and s["n_api_unjudged"] == 1  # nothing judged yet
     assert set(s["inputs"]) == {"calibration/picked/records.jsonl", "calibration/picked/support_A.jsonl",
+                                "calibration/picked/spend.jsonl",
                                 "q/records.jsonl", "q/support_A.jsonl", "j/records.jsonl", "j/support_A.jsonl"}
     assert s["inputs"]["calibration/picked/support_A.jsonl"] is None  # not judged yet
     assert cal.stale_inputs(answers, s) == []
@@ -360,6 +361,28 @@ def test_summarise_files_records_its_inputs_and_goes_stale(tmp_path):
     write_jsonl(answers / "q" / "records.jsonl", [_cli_rec("q0", "changed")])
     assert cal.stale_inputs(answers, s) == ["calibration/picked/support_A.jsonl", "q/records.jsonl"]
 
+
+
+def test_summarise_files_spend_total_is_what_the_cap_ledger_booked(tmp_path):
+    """The records keep only each item's latest calls; spend.jsonl keeps every call the cap counted, including
+    calls whose answers a later rerun replaced. spend_total is that ledger's sum, and a new line makes the
+    summary stale."""
+    from askmike.evals.steps import write_jsonl
+    answers = tmp_path / "answers"
+    items = [item("q0", "evidence")]
+    for d in ("calibration/picked", "q"):
+        (answers / d).mkdir(parents=True)
+    write_jsonl(answers / "calibration" / "picked" / "records.jsonl", [dict(_cli_rec("q0", "sq"), model="claude-q")])
+    write_jsonl(answers / "q" / "records.jsonl", [_cli_rec("q0", "sq")])
+    args = (answers, "picked", SPLIT, items, SPLIT_PRICES)
+    s = cal.summarise_files(*args, slugs={"claude-q": "q", "claude-j": "j"})
+    assert s["spend_total"] is None and s["inputs"]["calibration/picked/spend.jsonl"] is None
+    spend = answers / "calibration" / "picked" / "spend.jsonl"
+    write_jsonl(spend, [{"ts": 1, "kind": "answer", "cost_usd": 0.25}, {"ts": 2, "kind": "answer", "cost_usd": 0.5}])
+    assert cal.stale_inputs(answers, s) == ["calibration/picked/spend.jsonl"]
+    s = cal.summarise_files(*args, slugs={"claude-q": "q", "claude-j": "j"})
+    assert s["spend_total"] == pytest.approx(0.75)
+    assert s["cost_total"] < s["spend_total"]  # the records hold one call; the ledger booked two
 
 # ---- the calibrate CLI on the picked setup (fakes for the index, the embedder and the API) ----
 
@@ -428,6 +451,42 @@ def test_calibrate_cli_picked_runs_each_item_on_its_routes_model(m2_dirs, tmp_pa
     assert {p.name for p in out.iterdir()} == {"records.jsonl", "ledger.jsonl", "spend.jsonl"}
     assert not (answers / "calibration" / "haiku").exists() and not (answers / "calibration" / "sonnet").exists()
 
+
+
+def test_calibrate_cli_rerun_keeps_a_cached_calls_ms_from_the_run_that_made_it(m2_dirs, tmp_path, monkeypatch,
+                                                                              capsys):
+    """A rerun after the evidence changed calls the API for the answers again, but each posting's extraction
+    comes from the ledger in no time: the merged record keeps the extraction's ms from the run that made it."""
+    import shutil
+    from askmike.llm import api_runner
+    from askmike.retrieval import index, ladder, models
+    from askmike.evals.steps import read_jsonl, write_jsonl
+
+    cli, answers = _picked_cli(m2_dirs, tmp_path, monkeypatch)
+    out = answers / "calibration" / "picked"
+    shutil.rmtree(out)
+    ids = sorted(cli._corpus()[0])[:4]
+    monkeypatch.setenv("ANTHROPIC_API_KEY", "fake-key-for-the-cli-guard")
+    monkeypatch.setattr(models, "Embedder", _Embedder)
+    monkeypatch.setattr(index, "open_index", lambda *a, **k: _Conn())
+    extract = {"result": json.dumps(EXTRACTED), "usage": {"input_tokens": 10, "output_tokens": 5}}
+    monkeypatch.setattr(api_runner, "make_api_runner",
+                        lambda *a, **k: FakeRunner(answer=api_reply(), extract=extract))
+    argv = ["calibrate", "--model", "picked", "--n", "40", "--max-usd", "3.00"]
+    for pack in (ids, ids[:3]):  # the second run's evidence differs, so every answer prompt changes
+        fake = FakeLadder(pack)
+        fake.conn = _Conn()
+        monkeypatch.setattr(ladder, "Ladder", lambda *a, _f=fake, **k: _f)
+        assert cli.main(argv) == 0
+        if pack == ids:  # stamp the first run's timings, so a kept ms is told apart from a fresh one
+            write_jsonl(out / "records.jsonl", [dict(r, calls=[dict(c, ms=1234) for c in r["calls"]])
+                                                for r in read_jsonl(out / "records.jsonl")])
+    jd = [r for r in read_jsonl(out / "records.jsonl") if r["set"] == "jd"]
+    extracts = [c for r in jd for c in r["calls"] if c["kind"] == "extract"]
+    answers_ = [c for r in jd for c in r["calls"] if c["kind"] == "answer"]
+    rerun = [c for c in extracts if not c["live"]]  # a posting whose answer ran again, its extraction from the ledger
+    assert rerun and all(c["ms"] == 1234 for c in rerun)
+    assert any(c["live"] for c in answers_) and all(c["ms"] != 1234 for c in answers_ if c["live"])
 
 def test_calibrate_cli_picked_summarise_matches_the_library_and_records_inputs(m2_dirs, tmp_path, monkeypatch,
                                                                                capsys):

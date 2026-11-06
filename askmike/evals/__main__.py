@@ -631,7 +631,7 @@ def _calibrate(args, evals, answers) -> int:
     merged = {x["item_id"]: x for x in read_jsonl(path)}
     for rec in r["records"]:
         if not rec["cached"] or rec["item_id"] not in merged:  # a ledger-only rerun keeps the live run's timings
-            merged[rec["item_id"]] = rec
+            merged[rec["item_id"]] = cal.keep_call_ms(rec, merged.get(rec["item_id"]))  # and so does a mixed one
     write_jsonl(path, [merged[k] for k in sorted(merged)])
     print(f"calibrate {slug}: items={len(chosen)} recorded={len(r['records'])} remaining={r['remaining']} "
           f"prior_spend_usd={r['prior']:.4f} spent_usd={r['spent']:.4f} (total, all invocations) max_usd={args.max_usd}" + (" (stopped at the cap)" if r["stopped"] else ""))

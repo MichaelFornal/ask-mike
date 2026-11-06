@@ -128,7 +128,23 @@ def test_the_calibration_discloses_parity_by_construction_and_the_extraction_cou
         assert d[key] in cal, key
     assert (f"the count differed on {d['m2_cal_extract_n_jd_differ']} of the {d['m2_cal_extract_n_jd']} "
             "job descriptions") in cal
-    assert "Booked spend" in cal and d["m2_cal_cost_total"] in cal
+    assert "| Booked spend, the calls behind these answers | " + d["m2_cal_cost_total"] + " |" in cal
+    assert "| Booked spend, every calibration call | " + d["m2_cal_spend_total"] + " |" in cal
+
+
+RESENT = "sent through the API more than once"
+
+
+def test_the_resend_sentence_shows_only_when_the_ledger_booked_more_than_the_answers(facts):
+    from askmike.facts.build_m2 import display
+
+    def with_spend(value):
+        return {**facts, "m2_cal_spend_total": {"value": value, "display": display("m2_cal_spend_total", value),
+                                                "cmd": "x", "inputs": {}}}
+    cost = facts["m2_cal_cost_total"]["value"]
+    assert RESENT not in _section(render(with_spend(cost)), "API calibration and cost per answer")
+    cal = _section(render(with_spend(cost + 0.25)), "API calibration and cost per answer")
+    assert RESENT in cal and "earlier calls count toward the booked spend" in cal
 
 
 def test_the_results_table_counts_inputs_not_answers(facts):

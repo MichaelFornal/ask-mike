@@ -41,6 +41,16 @@ def _v(f: dict, key: str):
     return v["value"] if isinstance(v, dict) else v
 
 
+def _resent(f: dict) -> str:
+    """A sentence when the cap's ledger booked more than the calls behind the compared answers: some items went
+    through the API twice, and only their latest answers are compared. Empty otherwise."""
+    if not _v(f, "m2_cal_spend_total") > _v(f, "m2_cal_cost_total") + 1e-9:
+        return ""
+    return ("\nSome items were sent through the API more than once, and a later run replaced their answers. Each "
+            "comparison uses\nan item's latest API answer; the earlier calls count toward the booked spend for "
+            "every calibration call, but not\ntoward the per-answer measures or the spend behind these answers.")
+
+
 def _ci(f: dict, key: str) -> str:
     if _v(f, key) is None:
         return "n/a"
@@ -247,7 +257,8 @@ Each API answer was compared with the same item's `claude -p` answer from the sa
 | Prompt parity (answer prompts byte-identical) | {_d(f, 'm2_cal_prompt_parity')} |
 | Mean cost per answer | {_d(f, 'm2_cal_cost_per_answer_mean')} |
 | Cost per answer, p95 | {_d(f, 'm2_cal_cost_per_answer_p95')} |
-| Booked spend, every calibration call | {_d(f, 'm2_cal_cost_total')} |
+| Booked spend, the calls behind these answers | {_d(f, 'm2_cal_cost_total')} |
+| Booked spend, every calibration call | {_d(f, 'm2_cal_spend_total')} |
 | Mean input tokens per answer | {_d(f, 'm2_cal_tokens_in_mean')} |
 | Mean output tokens per answer | {_d(f, 'm2_cal_tokens_out_mean')} |
 | Latency per answer, p50 (milliseconds) | {_d(f, 'm2_cal_latency_ms_p50')} |
@@ -256,8 +267,8 @@ Each API answer was compared with the same item's `claude -p` answer from the sa
 | Stop-rule verdict | {_d(f, 'm2_cal_verdict')} |
 
 Cost, tokens and latency count every API call an answer made: for a job description, the extraction call and the
-answer call. Prices are in `askmike/llm/prices.json`. The booked spend is what the spend cap counted: each call's
-usage at those prices, or its worst case when a call may have been billed with no usage reported. The stop rule
+answer call. Prices are in `askmike/llm/prices.json`. Booked spend is what the spend cap counted: each call's
+usage at those prices, or its worst case when a call may have been billed with no usage reported.{_resent(f)} The stop rule
 (`AGREEMENT_MIN`, `GAP_MAX` and `PARITY_MIN` in `askmike/evals/calibrate.py`) says stop on low outcome agreement, a
 large support gap, any answer prompt that differs from its `claude -p` twin, or a worst-case reservation below an
 actual cost. `facts-m2` refuses to publish a calibration that stopped, missed an item, or no longer matches its
