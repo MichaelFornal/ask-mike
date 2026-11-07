@@ -7,13 +7,14 @@
 <title>{% if title %}{{ title }} · {% endif %}Ask Mike</title>
 <meta name="description" content="{{ description }}">
 <link rel="stylesheet" href="{{ style_href }}">
+<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">
 </head>
 <body data-page="{{ page }}">
 <a class="skip" href="#main">Skip to content</a>
 <div class="page">
 <header class="top">
 <a class="who" href="/">Ask Mike</a>
-<nav aria-label="Pages"><a href="/results">Results</a> <a href="https://forn.al/">forn.al</a></nav>
+<nav aria-label="Pages"><a href="/results"{% if page == "results" %} aria-current="page"{% endif %}>Results</a> <a href="https://forn.al/">forn.al</a></nav>
 </header>
 <main id="main">
 {% block main %}{% endblock %}

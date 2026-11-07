@@ -357,7 +357,7 @@ def test_request_log_holds_no_address_and_no_text(capsys):
     assert [(x["route"], x["status"]) for x in recs] == [
         ("home", 200), ("ask", 200), ("evidence", 200), ("evidence", 404), ("health", 200), ("static", 200),
         ("other", 404)]
-    assert all(set(x) == {"route", "status", "outcome", "served_from", "ms"} for x in recs)
+    assert all(set(x) == {"route", "method", "status", "outcome", "served_from", "ms"} for x in recs)
     assert (recs[1]["outcome"], recs[1]["served_from"]) == ("answer", "model")
     assert all(isinstance(x["ms"], int) and x["ms"] >= 0 for x in recs)
     assert desk.calls == [(secret, VISIT, client_key(address))]
@@ -372,7 +372,8 @@ def test_request_log_holds_no_address_and_no_text(capsys):
     assert r.status_code == 200 and Page(r.text).section()[0] == FB["intro"]
     err = capsys.readouterr().err
     (rec,) = [json.loads(x) for x in err.splitlines()]
-    assert rec == {"route": "ask", "status": 200, "outcome": "error", "served_from": "none", "ms": rec["ms"],
+    assert rec == {"route": "ask", "method": "POST", "status": 200, "outcome": "error", "served_from": "none",
+                   "ms": rec["ms"],
                    "error": "RuntimeError", "where": where(FakeDesk.ask, "raise self.reply")}
     assert "Zephyrine" not in err and "2001:db8" not in err and "boom" not in err
 
@@ -388,9 +389,20 @@ def test_a_desk_error_logs_its_class_and_where_never_its_message(capsys):
     (rec,) = [json.loads(x) for x in err.splitlines()]
     raised_at = where(FakeDesk.ask, "raise self.reply")
     assert (rec["outcome"], rec["error"], rec["where"]) == ("error", "ValueError", raised_at)
-    assert set(rec) == {"route", "status", "outcome", "served_from", "ms", "error", "where"}
+    assert set(rec) == {"route", "method", "status", "outcome", "served_from", "ms", "error", "where"}
     assert "visitor secret text" not in err and "Traceback" not in err
 
+
+
+def test_request_log_names_the_method_so_a_head_ping_is_not_a_page_view(capsys):
+    c = TestClient(create_app(desk=FakeDesk(lambda text: served(out(kept=(C1,))))))
+    capsys.readouterr()
+    c.head("/")
+    c.get("/")
+    c.head("/results")
+    recs = [json.loads(x) for x in capsys.readouterr().err.splitlines()]
+    assert [(x["route"], x["method"], x["status"]) for x in recs] == [
+        ("home", "HEAD", 200), ("home", "GET", 200), ("results", "HEAD", 200)]
 
 # ---- status codes, health and startup ----------------------------------------------------------------------------
 

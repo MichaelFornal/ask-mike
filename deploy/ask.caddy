@@ -16,6 +16,10 @@ ask.forn.al {
 		root * /srv/ask/current/askmike/service
 		file_server
 	}
+	handle /favicon.ico {
+		root * /srv/ask/current/askmike/service/static
+		file_server
+	}
 	handle {
 		reverse_proxy 127.0.0.1:8001
 	}

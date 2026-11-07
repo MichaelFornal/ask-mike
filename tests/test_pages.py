@@ -23,6 +23,7 @@ from askmike.gates.text import (
 from askmike.retrieval.requirements import Requirement
 from askmike.service import pages
 from askmike.service.__main__ import main
+from askmike.service.results import load_facts
 
 REPO = Path(__file__).resolve().parents[1]
 CORPUS = {u["id"]: u for u in (json.loads(x) for x in (REPO / "corpus" / "units.jsonl")
@@ -186,3 +187,25 @@ def test_every_page_links_results():
              "evidence": pages.evidence_page(CORPUS[U0]), "fallback": pages.fallback_page(units)}
     for name, html in built.items():
         assert "/results" in [href for href, _ in Page(html).links], name
+
+
+def _every_page() -> dict:
+    units = pages.load_units(REPO / "corpus" / "units.jsonl")
+    return {"home": pages.home_page(), "not-found": pages.not_found_page(),
+            "answer": pages.answer_page(out("handoff", kind="handoff"), units, "Invented pay question?", None),
+            "evidence": pages.evidence_page(CORPUS[U0]), "fallback": pages.fallback_page(units),
+            "results": pages.results_page(load_facts(REPO / "facts.json"))}
+
+
+def test_results_nav_link_marks_only_the_results_page_as_current():
+    built = _every_page()
+    assert '<a href="/results" aria-current="page">Results</a>' in built.pop("results")
+    for name, html in built.items():
+        assert "aria-current" not in html, name
+
+
+def test_every_page_links_the_favicon_it_ships():
+    for name, html in _every_page().items():
+        assert '<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">' in html, name
+    assert (pages.STATIC / "favicon.svg").read_bytes().startswith(b"<svg")
+    assert (pages.STATIC / "favicon.ico").read_bytes()[:4] == b"\x00\x00\x01\x00"  # the ICO header

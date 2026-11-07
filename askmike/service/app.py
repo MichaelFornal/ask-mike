@@ -7,7 +7,8 @@ Routes (there are no others; /docs and /openapi.json are 404):
 - `GET /results`: the evals of record, rendered from facts.json once at start (askmike/service/results.py).
 - `GET /health`: the desk's health, as JSON.
 - Every GET route also answers HEAD, so an uptime monitor or link checker doesn't read a 405 as down.
-- `/static/*`: the stylesheet. Caddy serves it on the box; the app serves it for a local run.
+- `/static/*`: the stylesheet and the favicon. Caddy serves them on the box (and /favicon.ico from the same folder);
+  the app serves /static/* for a local run.
 
 Every HTML route answers with a page, never an error page. POST /ask wraps everything it does in a catch-all that
 serves the fallback page with status 200. Any other route that raises gets the same page from the request log
@@ -17,8 +18,8 @@ The app reads the form itself: the raw body, capped at BODY_CAP bytes, decoded a
 with parse_qs (no python-multipart). A body over the cap gets the too-long page, which the desk serves for an
 over-long `q`.
 
-Each request writes one JSON line to stderr (journald on the box): {route, status, outcome, served_from, ms}.
-`route` is a fixed name, never the path. The visitor's address, text and visit id never reach that line. The
+Each request writes one JSON line to stderr (journald on the box): {route, method, status, outcome, served_from, ms}.
+`route` is a fixed name, never the path; `method` tells an uptime monitor's HEAD from a page view. The visitor's address, text and visit id never reach that line. The
 address is used once, as the desk's rate-limit key. A request the catch-all served also carries `error` (the
 exception's class name) and `where` (file:line of the innermost traceback frame). It never carries the exception's
 message or a traceback, since either can hold the visitor's text.
@@ -91,8 +92,8 @@ class RequestLog:
             await self.app(scope, receive, send)
             return
         t0 = time.monotonic()
-        rec = {"route": "static" if scope["path"].startswith("/static/") else "other", "status": 500,
-               "outcome": None, "served_from": None}
+        rec = {"route": "static" if scope["path"].startswith("/static/") else "other", "method": scope["method"],
+               "status": 500, "outcome": None, "served_from": None}
         scope[LOG_KEY] = rec
         started = False
 

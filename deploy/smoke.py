@@ -9,8 +9,8 @@ Checks, in order:
 - GET /: status 200, the exact CSP (set by deploy/ask.caddy) and the saved line.
 - A handoff question gets HANDOFF_TEXT, and an input of MAX_INPUT_CHARS + 1 characters gets TOO_LONG_TEXT. Both are
   fixed lines the app serves before any model call or rate limit.
-- GET /evidence/<the fallback's first unit> and GET /static/style.css: status 200.
-- GET /results: status 200, and its visible text shows this checkout's recall@10 for hybrid search (the
+- GET /evidence/<the fallback's first unit>, GET /static/style.css and GET /favicon.ico: status 200.
+- GET /results: status 200, and the row for hybrid search with skill aliases shows this checkout's recall@10 (the
   m1_jdreq_R4_report_recall_at_10 display in facts.json), so the page is this release's. HEAD /: status 200.
 - With --ask: the question gets an answer page or the fallback, either one with NEXT_STEP. That is one model call
   (Haiku, for a question) unless the answer is cached.
@@ -45,6 +45,7 @@ from askmike.answer.config import HANDOFF_TEXT, MAX_INPUT_CHARS, NEXT_STEP, TOO_
 from askmike.answer.render import load_fallback
 from askmike.answer.settings import load_answer_settings
 from askmike.service.pages import SAVED_LINE
+from askmike.service.results import RETRIEVAL
 
 REPO = Path(__file__).resolve().parents[1]
 CSP = ("default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'; base-uri 'none'; "
@@ -52,8 +53,9 @@ CSP = ("default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'
 HANDOFF_Q = "What is Mike's hourly rate?"  # routes to handoff: a fixed line, no model call
 FORGED = "203.0.113.9"  # a documentation address (TEST-NET-3)
 FALLBACK = load_fallback()
+R4_LABEL = dict((key, label) for label, key in RETRIEVAL)["m1_jdreq_R4_report_recall_at_10"]
 BLOCK = frozenset("html head title body div header nav main section form label button p li ol ul h1 h2 h3 footer"
-                  " textarea".split())
+                  " textarea table thead tbody tr th td".split())
 
 
 class _Visible(HTMLParser):
@@ -153,8 +155,12 @@ def check_evidence(base, unit_id: str) -> list[str]:
 
 
 def check_static(base) -> list[str]:
-    status, _, _ = fetch(f"{base}/static/style.css")
-    return [] if status == 200 else [f"/static/style.css: status {status}"]
+    problems = []
+    for path in ("/static/style.css", "/favicon.ico"):
+        status, _, _ = fetch(f"{base}{path}")
+        if status != 200:
+            problems.append(f"{path}: status {status}")
+    return problems
 
 
 def check_results(base, facts: dict) -> list[str]:
@@ -163,7 +169,10 @@ def check_results(base, facts: dict) -> list[str]:
         return [f"/results: status {status}"]
     want = facts["m1_jdreq_R4_report_recall_at_10"]["display"]
     lines, _ = read_page(raw)
-    return [] if want in "\n".join(lines) else [f"/results: does not show recall@10 {want} from this checkout's facts"]
+    on_row = [nxt for label, nxt in zip(lines, lines[1:]) if label == R4_LABEL]
+    if len(on_row) == 1 and on_row[0].startswith(want):
+        return []
+    return [f"/results: does not show recall@10 {want} from this checkout's facts"]
 
 
 def check_head(base) -> list[str]:

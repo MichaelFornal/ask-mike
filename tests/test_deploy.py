@@ -63,6 +63,10 @@ ask.forn.al {
 		root * /srv/ask/current/askmike/service
 		file_server
 	}
+	handle /favicon.ico {
+		root * /srv/ask/current/askmike/service/static
+		file_server
+	}
 	handle {
 		reverse_proxy 127.0.0.1:8001
 	}
@@ -1025,7 +1029,7 @@ class Box(BaseHTTPRequestHandler):
     """A fake live Ask Mike behind Caddy: the app's real pages, Caddy's CSP on every response, and an ask limit keyed
     on the socket address whatever X-Forwarded-For says (Caddy replaces that header), unless honor_xff."""
     csp, limit_after, honor_xff, answers, health, limited_html = CSP, 3, False, True, None, None
-    results, head_ok = True, True
+    results, head_ok, favicon = True, True, True
     asks: dict = {}
     posts: list = []
     forged: list = []
@@ -1052,6 +1056,8 @@ class Box(BaseHTTPRequestHandler):
             return self._send(200, pages.evidence_page(UNITS[path.removeprefix("/evidence/")]).encode())
         if path == "/static/style.css":
             return self._send(200, b"body{}", "text/css")
+        if path == "/favicon.ico" and Box.favicon:
+            return self._send(200, b"\x00\x00\x01\x00", "image/x-icon")
         if path == "/results" and Box.results:
             return self._send(200, pages.results_page(FACTS).encode())
         self._send(404, pages.not_found_page().encode())
@@ -1086,7 +1092,7 @@ class Box(BaseHTTPRequestHandler):
 @pytest.fixture
 def box():
     Box.csp, Box.limit_after, Box.honor_xff, Box.answers, Box.health, Box.limited_html = CSP, 3, False, True, None, None
-    Box.results, Box.head_ok = True, True
+    Box.results, Box.head_ok, Box.favicon = True, True, True
     Box.asks, Box.posts, Box.forged = {}, [], []
     srv = ThreadingHTTPServer(("127.0.0.1", 0), Box)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
@@ -1221,3 +1227,17 @@ def test_smoke_reports_a_results_page_that_lacks_the_local_recall():
     finally:
         srv.shutdown()
         srv.server_close()
+
+
+def test_smoke_reports_a_missing_favicon(box):
+    Box.favicon = False
+    assert smoke().check_static(box) == ["/favicon.ico: status 404"]
+
+
+def test_smoke_reports_a_recall_that_shows_only_on_another_row(box):
+    """The live page carries the local R4 figure, but on the keyword-baseline row: the release's R4 row is not this
+    checkout's, so the smoke must say so rather than find the figure elsewhere on the page."""
+    kw = FACTS["m1_jdreq_KW_report_recall_at_10"]["display"]
+    local = {**FACTS, "m1_jdreq_R4_report_recall_at_10": {**FACTS["m1_jdreq_R4_report_recall_at_10"], "display": kw}}
+    assert kw in "\n".join(smoke().read_page(pages.results_page(FACTS).encode())[0])
+    assert smoke().check_results(box, local) == [f"/results: does not show recall@10 {kw} from this checkout's facts"]
