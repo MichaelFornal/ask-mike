@@ -392,6 +392,17 @@ def test_finish_releases_the_slot_when_the_answerer_raises(tmp_path):
     assert isinstance(desk.prepare(OTHER, None, "other"), Pending)
 
 
+def test_prepare_gives_the_slot_back_when_the_fresh_check_raises(tmp_path, monkeypatch):
+    desk = make_desk(tmp_path, FakeRunner(answer=answer_reply()), slots=1)
+
+    def boom(key):
+        raise RuntimeError("boom")
+    monkeypatch.setattr(desk.fresh, "allow", boom)
+    with pytest.raises(RuntimeError):
+        desk.prepare(QUESTION, None, A)
+    assert desk.slots.try_acquire()
+
+
 def test_a_crash_between_reserve_and_settle_is_booked_at_worst_case_once(tmp_path):
     """A process killed during the model call leaves an open reservation: it counts at worst case at once, and a
     restart after the stale window books it at worst case, once."""

@@ -252,10 +252,12 @@ class Desk:
 
         busy = not self.slots.try_acquire()
         if not busy:
+            held = False
             try:
                 busy = self.fresh.allow(FRESH_KEY) > 0
+                held = not busy
             finally:
-                if busy:  # no fresh call left, or the check raised: the slot goes back before the 503
+                if not held:  # no fresh call left, or the check raised: the slot goes back before we leave
                     self.slots.release()
         if busy:
             return self._served(client, visit_id, kind, text, prev_id, _desk_fallback("busy", kind, t0), "none", 503)
