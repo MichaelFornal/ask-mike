@@ -71,9 +71,13 @@ def linked(text: str) -> list[tuple[str, str]]:
     return parts
 
 
+EXAMPLE_QUESTIONS = ("Has Mike shipped RAG in production?", "What has he built with the Claude API?",
+                     "How does he check what an AI says?")
+
+
 def _render(name: str, **ctx) -> str:
-    base = {"title": "", "page": "", "box": False, "prev": None, "saved_line": SAVED_LINE, "style_href": style_href(),
-            "description": EMPTY_TEXT}
+    base = {"title": "", "page": "", "box": False, "prev": None, "examples": (),
+            "saved_line": SAVED_LINE, "style_href": style_href(), "description": EMPTY_TEXT}
     return _env.get_template(name).render(**{**base, **ctx})
 
 
@@ -98,12 +102,12 @@ def _answer_view(o, units: dict) -> dict:
 
 
 def home_page() -> str:
-    return _render("home.html", page="home", box=True, lede=EMPTY_TEXT)
+    return _render("home.html", page="home", box=True, examples=EXAMPLE_QUESTIONS)
 
 
 def not_found_page() -> str:
     """An unknown evidence id or path: the off-topic line and the box."""
-    return _render("home.html", title="Not found", page="not-found", box=True, lede=OFF_TOPIC_TEXT)
+    return _render("not_found.html", title="Not found", page="not-found", box=True, lede=OFF_TOPIC_TEXT)
 
 
 def _head(kind: str, text, waiting: bool, title: str) -> str:

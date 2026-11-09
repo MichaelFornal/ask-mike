@@ -198,12 +198,50 @@ def test_home_has_the_form_posting_q_and_the_saved_line():
     assert r.status_code == 200 and r.headers["content-type"].startswith("text/html")
     p = Page(r.text)
     forms, areas, inputs = box(p)
-    assert [(f["method"], f["action"]) for f in forms] == [("post", "/ask")]
-    assert areas == ["q"] and inputs == []  # no prev on a first question
-    assert [d.get("type") for d in p.attrs("button")] == ["submit"]
+    assert [(f["method"], f["action"]) for f in forms] == [("post", "/ask")] * 4
+    assert areas == ["q"] and [d["name"] for d in inputs] == ["q"] * 3  # no prev on a first question
+    assert "Your question, or a job description" in p.lines
+    assert [d.get("type") for d in p.attrs("button")] == ["submit"] * 4
     assert SAVED_LINE == "Questions are saved so Mike can read them."  # the global constraints' exact line
     assert p.lines.count(SAVED_LINE) == 1 and r.text.count("Questions are saved") == 1
-    assert EMPTY_TEXT in p.lines and desk.calls == []
+    assert desk.calls == []
+
+
+def test_home_explains_both_uses_and_offers_three_examples():
+    p = Page(pages.home_page())
+    for line in ("An AI that knows Mike's work. Two ways to use it:",
+                 "Ask a question and get a direct answer.",
+                 "Paste a job description and get the strongest matches between what the role needs and what Mike "
+                 "has done.",
+                 "It only uses a record of Mike's work that he has reviewed. Every line of the answer links to its "
+                 "evidence."):
+        assert line in p.lines, line
+    forms, areas, inputs = box(p)
+    assert areas == ["q"] and len(forms) == 4
+    assert [(f["method"], f["action"]) for f in forms] == [("post", "/ask")] * 4
+    assert [(d["type"], d["name"], d["value"]) for d in inputs] == [("hidden", "q", q)
+                                                                    for q in pages.EXAMPLE_QUESTIONS]
+    assert [d for d in inputs if d["name"] == "prev"] == []
+    assert len(pages.EXAMPLE_QUESTIONS) == 3
+    assert [d.get("type") for d in p.attrs("button")] == ["submit"] * 4
+    for q in pages.EXAMPLE_QUESTIONS:
+        assert q in p.lines
+    assert p.lines.index("Or try one:") < p.lines.index(pages.EXAMPLE_QUESTIONS[0])
+
+
+def test_an_example_tap_reaches_the_desk_as_its_question():
+    c, desk = client_for(served(out(kept=(C1,))))
+    r = c.post("/ask", data={"q": pages.EXAMPLE_QUESTIONS[0]})
+    assert r.status_code == 200
+    assert [call[0] for call in desk.calls] == [pages.EXAMPLE_QUESTIONS[0]]
+
+
+def test_not_found_keeps_the_off_topic_line_without_examples():
+    p = Page(pages.not_found_page())
+    forms, areas, inputs = box(p)
+    assert OFF_TOPIC_TEXT in p.lines and "Or try one:" not in p.lines
+    assert [f["action"] for f in forms] == ["/ask"] and areas == ["q"] and inputs == []
+    assert "Two ways to use it" not in pages.not_found_page()
 
 
 def test_answer_page_links_each_claim_to_its_evidence_and_shows_next_step():

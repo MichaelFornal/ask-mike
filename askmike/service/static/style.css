@@ -620,3 +620,13 @@ input[type="hidden"] { display: none; }
 
 /* The reading line shows while the model works; once the answer section arrives it goes. */
 main:has(.answer) .reading { display: none; }
+
+/* The front page: what it does, and three questions to tap. */
+.uses { list-style: none; padding: 0; margin: 0 0 var(--s4); max-width: var(--measure); }
+.uses li { padding-left: 1.25em; text-indent: -1.25em; margin-bottom: var(--s2); }
+.uses li::before { content: "\00b7\00a0"; display: inline-block; width: 1.25em; text-indent: 0; }
+.small { font-size: 0.75rem; color: var(--muted); max-width: var(--measure); margin: 0 0 var(--s5); }
+.or-try { margin: 0 0 var(--s2); }
+.examples { display: grid; gap: var(--s2); justify-items: start; margin: 0 0 var(--s6); }
+.examples form { margin: 0; }
+.examples .linkish { font-family: var(--serif); }

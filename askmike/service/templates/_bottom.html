@@ -1,7 +1,7 @@
 {% if box %}
 <form class="desk-form" method="post" action="/ask">
 <div class="field">
-<label for="q">{% if prev %}Ask a follow-up{% else %}Your question or a job description{% endif %}</label>
+<label for="q">{% if prev %}Ask a follow-up{% else %}Your question, or a job description{% endif %}</label>
 <textarea id="q" name="q" rows="3" required></textarea>
 </div>
 {% if prev %}
@@ -12,6 +12,14 @@
 </div>
 <p class="field-note">{{ saved_line }}</p>
 </form>
+{% if examples %}
+<p class="or-try">Or try one:</p>
+<div class="examples">
+{% for q in examples %}
+<form method="post" action="/ask"><input type="hidden" name="q" value="{{ q }}"><button type="submit" class="linkish">{{ q }}</button></form>
+{% endfor %}
+</div>
+{% endif %}
 {% endif %}
 </main>
 </div>
