@@ -9,8 +9,8 @@ from askmike.retrieval.requirements import Requirement
 
 MODELS = ("haiku", "sonnet")
 FALLBACK = "Ask Mike can't answer that one right now.\n- Mike wrote the depot importer. [u4]\n\nResume: x"
-SUBJECTS = {"Zorvane": "Zorvane", "Zorvane Labs": "Zorvane", "harbor-tool": "Harbor", "Harbor | old": "Harbor"}
-QUESTIONS = "1. Should the Zorvane unit stay?\n2. Is the Harbor name *right*?\n"  # Markdown, kept as written
+SUBJECTS = {"Zorvane": "Zorvane", "Zorvane Labs": "Zorvane", "wexmoor-tool": "Wexmoor", "Wexmoor | old": "Wexmoor"}
+QUESTIONS = "1. Should the Zorvane unit stay?\n2. Is the Wexmoor name *right*?\n"  # Markdown, kept as written
 
 
 def _item(iid, set_, split="report", reqs=(), text=None, expected=()):
@@ -117,7 +117,7 @@ def test_packet_has_table_ten_items_both_models_and_fallback():
     # the fallback page as rendered, the subject map grouped by display name, and the open questions
     assert FALLBACK in _section(text, pick.FALLBACK_TITLE)
     subjects = _section(text, pick.SUBJECTS_TITLE)
-    assert "| Harbor | Harbor \\| old; harbor-tool |" in subjects
+    assert "| Wexmoor | Wexmoor \\| old; wexmoor-tool |" in subjects
     assert "| Zorvane | Zorvane; Zorvane Labs |" in subjects
     assert "4 corpus subjects map to 2 display names" in subjects
     assert _section(text, pick.QUESTIONS_TITLE).strip() == QUESTIONS.strip()

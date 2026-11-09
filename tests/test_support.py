@@ -256,7 +256,7 @@ def test_kappa_on_shared_judged_claims():
 
 # ---- the planted set -------------------------------------------------------
 
-SUBJECTS = ("Lab", "Zorvane", "Harbor", "Quarry", "Orchard")
+SUBJECTS = ("Lab", "Zorvane", "Wexmoor", "Quarry", "Orchard")
 
 
 def _corpus():
@@ -314,7 +314,7 @@ def test_wrong_unit_cites_only_a_disjoint_subject_that_never_names_the_source():
     units += [_unit(f"m-{i}", f"Mike likes queue tooling {i}.", subject="Mike") for i in range(30)]
     units += [_unit("d-1", "Mike wrote the importer.", subject="Zorvane"),
               _unit("q-1", "Mike ran the scheduler.", subject="Lab and Quarry"),
-              _unit("h-1", "Mike reused the Lab importer.", subject="Harbor")]
+              _unit("h-1", "Mike reused the Lab importer.", subject="Wexmoor")]
     p = support_calib.planted(units, SKILLS, seed=0)
     assert {tuple(x["units"]) for x in p if x["kind"] == "wrong_unit"} == {("d-1",)}
 
@@ -448,7 +448,7 @@ def test_hard_slice_draws_until_enough_rewrites_pass():
 
 @pytest.mark.parametrize("claim, other, ok", [
     ("Mike ran load tests on the queue.", _unit("v", "Mike wrote the billing docs for each team."), True),
-    ("Mike ran load tests on the queue.", _unit("v", "Mike wrote the billing docs.", subject="Harbor"), False),
+    ("Mike ran load tests on the queue.", _unit("v", "Mike wrote the billing docs.", subject="Wexmoor"), False),
     ("Mike ran 40 load tests on the queue.", _unit("v", "Mike cut 40 billing jobs for every team."), False),
     ("Mike ran load tests in 2021 on the queue.",
      _unit("v", "Mike wrote the billing docs for every customer team during 2021."), True),  # a year is no match

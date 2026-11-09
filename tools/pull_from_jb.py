@@ -65,6 +65,10 @@ SOURCES: list[tuple[str, str, str]] = [
     ("projects", "DOCS", "deal-terms-desk/facts.json"),
     ("projects", "DOCS", "deal-terms-desk/docs/PRD.md"),
     ("projects", "DOCS", "deal-terms-desk/docs/m*/REPORT.md"),
+    # Ask Mike itself (2026-11-07): until now the box had no evidence about the app it is.
+    ("projects", "DOCS", "ask-mike/README.md"),
+    ("projects", "DOCS", "ask-mike/facts.json"),
+    ("projects", "DOCS", "ask-mike/docs/m*/REPORT.md"),
     ("projects", "DOCS", "agent-census/docs/PRD.md"),
     ("projects", "DOCS", "agent-census/site/src/data/facts.json"),
     ("projects", "DOCS", "agent-census/docs/m0/ledger-findings.md"),
