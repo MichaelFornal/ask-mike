@@ -2,7 +2,9 @@
 
 Routes (there are no others; /docs and /openapi.json are 404):
 - `GET /`: the home page, the box posting `q` to /ask.
-- `POST /ask`: the answer page. Its status is the desk's (200; 429 with Retry-After; 503).
+- `POST /ask`: the answer page. Its status is the desk's (200; 429 with Retry-After; 503). What the desk decides
+  before a model call is served whole; a model call streams the page in two parts: what was asked with a waiting
+  line, then the answer.
 - `GET /evidence/{unit_id}`: one corpus unit; an unknown id gets the off-topic line and the box, with 404.
 - `GET /results`: the evals of record, rendered from facts.json once at start (askmike/service/results.py).
 - `GET /health`: the desk's health, as JSON.
@@ -11,8 +13,9 @@ Routes (there are no others; /docs and /openapi.json are 404):
   the app serves /static/* for a local run.
 
 Every HTML route answers with a page, never an error page. POST /ask wraps everything it does in a catch-all that
-serves the fallback page with status 200. Any other route that raises gets the same page from the request log
-middleware. Unknown paths and methods get the off-topic line and the box with their 404 or 405.
+serves the fallback page with status 200; once a stream has started, a failure ends the page with the fallback
+view instead. Any other route that raises gets the same page from the request log middleware. Unknown paths and
+methods get the off-topic line and the box with their 404 or 405.
 
 The app reads the form itself: the raw body, capped at BODY_CAP bytes, decoded as UTF-8 with replacement and parsed
 with parse_qs (no python-multipart). A body over the cap gets the too-long page, which the desk serves for an
@@ -20,9 +23,9 @@ over-long `q`.
 
 Each request writes one JSON line to stderr (journald on the box): {route, method, status, outcome, served_from, ms}.
 `route` is a fixed name, never the path; `method` tells an uptime monitor's HEAD from a page view. The visitor's address, text and visit id never reach that line. The
-address is used once, as the desk's rate-limit key. A request the catch-all served also carries `error` (the
-exception's class name) and `where` (file:line of the innermost traceback frame). It never carries the exception's
-message or a traceback, since either can hold the visitor's text.
+address is used once, as the desk's rate-limit key. A request the catch-all served, or a stream that ended with the
+fallback view, also carries `error` (the exception's class name) and `where` (file:line of the innermost traceback
+frame). It never carries the exception's message or a traceback, since either can hold the visitor's text.
 """
 from __future__ import annotations
 
@@ -34,7 +37,7 @@ from pathlib import Path
 from urllib.parse import parse_qs
 
 from fastapi import FastAPI, Request
-from fastapi.responses import HTMLResponse, JSONResponse
+from fastapi.responses import HTMLResponse, JSONResponse, StreamingResponse
 from starlette.concurrency import run_in_threadpool
 from starlette.exceptions import HTTPException as StarletteHTTPException
 from starlette.staticfiles import StaticFiles
@@ -159,13 +162,32 @@ def create_app(config: ServiceConfig | None = None, desk=None, facts_path: Path 
         _note(request, route="home")
         return HTMLResponse(home_html)
 
+    async def answer_stream(request: Request, p: desk_mod.Pending):
+        """A model answer in two parts: what was asked with the waiting line, then the answer. The response has
+        started by the time the model is called, so a failure ends the page with the fallback view (status 200
+        already sent) and never escapes. The log fields are set before the last part goes out."""
+        try:
+            yield pages.answer_head(p.kind, p.text, True)
+            try:
+                served = await run_in_threadpool(desk.finish, p)
+                tail = pages.answer_tail(served.outcome, units, served.visit_id)
+                _note(request, outcome=served.outcome.outcome, served_from=served.served_from)
+            except Exception as e:  # the log gets the class and file:line, never the message
+                tail = pages.failed_tail(units)
+                _note(request, outcome="error", served_from="none", **_failure(e))
+            yield tail
+        finally:  # finish gives its slot back itself; this covers a stream that ends before finish starts
+            desk.release(p)
+
     @app.post("/ask")
     async def ask(request: Request):
         _note(request, route="ask")
         try:
             q, prev = await _read_form(request)
             host = request.client.host if request.client else "unknown"
-            served = await run_in_threadpool(desk.ask, q, prev, client_key(host))
+            served = await run_in_threadpool(desk.prepare, q, prev, client_key(host))
+            if isinstance(served, desk_mod.Pending):  # a model call: the question goes out before the answer
+                return StreamingResponse(answer_stream(request, served), media_type="text/html; charset=utf-8")
             html = pages.answer_page(served.outcome, units, q, served.visit_id)
             headers = ({"Retry-After": str(max(1, math.ceil(served.retry_after)))} if served.status == 429
                        else None)

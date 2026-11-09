@@ -1,15 +1,17 @@
 """The web app: every route answers with a page, never an error page, and no page holds JavaScript. Every question,
 posting, claim and requirement here is invented. No test calls a real model: the desks are fakes, or build_desk with
 a fake runner and the FakeEmbedder over an invented corpus."""
+import asyncio
 import hashlib
 import inspect
 import json
 import re
+from html import unescape
 from pathlib import Path
-from urllib.parse import quote
+from urllib.parse import quote, urlencode
 
 import pytest
-from answer_fakes import GOOD, SKILLS, UNITS, FakeRunner, structured
+from answer_fakes import GOOD, SKILLS, UNITS, FakeRunner, claim, structured
 from fakes import FakeEmbedder
 from fastapi.testclient import TestClient
 from page_html import Page
@@ -26,7 +28,7 @@ from askmike.service import pages
 from askmike.service.__main__ import main as service_main
 from askmike.service.app import BODY_CAP, create_app
 from askmike.service.config import ServiceConfig
-from askmike.service.desk import DeskRefused, Served, build_desk
+from askmike.service.desk import DeskRefused, Pending, Served, build_desk
 from askmike.service.limits import client_key
 from askmike.service.pages import SAVED_LINE
 
@@ -60,7 +62,9 @@ def served(o, status=200, served_from="model", retry_after=0, visit=VISIT):
 
 
 class FakeDesk:
-    """Serves `reply` (a Served, an exception to raise, or a callable taking the text) and records each ask."""
+    """Serves `reply` (a Served, an exception to raise, or a callable taking the text) and records each ask.
+    `prepare` is `ask`: every reply here is decided before a model call, so it never gives a Pending, and the route
+    never calls `finish` or `release`."""
 
     def __init__(self, reply=None, health=None):
         self.reply, self.calls = reply, []
@@ -72,10 +76,75 @@ class FakeDesk:
             raise self.reply
         return self.reply(text) if callable(self.reply) else self.reply
 
+    def prepare(self, text, prev_id, client):
+        return self.ask(text, prev_id, client)
+
+    def finish(self, p):
+        raise AssertionError("FakeDesk.prepare never gives a Pending")
+
+    def release(self, p):
+        raise AssertionError("FakeDesk.prepare never gives a Pending")
+
     def health(self):
         if isinstance(self._health, BaseException):
             raise self._health
         return self._health
+
+
+class StreamDesk:
+    """Every ask needs the model: `prepare` gives a Pending, and `finish` serves `reply` (a Served) or raises it (an
+    exception). Unlike the live desk, `finish` gives no slot back, so `released` holds each `release` call the route
+    makes."""
+
+    def __init__(self, reply):
+        self.reply, self.released = reply, []
+
+    def prepare(self, text, prev_id, client):
+        return Pending(VISIT, "question", text, prev_id, client, None, "invented-cache-key", 0.0)
+
+    def finish(self, p):
+        if isinstance(self.reply, BaseException):
+            raise self.reply
+        return self.reply
+
+    def release(self, p):
+        self.released.append(p)
+
+
+def asgi_post(app, body: bytes, disconnect_after_first=False) -> list[bytes]:
+    """POST `body` to /ask straight through the ASGI app, and return each http.response.body message's bytes, in
+    order. TestClient joins them, so it cannot tell a stream from one body. With `disconnect_after_first` the
+    visitor leaves once the first body message is out: from then on `receive` gives http.disconnect."""
+    chunks: list[bytes] = []
+
+    async def run():
+        first_out, read = asyncio.Event(), False
+
+        async def receive():
+            nonlocal read
+            if not read:
+                read = True
+                return {"type": "http.request", "body": body, "more_body": False}
+            if disconnect_after_first:
+                await first_out.wait()
+                return {"type": "http.disconnect"}
+            await asyncio.Event().wait()  # the visitor stays until the response ends
+            return {"type": "http.disconnect"}
+
+        async def send(message):
+            if message["type"] == "http.response.body":
+                chunks.append(message.get("body", b""))
+                first_out.set()
+
+        scope = {"type": "http", "asgi": {"version": "3.0"}, "http_version": "1.1", "method": "POST",
+                 "scheme": "http", "path": "/ask", "raw_path": b"/ask", "query_string": b"", "root_path": "",
+                 "headers": [(b"host", b"testserver"), (b"content-type", FORM["content-type"].encode()),
+                             (b"content-length", str(len(body)).encode())],
+                 "client": ("testclient", 50000), "server": ("testserver", 80)}
+        await app(scope, receive, send)
+
+    asyncio.run(run())
+    return chunks
 
 
 def where(fn, needle: str) -> str:
@@ -498,3 +567,96 @@ def test_create_app_refuses_facts_missing_a_results_key(tmp_path):
     p.write_text(json.dumps(facts), encoding="utf-8")
     with pytest.raises(KeyError, match="m2_haiku_support_rate"):
         create_app(desk=FakeDesk(), facts_path=p)
+
+
+# ---- the answer in two parts -------------------------------------------------------------------------------------
+
+ASKED = urlencode({"q": QUESTION}).encode()
+
+
+def app_units() -> dict:
+    """The units the app renders answers from: desk.CORPUS's, as create_app reads them."""
+    return pages.load_units(desk_mod.CORPUS / "units.jsonl")
+
+
+def test_a_model_answer_streams_the_question_before_the_answer(capsys):
+    o = out(kept=(C1,))
+    desk = StreamDesk(served(o))
+    app = create_app(desk=desk)
+    capsys.readouterr()
+    chunks = asgi_post(app, ASKED)
+    assert len(chunks) >= 2
+    head = unescape(chunks[0].decode())
+    assert QUESTION in head and pages.WAIT_QUESTION in head and 'class="answer"' not in head
+    html = b"".join(chunks).decode()
+    assert html == pages.answer_head("question", QUESTION, True) + pages.answer_tail(o, app_units(), VISIT)
+    p = Page(html)
+    assert p.items("ol") == [f"{C1.text} [{U0}]"] and NEXT_STEP in p.lines and html.rstrip().endswith("</html>")
+    (rec,) = [json.loads(x) for x in capsys.readouterr().err.splitlines()]
+    assert (rec["route"], rec["status"], rec["outcome"], rec["served_from"]) == ("ask", 200, "answer", "model")
+    assert len(desk.released) == 1
+
+
+def test_a_failure_after_the_first_part_ends_the_page_with_the_fallback(capsys):
+    desk = StreamDesk(RuntimeError("visitor text here"))
+    app = create_app(desk=desk)
+    capsys.readouterr()
+    chunks = asgi_post(app, ASKED)
+    html = b"".join(chunks).decode()
+    assert html == pages.answer_head("question", QUESTION, True) + pages.failed_tail(app_units())
+    p = Page(html)
+    assert p.section()[0] == FB["intro"] and NEXT_STEP in p.lines and html.rstrip().endswith("</html>")
+    assert p.attrs("input") == []  # no prev after a failure
+    err = capsys.readouterr().err
+    (rec,) = [json.loads(x) for x in err.splitlines()]
+    assert rec == {"route": "ask", "method": "POST", "status": 200, "outcome": "error", "served_from": "none",
+                   "ms": rec["ms"], "error": "RuntimeError", "where": where(StreamDesk.finish, "raise self.reply")}
+    assert "visitor text here" not in err and "Traceback" not in err
+    assert len(desk.released) == 1
+
+
+def test_a_stream_closed_early_releases_the_slot():
+    desk = StreamDesk(served(out(kept=(C1,))))
+    chunks = asgi_post(create_app(desk=desk), ASKED, disconnect_after_first=True)  # nothing raises out of it
+    assert pages.WAIT_QUESTION in unescape(chunks[0].decode())
+    assert not any(b'class="answer"' in x for x in chunks)  # the visitor left before the answer went out
+    assert len(desk.released) == 1
+
+
+def test_outcomes_decided_before_the_model_are_served_whole():
+    cases = [(served(out("handoff", kind="handoff"), served_from="none"), 200, None),
+             (served(out("fallback", reason="limited"), status=429, served_from="none", retry_after=37), 429, "37"),
+             (served(out("fallback", reason="busy"), status=503, served_from="none"), 503, None)]
+    for reply, status, retry_after in cases:
+        c, desk = client_for(reply)
+        chunks = [x for x in asgi_post(c.app, ASKED) if x]
+        assert len(chunks) == 1 and pages.WAIT_QUESTION not in unescape(chunks[0].decode()), status
+        r = c.post("/ask", data={"q": QUESTION})
+        assert (r.status_code, r.headers.get("retry-after")) == (status, retry_after)
+        assert r.content == chunks[0]
+        assert [x[0] for x in desk.calls] == [QUESTION, QUESTION]
+
+
+def test_a_streamed_jd_never_shows_the_posting(real):
+    extract = {"result": json.dumps([{"text": x.text, "required": x.required, "kind": x.kind} for x in REQS]),
+               "usage": {"input_tokens": 1000, "output_tokens": 200}}
+    jd_claims = (claim(GOOD["text"], type="match", need="Python", req="r01"),
+                 claim("Mike moved the nightly reports to SQL.", units=("u3",), type="match", need="SQL", req="r02"))
+    c, _ = real(FakeRunner(answer=answer_reply(jd_claims), extract=extract))
+    chunks = asgi_post(c.app, urlencode({"q": POSTING}).encode())
+    assert len(chunks) >= 2 and pages.WAIT_JD in unescape(chunks[0].decode())
+    html = b"".join(chunks).decode()
+    assert not any(line in html for line in POSTING.splitlines()) and "Invented posting line" not in html
+    p = Page(html)
+    assert pages.JD_LABEL in p.lines and p.items("ul") == [x.text for x in REQS]
+
+
+def test_a_repeat_question_is_served_whole_from_the_cache(real):
+    runner = FakeRunner(answer=answer_reply())
+    c, _ = real(runner)
+    first, second = asgi_post(c.app, ASKED), asgi_post(c.app, ASKED)
+    assert len(first) >= 2 and len(second) == 1
+    assert pages.WAIT_QUESTION not in unescape(second[0].decode())
+    assert len(runner.calls) == 1
+    assert Page(b"".join(first).decode()).items("ol") == Page(second[0].decode()).items("ol") == [
+        f"{GOOD['text']} [u1]"]
