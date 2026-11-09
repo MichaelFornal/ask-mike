@@ -147,6 +147,7 @@ def create_app(config: ServiceConfig | None = None, desk=None, facts_path: Path 
     units = pages.load_units(desk_mod.CORPUS / "units.jsonl")
     home_html, not_found_html = pages.home_page(), pages.not_found_page()
     fallback_html = pages.fallback_page(units)
+    failed_tail_html = pages.failed_tail(units)  # the tail after a failed model call, rendered once so it can't raise
     results_html = pages.results_page(results.load_facts(facts_path or REPO / "facts.json"))
 
     app = FastAPI(title="Ask Mike", docs_url=None, redoc_url=None, openapi_url=None)
@@ -162,18 +163,19 @@ def create_app(config: ServiceConfig | None = None, desk=None, facts_path: Path 
         _note(request, route="home")
         return HTMLResponse(home_html)
 
-    async def answer_stream(request: Request, p: desk_mod.Pending):
-        """A model answer in two parts: what was asked with the waiting line, then the answer. The response has
-        started by the time the model is called, so a failure ends the page with the fallback view (status 200
-        already sent) and never escapes. The log fields are set before the last part goes out."""
+    async def answer_stream(request: Request, p: desk_mod.Pending, head: str):
+        """A model answer in two parts: `head` (what was asked, with the waiting line, rendered by the route), then
+        the answer. The response has started by the time the model is called, so a failure ends the page with the
+        fallback view rendered at start (status 200 already sent) and never escapes. The log fields are set before
+        the last part goes out."""
         try:
-            yield pages.answer_head(p.kind, p.text, True)
+            yield head
             try:
                 served = await run_in_threadpool(desk.finish, p)
                 tail = pages.answer_tail(served.outcome, units, served.visit_id)
                 _note(request, outcome=served.outcome.outcome, served_from=served.served_from)
             except Exception as e:  # the log gets the class and file:line, never the message
-                tail = pages.failed_tail(units)
+                tail = failed_tail_html
                 _note(request, outcome="error", served_from="none", **_failure(e))
             yield tail
         finally:  # finish gives its slot back itself; this covers a stream that ends before finish starts
@@ -187,7 +189,13 @@ def create_app(config: ServiceConfig | None = None, desk=None, facts_path: Path 
             host = request.client.host if request.client else "unknown"
             served = await run_in_threadpool(desk.prepare, q, prev, client_key(host))
             if isinstance(served, desk_mod.Pending):  # a model call: the question goes out before the answer
-                return StreamingResponse(answer_stream(request, served), media_type="text/html; charset=utf-8")
+                try:  # the head is rendered before the response starts, so its failure gets the whole fallback page
+                    head = pages.answer_head(served.kind, served.text, True)
+                    return StreamingResponse(answer_stream(request, served, head),
+                                             media_type="text/html; charset=utf-8")
+                except Exception:
+                    desk.release(served)  # nothing will stream this Pending, so its slot goes back here
+                    raise
             html = pages.answer_page(served.outcome, units, q, served.visit_id)
             headers = ({"Retry-After": str(max(1, math.ceil(served.retry_after)))} if served.status == 429
                        else None)

@@ -597,13 +597,18 @@ def test_a_model_answer_streams_the_question_before_the_answer(capsys):
     assert len(desk.released) == 1
 
 
-def test_a_failure_after_the_first_part_ends_the_page_with_the_fallback(capsys):
+def test_a_failure_after_the_first_part_ends_the_page_with_the_fallback(monkeypatch, capsys):
     desk = StreamDesk(RuntimeError("visitor text here"))
     app = create_app(desk=desk)
+    want = pages.answer_head("question", QUESTION, True) + pages.failed_tail(app_units())
+
+    def unrendered(units):
+        raise AssertionError("the failed tail is rendered when the app starts, never mid-stream")
+    monkeypatch.setattr(pages, "failed_tail", unrendered)
     capsys.readouterr()
     chunks = asgi_post(app, ASKED)
     html = b"".join(chunks).decode()
-    assert html == pages.answer_head("question", QUESTION, True) + pages.failed_tail(app_units())
+    assert html == want
     p = Page(html)
     assert p.section()[0] == FB["intro"] and NEXT_STEP in p.lines and html.rstrip().endswith("</html>")
     assert p.attrs("input") == []  # no prev after a failure
@@ -612,6 +617,26 @@ def test_a_failure_after_the_first_part_ends_the_page_with_the_fallback(capsys):
     assert rec == {"route": "ask", "method": "POST", "status": 200, "outcome": "error", "served_from": "none",
                    "ms": rec["ms"], "error": "RuntimeError", "where": where(StreamDesk.finish, "raise self.reply")}
     assert "visitor text here" not in err and "Traceback" not in err
+    assert len(desk.released) == 1
+
+
+def test_a_head_that_fails_to_render_gets_the_whole_fallback_page(monkeypatch, capsys):
+    """The head is rendered before the response starts: a failure there is the catch-all's, the whole fallback page
+    in one body with 200, and the Pending's slot goes back once."""
+    desk = StreamDesk(served(out(kept=(C1,))))
+    app = create_app(desk=desk)
+
+    def broken(kind, text, waiting):
+        raise ValueError(f"visitor text here: {text}")  # the raise the log names
+    monkeypatch.setattr(pages, "answer_head", broken)
+    capsys.readouterr()
+    chunks = asgi_post(app, ASKED)
+    assert chunks == [pages.fallback_page(app_units()).encode()]
+    err = capsys.readouterr().err
+    (rec,) = [json.loads(x) for x in err.splitlines()]
+    assert rec == {"route": "ask", "method": "POST", "status": 200, "outcome": "error", "served_from": "none",
+                   "ms": rec["ms"], "error": "ValueError", "where": where(broken, "the raise the log names")}
+    assert "visitor text here" not in err and QUESTION not in err and "Traceback" not in err
     assert len(desk.released) == 1
 
 
