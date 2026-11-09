@@ -229,6 +229,19 @@ def test_home_explains_both_uses_and_offers_three_examples():
     assert p.lines.index("Or try one:") < p.lines.index(pages.EXAMPLE_QUESTIONS[0])
 
 
+def test_the_uses_list_is_serif_with_a_mono_lead_phrase():
+    css = STYLE.read_text(encoding="utf-8")
+    additions = css[css.index("Ask Mike additions"):]
+
+    def rule(sel):
+        m = re.search(r"^" + re.escape(sel) + r" \{(.*?)\}", additions, re.S | re.M)
+        assert m, sel
+        return m.group(1)
+
+    assert "font-family: var(--serif)" in rule(".uses li")
+    assert "font-family: var(--mono)" in rule(".uses b")
+
+
 def test_an_example_tap_reaches_the_desk_as_its_question():
     c, desk = client_for(served(out(kept=(C1,))))
     r = c.post("/ask", data={"q": pages.EXAMPLE_QUESTIONS[0]})
