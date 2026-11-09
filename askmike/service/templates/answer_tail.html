@@ -1,10 +1,4 @@
-{% extends "base.html" %}
-{% block main %}
-<h1 class="visually-hidden">Answer</h1>
-{% if asked %}
-<p class="label">You asked</p>
-<p class="prose asked">{{ asked }}</p>
-{% elif requirements %}
+{% if requirements %}
 <p class="label">Requirements read from your job description</p>
 <ul class="candidates">
 {% for r in requirements %}
@@ -27,4 +21,4 @@
 {% endif %}
 </section>
 <p class="next">{% for text, href in next_step %}{% if href %}<a href="{{ href }}">{{ text }}</a>{% else %}{{ text }}{% endif %}{% endfor %}</p>
-{% endblock %}
+{% include "_bottom.html" %}

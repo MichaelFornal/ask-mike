@@ -1,0 +1,11 @@
+{% include "_top.html" %}
+<h1 class="visually-hidden">Answer</h1>
+{% if label %}
+<p class="label">{{ label }}</p>
+{% endif %}
+{% if asked %}
+<p class="prose asked">{{ asked }}</p>
+{% endif %}
+{% if wait %}
+<div class="reading"><p class="wait">{{ wait }}<span class="dots">...</span></p></div>
+{% endif %}

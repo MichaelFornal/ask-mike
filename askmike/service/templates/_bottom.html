@@ -1,0 +1,19 @@
+{% if box %}
+<form class="desk-form" method="post" action="/ask">
+<div class="field">
+<label for="q">{% if prev %}Ask a follow-up{% else %}Your question or a job description{% endif %}</label>
+<textarea id="q" name="q" rows="3" required></textarea>
+</div>
+{% if prev %}
+<input type="hidden" name="prev" value="{{ prev }}">
+{% endif %}
+<div class="row">
+<button type="submit">Ask →</button>
+</div>
+<p class="field-note">{{ saved_line }}</p>
+</form>
+{% endif %}
+</main>
+</div>
+</body>
+</html>

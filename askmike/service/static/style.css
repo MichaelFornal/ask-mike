@@ -617,3 +617,6 @@ input[type="hidden"] { display: none; }
 .claims .cite a { white-space: nowrap; } /* an id breaks between ids, never at its own hyphen */
 
 .next { font-size: 0.8125rem; max-width: var(--measure); margin: 0 0 var(--s6); }
+
+/* The reading line shows while the model works; once the answer section arrives it goes. */
+main:has(.answer) .reading { display: none; }

@@ -32,6 +32,9 @@ STATIC = HERE / "static"
 STYLE = STATIC / "style.css"
 SAVED_LINE = "Questions are saved so Mike can read them."  # the page's one line about the visitor log
 RESULTS_DESCRIPTION = "How Ask Mike is measured: retrieval, answer and cost results from its public evals."
+WAIT_QUESTION = "Reading Mike's evidence"
+WAIT_JD = "Reading the job description and Mike's evidence"
+JD_LABEL = "Your job description"
 ASKED_KINDS = ("question", "handoff")  # inputs shown back as typed; a jd shows its requirements, never the posting
 
 _env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=True, undefined=StrictUndefined,
@@ -103,21 +106,48 @@ def not_found_page() -> str:
     return _render("home.html", title="Not found", page="not-found", box=True, lede=OFF_TOPIC_TEXT)
 
 
+def _head(kind: str, text, waiting: bool, title: str) -> str:
+    asked = text if kind in ASKED_KINDS and isinstance(text, str) and not (waiting and kind == "jd") else ""
+    label = "You asked" if kind in ASKED_KINDS and asked else (JD_LABEL if waiting and kind == "jd" else "")
+    wait = (WAIT_JD if kind == "jd" else WAIT_QUESTION) if waiting else ""
+    return _render("answer_head.html", title=title, page="answer", label=label, asked=asked, wait=wait)
+
+
+def answer_head(kind: str, text, waiting: bool) -> str:
+    """The first part of an answer page, from the doctype through what was asked, ending with <main> open. A question
+    or handoff shows `text` under "You asked". A jd shows only JD_LABEL, and only while waiting; its requirements
+    come in the tail, and the posting is never shown. With `waiting` it adds the reading line."""
+    return _head(kind, text, waiting, "Answer")
+
+
+def _tail(o, units: dict, prev: str | None, requirements: list) -> str:
+    return _render("answer_tail.html", box=True, prev=prev, requirements=requirements, arrow=ARROW,
+                   next_step=linked(NEXT_STEP), **_answer_view(o, units))
+
+
+def answer_tail(o, units: dict, prev: str | None) -> str:
+    """The rest of an answer page: a jd's requirements, the answer, NEXT_STEP, the box and the closing tags. The box
+    carries `prev` only after an answer."""
+    requirements = [r.text for r in o.requirements] if o.kind == "jd" else []
+    return _tail(o, units, prev if o.outcome == "answer" else None, requirements)
+
+
+def failed_tail(units: dict) -> str:
+    """The tail when the model call failed after the head went out: the fallback view, with no `prev`."""
+    return _render("answer_tail.html", box=True, prev=None, requirements=[], arrow=ARROW,
+                   next_step=linked(NEXT_STEP), **_fallback_view(units))
+
+
 def answer_page(o, units: dict, text, prev: str | None) -> str:
     """The answer page for one Outcome: what was asked, the answer, NEXT_STEP and the box. `text` is the visitor's
-    input, shown only for a question; a jd shows its requirements. The box carries `prev` only after an answer."""
-    asked = text if o.kind in ASKED_KINDS and isinstance(text, str) else ""
-    requirements = [r.text for r in o.requirements] if o.kind == "jd" else []
-    return _render("answer.html", title="Answer", page="answer", box=True,
-                   prev=prev if o.outcome == "answer" else None, asked=asked, requirements=requirements,
-                   arrow=ARROW, next_step=linked(NEXT_STEP), **_answer_view(o, units))
+    input, shown only for a question; a jd shows its requirements."""
+    return answer_head(o.kind, text, False) + answer_tail(o, units, prev)
 
 
 def fallback_page(units: dict) -> str:
     """The fallback page with nothing asked: what the app serves when a request fails, and the static fallback.html
     Caddy serves while the app is down."""
-    return _render("answer.html", page="answer", box=True, asked="", requirements=[], arrow=ARROW,
-                   next_step=linked(NEXT_STEP), **_fallback_view(units))
+    return _head("", "", False, "") + failed_tail(units)
 
 
 def results_page(facts: dict) -> str:

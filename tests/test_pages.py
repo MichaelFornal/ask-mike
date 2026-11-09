@@ -1,6 +1,7 @@
 """The pages without the app: the static fallback.html, the answer section against render_text, the NEXT_STEP links,
 the stylesheet copy, and the service's site and config-check steps. Every claim and question here is invented."""
 import hashlib
+from html import unescape
 import json
 import os
 from pathlib import Path
@@ -217,3 +218,53 @@ def test_every_page_links_the_favicon_it_ships():
         assert '<link rel="icon" href="/static/favicon.svg" type="image/svg+xml">' in html, name
     assert (pages.STATIC / "favicon.svg").read_bytes().startswith(b"<svg")
     assert (pages.STATIC / "favicon.ico").read_bytes()[:4] == b"\x00\x00\x01\x00"  # the ICO header
+
+
+QUESTION = "Has Mike written an invented importer?"
+POSTING = "Invented posting about a role.\nSecond invented posting line.\nThird invented line."
+
+
+def _three_outcomes():
+    reqs = (Requirement("input-r01", "Invented batch work", True, "skill"),)
+    return [(out(kept=(Claim("direct", "", "", "Mike wrote it.", (U0,)),)), QUESTION),
+            (out(kind="jd", kept=(Claim("match", "n", "r01", "Mike wrote it.", (U0,)),), reqs=reqs), POSTING),
+            (out("handoff", kind="handoff"), "What is his salary?")]
+
+
+def test_head_and_tail_make_one_valid_page():
+    for o, text in _three_outcomes():
+        page = pages.answer_page(o, CORPUS, text, VISIT)
+        assert page == pages.answer_head(o.kind, text, False) + pages.answer_tail(o, CORPUS, VISIT)
+        Page(page)
+        assert page.count("<html") == 1 and page.count("</html>") == 1
+
+
+def test_waiting_head_shows_the_question_and_the_wait_line():
+    head = unescape(pages.answer_head("question", QUESTION, True))
+    assert QUESTION in head and pages.WAIT_QUESTION in head and 'class="reading"' in head
+    assert "</main>" not in head and 'class="answer"' not in head
+
+
+def test_waiting_head_for_a_jd_never_shows_the_posting():
+    head = unescape(pages.answer_head("jd", POSTING, True))
+    assert pages.JD_LABEL in head and pages.WAIT_JD in head
+    assert not any(line in head for line in POSTING.splitlines())
+
+
+def test_waiting_head_escapes_the_question():
+    head = pages.answer_head("question", "<b>x</b> & y", True)
+    assert "&lt;b&gt;x&lt;/b&gt; &amp; y" in head and "<b>x</b>" not in head
+
+
+def test_failed_tail_closes_the_page_with_the_fallback():
+    page = pages.answer_head("question", QUESTION, True) + pages.failed_tail(CORPUS)
+    text = unescape(page)
+    assert FB["intro"] in text and all(t in text for t, _ in pages.linked(NEXT_STEP))
+    for u in FB["units"]:
+        assert CORPUS[u]["claim"] in text
+    assert 'name="prev"' not in page and page.rstrip().endswith("</html>")
+
+
+def test_stylesheet_hides_the_wait_line_once_the_answer_is_in():
+    css = pages.STYLE.read_text(encoding="utf-8")
+    assert "main:has(.answer) .reading { display: none; }" in css.split("Ask Mike additions", 1)[1]
