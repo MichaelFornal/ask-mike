@@ -1,7 +1,8 @@
 # ask.forn.al: Ask Mike. The base /etc/caddy/Caddyfile, installed by Deal Terms Desk's deploy, holds the global
 # log filter that deletes visitor addresses, URIs and headers. This file adds no log directive of its own.
 ask.forn.al {
-	encode zstd gzip
+	@compressible not path /ask
+	encode @compressible zstd gzip
 	header {
 		Content-Security-Policy "default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
 		Strict-Transport-Security "max-age=31536000"

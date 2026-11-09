@@ -13,7 +13,9 @@ Checks, in order:
 - GET /results: status 200, and the row for hybrid search with skill aliases shows this checkout's recall@10 (the
   m1_jdreq_R4_report_recall_at_10 display in facts.json), so the page is this release's. HEAD /: status 200.
 - With --ask: the question gets an answer page or the fallback, either one with NEXT_STEP. That is one model call
-  (Haiku, for a question) unless the answer is cached.
+  (Haiku, for a question) unless the answer is cached. The reply must also arrive in two parts: the waiting line
+  (WAIT_QUESTION), then the answer at least STREAM_GAP seconds later. Right after a deploy the question is a cache miss
+  (the cache key holds the git sha), so it streams; a cached question comes whole and the smoke says to use another.
 - Last, the burst: it re-asks the --ask question until the per-address limit answers 429 with the fallback page
   (NEXT_STEP present and Retry-After set), then sends the same question with a forged X-Forwarded-For, which must
   still get 429 (Caddy replaces that header). An `answer` comes back from the cache, so the burst makes no model
@@ -31,10 +33,12 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import html
 import json
 import re
 import subprocess
 import sys
+import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -44,13 +48,14 @@ from pathlib import Path
 from askmike.answer.config import HANDOFF_TEXT, MAX_INPUT_CHARS, NEXT_STEP, TOO_LONG_TEXT
 from askmike.answer.render import load_fallback
 from askmike.answer.settings import load_answer_settings
-from askmike.service.pages import SAVED_LINE
+from askmike.service.pages import SAVED_LINE, WAIT_QUESTION
 from askmike.service.results import RETRIEVAL
 
 REPO = Path(__file__).resolve().parents[1]
 CSP = ("default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'; base-uri 'none'; "
        "frame-ancestors 'none'")
 HANDOFF_Q = "What is Mike's hourly rate?"  # routes to handoff: a fixed line, no model call
+STREAM_GAP = 1.0  # seconds the answer must trail the waiting line
 FORGED = "203.0.113.9"  # a documentation address (TEST-NET-3)
 FALLBACK = load_fallback()
 R4_LABEL = dict((key, label) for label, key in RETRIEVAL)["m1_jdreq_R4_report_recall_at_10"]
@@ -111,6 +116,25 @@ def ask(base, q: str, headers=None):
     """POST /ask as the page's form does: urlencoded, field q."""
     h = {"Content-Type": "application/x-www-form-urlencoded", **(headers or {})}
     return fetch(f"{base}/ask", urllib.parse.urlencode({"q": q}).encode("utf-8"), h)
+
+
+def ask_chunks(base, q: str, headers=None, timeout=120.0) -> tuple[int, list[tuple[float, bytes]]]:
+    """POST /ask as ask() does and read the body with read1(), so each piece is timed as it arrives:
+    (status, [(seconds since the request, bytes)]). A failed connection is (0, [])."""
+    h = {"Content-Type": "application/x-www-form-urlencoded", **(headers or {})}
+    req = urllib.request.Request(f"{base}/ask", urllib.parse.urlencode({"q": q}).encode("utf-8"), h)
+    start, chunks = time.monotonic(), []
+    try:
+        try:
+            r = urllib.request.urlopen(req, timeout=timeout)
+        except urllib.error.HTTPError as e:
+            r = e
+        with r:
+            while piece := r.read1(65536):
+                chunks.append((time.monotonic() - start, piece))
+            return r.status if hasattr(r, "status") else r.code, chunks
+    except (urllib.error.URLError, OSError):
+        return 0, []
 
 
 def check_health(base, want: dict) -> list[str]:
@@ -181,12 +205,22 @@ def check_head(base) -> list[str]:
 
 
 def check_ask(base, q: str) -> tuple[list[str], bool]:
-    """A live question: an answer page or the fallback, either one with NEXT_STEP. -> (problems, was it an answer)."""
-    status, _, raw = ask(base, q)
+    """A live question: an answer page or the fallback, either one with NEXT_STEP, sent in two parts: the waiting line,
+    then the answer STREAM_GAP seconds or more later. -> (problems, was it an answer)."""
+    status, chunks = ask_chunks(base, q)
     if status != 200:
         return [f"ask: status {status}"], False
-    lines, answered = read_page(raw)
-    return ([] if NEXT_STEP in lines else ["ask: no next step on the page"]), answered
+    lines, answered = read_page(b"".join(c for _, c in chunks))
+    if NEXT_STEP not in lines:
+        return ["ask: no next step on the page"], answered
+    at = lambda marker: next((t for t, c in chunks if marker in html.unescape(c.decode("utf-8", "replace"))), None)
+    waited, came = at(WAIT_QUESTION), at('class="answer"')
+    if waited is None:
+        return ["ask: the answer came in one piece (cache hit?), so streaming wasn't checked; use a question not "
+                "asked since this deploy"], answered
+    if came is None or came - waited < STREAM_GAP:
+        return ["ask: the waiting line and the answer arrived together"], answered
+    return [], answered
 
 
 def check_burst(base, q: str, tries: int = 40) -> list[str]:

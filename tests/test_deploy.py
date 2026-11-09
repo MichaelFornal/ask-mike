@@ -16,6 +16,7 @@ import re
 import subprocess
 import sys
 import threading
+import time
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from urllib.parse import parse_qs, urlencode, urlparse
@@ -48,7 +49,8 @@ ASK_CADDY = """\
 # ask.forn.al: Ask Mike. The base /etc/caddy/Caddyfile, installed by Deal Terms Desk's deploy, holds the global
 # log filter that deletes visitor addresses, URIs and headers. This file adds no log directive of its own.
 ask.forn.al {
-	encode zstd gzip
+	@compressible not path /ask
+	encode @compressible zstd gzip
 	header {
 		Content-Security-Policy "default-src 'none'; style-src 'self'; img-src 'self'; form-action 'self'; base-uri 'none'; frame-ancestors 'none'"
 		Strict-Transport-Security "max-age=31536000"
@@ -1030,9 +1032,11 @@ class Box(BaseHTTPRequestHandler):
     on the socket address whatever X-Forwarded-For says (Caddy replaces that header), unless honor_xff."""
     csp, limit_after, honor_xff, answers, health, limited_html = CSP, 3, False, True, None, None
     results, head_ok, favicon = True, True, True
+    stream, gap = True, 1.2  # a first answer goes out as the head, a pause, then the tail; a repeat comes whole
     asks: dict = {}
     posts: list = []
     forged: list = []
+    cached: set = set()
 
     def _send(self, code, body: bytes, ctype="text/html; charset=utf-8", headers=()):
         self.send_response(code)
@@ -1044,6 +1048,20 @@ class Box(BaseHTTPRequestHandler):
         self.send_header("Content-Length", str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def _send_parts(self, head: str, tail: str):
+        """The streamed answer: the head, a pause, then the tail, with no length, closed at the end."""
+        self.send_response(200)
+        self.send_header("Content-Security-Policy", Box.csp)
+        self.send_header("Content-Type", "text/html; charset=utf-8")
+        self.send_header("Connection", "close")
+        self.end_headers()
+        self.wfile.write(head.encode())
+        self.wfile.flush()
+        time.sleep(Box.gap)
+        self.wfile.write(tail.encode())
+        self.wfile.flush()
+        self.close_connection = True
 
     def do_GET(self):
         path = urlparse(self.path).path
@@ -1083,6 +1101,9 @@ class Box(BaseHTTPRequestHandler):
             html = Box.limited_html or pages.answer_page(out("fallback", kind, reason="limited"), UNITS, q, VISIT)
             return self._send(429, html.encode(), headers=[("Retry-After", "180")])
         o = out("answer", kind, kept=(CLAIM,)) if Box.answers else out("fallback", kind, reason="no_evidence")
+        if Box.answers and Box.stream and q not in Box.cached:
+            Box.cached.add(q)
+            return self._send_parts(pages.answer_head(kind, q, True), pages.answer_tail(o, UNITS, VISIT))
         self._send(200, pages.answer_page(o, UNITS, q, VISIT).encode())
 
     def log_message(self, *args):
@@ -1093,6 +1114,7 @@ class Box(BaseHTTPRequestHandler):
 def box():
     Box.csp, Box.limit_after, Box.honor_xff, Box.answers, Box.health, Box.limited_html = CSP, 3, False, True, None, None
     Box.results, Box.head_ok, Box.favicon = True, True, True
+    Box.stream, Box.gap, Box.cached = True, 1.2, set()
     Box.asks, Box.posts, Box.forged = {}, [], []
     srv = ThreadingHTTPServer(("127.0.0.1", 0), Box)
     threading.Thread(target=srv.serve_forever, daemon=True).start()
@@ -1152,6 +1174,32 @@ def test_smoke_burst_catches_a_forgeable_or_missing_limit(box):
     assert s.check_burst(box, QUESTION, tries=5) == ["burst: no 429 after 5 asks"]
     Box.asks, Box.limit_after, Box.limited_html = {}, 1, pages.home_page()
     assert s.check_burst(box, QUESTION) == ["burst: the 429 page is not the fallback"]
+
+
+def test_ask_caddy_never_compresses_the_streamed_answer():
+    text = (DEPLOY / "ask.caddy").read_text(encoding="utf-8")
+    assert "\t@compressible not path /ask\n\tencode @compressible zstd gzip\n" in text
+    assert not re.search(r"^\s*encode zstd gzip", text, re.M)
+
+
+def test_smoke_passes_an_answer_sent_in_two_parts(box):
+    s = smoke()
+    chunks = s.ask_chunks(box, QUESTION)[1]
+    assert len(chunks) >= 2 and chunks[-1][0] - chunks[0][0] >= 1.0
+    assert s.check_ask(box, "Another question about the invented depot importer?") == ([], True)
+
+
+def test_smoke_reports_an_answer_sent_in_one_piece(box):
+    Box.stream = False
+    assert smoke().check_ask(box, QUESTION) == (
+        ["ask: the answer came in one piece (cache hit?), so streaming wasn't checked; use a question not asked "
+         "since this deploy"], True)
+
+
+def test_smoke_reports_a_waiting_line_and_answer_that_arrived_together(box):
+    Box.gap = 0.0
+    problems, answered = smoke().check_ask(box, QUESTION)
+    assert problems == ["ask: the waiting line and the answer arrived together"] and answered is True
 
 
 def test_smoke_burst_stops_when_the_cache_does_not_hold_the_question(box):
