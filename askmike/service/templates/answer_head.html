@@ -7,5 +7,11 @@
 <p class="prose asked">{{ asked }}</p>
 {% endif %}
 {% if wait %}
-<div class="reading"><p class="wait">{{ wait }}<span class="dots">...</span></p></div>
+<div class="reading">
+{% if jd_label %}
+<p class="label">{{ jd_label }}</p>
+{% endif %}
+<p class="wait">{{ wait }}<span class="dots">...</span></p>
+<p class="visually-hidden">{{ wait_note }}</p>
+</div>
 {% endif %}

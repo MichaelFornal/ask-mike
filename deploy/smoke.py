@@ -204,6 +204,17 @@ def check_head(base) -> list[str]:
     return [] if status == 200 else [f"HEAD /: status {status}"]
 
 
+def first_seen(chunks: list[tuple[float, bytes]], marker: str):
+    """The time of the first piece after which the text received so far holds `marker`, or None. It matches on the
+    accumulated text, so a marker split across two reads is still found."""
+    got = b""
+    for t, c in chunks:
+        got += c
+        if marker in html.unescape(got.decode("utf-8", "replace")):
+            return t
+    return None
+
+
 def check_ask(base, q: str) -> tuple[list[str], bool]:
     """A live question: an answer page or the fallback, either one with NEXT_STEP, sent in two parts: the waiting line,
     then the answer STREAM_GAP seconds or more later. -> (problems, was it an answer)."""
@@ -213,8 +224,7 @@ def check_ask(base, q: str) -> tuple[list[str], bool]:
     lines, answered = read_page(b"".join(c for _, c in chunks))
     if NEXT_STEP not in lines:
         return ["ask: no next step on the page"], answered
-    at = lambda marker: next((t for t, c in chunks if marker in html.unescape(c.decode("utf-8", "replace"))), None)
-    waited, came = at(WAIT_QUESTION), at('class="answer"')
+    waited, came = first_seen(chunks, WAIT_QUESTION), first_seen(chunks, 'class="answer"')
     if waited is None:
         return ["ask: the answer came in one piece (cache hit?), so streaming wasn't checked; use a question not "
                 "asked since this deploy"], answered

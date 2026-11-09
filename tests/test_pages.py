@@ -4,6 +4,7 @@ import hashlib
 from html import unescape
 import json
 import os
+import re
 from pathlib import Path
 
 import pytest
@@ -249,6 +250,32 @@ def test_waiting_head_for_a_jd_never_shows_the_posting():
     head = unescape(pages.answer_head("jd", POSTING, True))
     assert pages.JD_LABEL in head and pages.WAIT_JD in head
     assert not any(line in head for line in POSTING.splitlines())
+
+
+def _body_text(html: str) -> str:
+    body = html[html.index("<body"):]
+    return "".join(unescape(re.sub(r"<[^>]*>", " ", body)).split())
+
+
+def test_waiting_head_holds_enough_text_for_webkit_to_paint():
+    for kind, text in (("question", "Hi?"), ("jd", "a short posting of few words")):
+        assert len(_body_text(pages.answer_head(kind, text, True))) > 200, kind
+
+
+def test_wait_note_sits_inside_the_reading_block_and_only_in_a_waiting_head():
+    head = unescape(pages.answer_head("question", "Hi?", True))
+    reading = head[head.index('<div class="reading">'):]
+    assert pages.WAIT_NOTE in reading[:reading.index("</div>")]
+    assert pages.WAIT_NOTE not in unescape(pages.answer_head("question", "Hi?", False))
+
+
+def test_a_streamed_jd_page_shows_its_label_only_inside_the_reading_block():
+    o, text = _three_outcomes()[1]
+    page = pages.answer_head("jd", text, True) + pages.answer_tail(o, CORPUS, VISIT)
+    assert page.count(pages.JD_LABEL) == 1
+    reading = page[page.index('<div class="reading">'):]
+    assert pages.JD_LABEL in reading[:reading.index("</div>")]
+    assert pages.JD_LABEL not in pages.answer_page(o, CORPUS, text, VISIT)
 
 
 def test_waiting_head_escapes_the_question():

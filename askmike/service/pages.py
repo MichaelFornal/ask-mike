@@ -35,6 +35,11 @@ RESULTS_DESCRIPTION = "How Ask Mike is measured: retrieval, answer and cost resu
 WAIT_QUESTION = "Reading Mike's evidence"
 WAIT_JD = "Reading the job description and Mike's evidence"
 JD_LABEL = "Your job description"
+# Visually hidden inside the waiting block. WebKit shows nothing of a new page until it holds about 200 characters of
+# text, so this keeps the waiting head from being held back; it leaves with the waiting line once the answer is in.
+WAIT_NOTE = ("Ask Mike is reading the record of Mike's work, which Mike has reviewed, and is writing an answer from "
+             "it. The answer appears on this page when it is ready, and each line of it links to the evidence "
+             "behind it.")
 ASKED_KINDS = ("question", "handoff")  # inputs shown back as typed; a jd shows its requirements, never the posting
 
 _env = Environment(loader=FileSystemLoader(TEMPLATES), autoescape=True, undefined=StrictUndefined,
@@ -112,9 +117,11 @@ def not_found_page() -> str:
 
 def _head(kind: str, text, waiting: bool, title: str) -> str:
     asked = text if kind in ASKED_KINDS and isinstance(text, str) and not (waiting and kind == "jd") else ""
-    label = "You asked" if kind in ASKED_KINDS and asked else (JD_LABEL if waiting and kind == "jd" else "")
+    label = "You asked" if kind in ASKED_KINDS and asked else ""
     wait = (WAIT_JD if kind == "jd" else WAIT_QUESTION) if waiting else ""
-    return _render("answer_head.html", title=title, page="answer", label=label, asked=asked, wait=wait)
+    jd_label = JD_LABEL if waiting and kind == "jd" else ""
+    return _render("answer_head.html", title=title, page="answer", label=label, asked=asked, wait=wait,
+                   jd_label=jd_label, wait_note=WAIT_NOTE)
 
 
 def answer_head(kind: str, text, waiting: bool) -> str:

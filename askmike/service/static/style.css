@@ -179,6 +179,7 @@ h2 {
 }
 
 .prose {
+  text-wrap: pretty;
   font-family: var(--serif);
   font-size: 1.0625rem;
   line-height: 1.62;
@@ -634,4 +635,14 @@ main:has(.answer) .reading { display: none; }
 .or-try { margin: 0 0 var(--s2); }
 .examples { display: grid; gap: var(--s2); justify-items: start; margin: 0 0 var(--s6); }
 .examples form { margin: 0; }
-.examples .linkish { font-family: var(--serif); }
+/* button[type="submit"] (0,1,1) would otherwise paint these as filled buttons; this rule is (0,2,0). */
+.examples .linkish {
+  font-family: var(--serif);
+  font-weight: 400;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  width: auto;
+}
+.examples .linkish:disabled { background: none; }

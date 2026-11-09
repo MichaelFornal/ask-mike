@@ -1189,6 +1189,18 @@ def test_smoke_passes_an_answer_sent_in_two_parts(box):
     assert s.check_ask(box, "Another question about the invented depot importer?") == ([], True)
 
 
+def test_smoke_finds_a_marker_split_across_two_pieces():
+    s = smoke()
+    page = b'<p class="wait">Reading Mike&#39;s evidence</p>'
+    cut = page.index(b"Mike&#") + 3
+    chunks = [(0.1, page[:cut]), (0.7, page[cut:]), (2.0, b'<ol class="answer">')]
+    assert s.first_seen(chunks, s.WAIT_QUESTION) == 0.7
+    assert s.first_seen(chunks, 'class="answer"') == 2.0
+    assert s.first_seen(chunks, "never there") is None
+    split = [(0.1, b'<ol class="ans'), (1.9, b'wer">')]
+    assert s.first_seen(split, 'class="answer"') == 1.9
+
+
 def test_smoke_reports_an_answer_sent_in_one_piece(box):
     Box.stream = False
     assert smoke().check_ask(box, QUESTION) == (

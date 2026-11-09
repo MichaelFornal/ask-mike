@@ -242,6 +242,15 @@ def test_the_uses_list_is_serif_with_a_mono_lead_phrase():
     assert "font-family: var(--mono)" in rule(".uses b")
 
 
+def test_the_example_links_beat_the_submit_button_rule():
+    css = STYLE.read_text(encoding="utf-8")
+    m = re.search(r"^\.examples \.linkish \{(.*?)\}", css[css.index("Ask Mike additions"):], re.S | re.M)
+    assert m
+    body = m.group(1)
+    assert "background: none" in body and "font-family: var(--serif)" in body and "font-weight: 400" in body
+    assert "padding: 0" in body
+
+
 def test_an_example_tap_reaches_the_desk_as_its_question():
     c, desk = client_for(served(out(kept=(C1,))))
     r = c.post("/ask", data={"q": pages.EXAMPLE_QUESTIONS[0]})
@@ -732,6 +741,7 @@ def test_a_repeat_question_is_served_whole_from_the_cache(real):
     c, _ = real(runner)
     first, second = asgi_post(c.app, ASKED), asgi_post(c.app, ASKED)
     assert len(first) >= 2 and len(second) == 1
+    assert pages.WAIT_QUESTION in unescape(first[0].decode())
     assert pages.WAIT_QUESTION not in unescape(second[0].decode())
     assert len(runner.calls) == 1
     assert Page(b"".join(first).decode()).items("ol") == Page(second[0].decode()).items("ol") == [
