@@ -26,7 +26,7 @@ from askmike.service import desk as desk_mod
 from askmike.service.budget import STALE_S, Budget
 from askmike.service.cache import AnswerCache
 from askmike.service.config import ServiceConfig
-from askmike.service.desk import Desk, DeskRefused, build_desk, metered
+from askmike.service.desk import Desk, DeskRefused, Pending, Served, build_desk, metered
 from askmike.service.limits import Buckets, Slots
 from askmike.service.visits import Visits
 
@@ -345,6 +345,51 @@ def test_busy_when_no_slot_or_no_fresh_call_is_left(tmp_path):
     assert desk.slots.try_acquire()
     assert desk.ask(QUESTION, None, A).served_from == "cache"  # while the only slot is held
     desk.slots.release()
+
+
+def test_prepare_serves_outcomes_decided_before_the_model_whole(tmp_path):
+    runner = FakeRunner(answer=answer_reply())
+    desk = make_desk(tmp_path / "a", runner, asks=2)
+    s = desk.prepare(HANDOFF, None, A)
+    assert isinstance(s, Served) and (s.status, s.served_from) == (200, "none") and runner.calls == []
+    assert desk.finish(desk.prepare(QUESTION, None, A)).served_from == "model"
+    hit = desk.prepare(QUESTION, None, A)
+    assert isinstance(hit, Served) and hit.served_from == "cache"
+    limited = desk.prepare(QUESTION, None, A)
+    assert isinstance(limited, Served) and limited.status == 429
+    busy = make_desk(tmp_path / "b", FakeRunner(answer=answer_reply()), fresh=0).prepare(QUESTION, None, A)
+    assert isinstance(busy, Served) and busy.status == 503
+
+
+def test_prepare_holds_a_slot_until_finish_releases_it(tmp_path):
+    desk = make_desk(tmp_path, FakeRunner(answer=answer_reply()), slots=1)
+    p = desk.prepare(QUESTION, None, A)
+    assert isinstance(p, Pending)
+    assert desk.prepare(OTHER, None, "other").status == 503
+    s = desk.finish(p)
+    assert (s.status, s.served_from) == (200, "model")
+    assert isinstance(desk.prepare(OTHER, None, "third"), Pending)
+
+
+def test_release_is_idempotent_and_frees_an_abandoned_slot(tmp_path):
+    desk = make_desk(tmp_path, FakeRunner(answer=answer_reply()), slots=1)
+    p = desk.prepare(QUESTION, None, A)
+    desk.release(p)
+    desk.release(p)
+    assert isinstance(desk.prepare(OTHER, None, "b"), Pending)
+    assert desk.prepare("Has Mike used Go?", None, "c").status == 503
+
+
+def test_finish_releases_the_slot_when_the_answerer_raises(tmp_path):
+    desk = make_desk(tmp_path, FakeRunner(answer=answer_reply()), slots=1)
+
+    def boom(*args, **kwargs):
+        raise RuntimeError("boom")
+    desk.answerer.ask = boom  # the Answerer never raises on its own; the slot must go back if it ever does
+    p = desk.prepare(QUESTION, None, A)
+    with pytest.raises(RuntimeError):
+        desk.finish(p)
+    assert isinstance(desk.prepare(OTHER, None, "other"), Pending)
 
 
 def test_a_crash_between_reserve_and_settle_is_booked_at_worst_case_once(tmp_path):

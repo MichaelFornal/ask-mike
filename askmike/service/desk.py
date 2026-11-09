@@ -33,8 +33,9 @@ import math
 import resource
 import sqlite3
 import sys
+import threading
 import time
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pathlib import Path
 
 from askmike.answer.answerer import NO_CALL, Answerer, Outcome
@@ -195,6 +196,22 @@ class Served:
     retry_after: int = 0  # whole seconds for a 429's Retry-After header; 0 otherwise
 
 
+@dataclass
+class Pending:
+    """An ask that passed every check and holds one slot, waiting for the model call. Release it exactly once,
+    through `Desk.finish` or `Desk.release`."""
+    visit_id: str
+    kind: str
+    text: str
+    prev_id: str | None
+    client: str
+    previous: Turn | None
+    key: str
+    t0: float
+    _released: bool = field(default=False, init=False, repr=False)
+    _lock: threading.Lock = field(default_factory=threading.Lock, init=False, repr=False)
+
+
 class Desk:
     def __init__(self, answerer: Answerer, budget: Budget, cache: AnswerCache, visits: Visits, asks: Buckets,
                  fresh: Buckets, slots: Slots, settings: AnswerSettings, ids: dict,
@@ -210,6 +227,12 @@ class Desk:
         self._min_call = worst_case_usd(load_prices(settings.model_for("jd")), typical_prompt_chars, MAX_TOKENS)
 
     def ask(self, text: str, prev_id: str | None, client: str) -> Served:
+        p = self.prepare(text, prev_id, client)
+        return p if isinstance(p, Served) else self.finish(p)
+
+    def prepare(self, text: str, prev_id: str | None, client: str) -> Served | Pending:
+        """Steps 1 to 5: everything up to and including taking the slot. A Served is final (no model call was
+        needed or possible). A Pending holds one slot, which `finish` or `release` must give back."""
         t0 = time.monotonic()
         visit_id = self.visits.new_id()
         prev_id = prev_id if isinstance(prev_id, str) and ID_SHAPE.fullmatch(prev_id) else None
@@ -231,15 +254,30 @@ class Desk:
         if not busy:
             try:
                 busy = self.fresh.allow(FRESH_KEY) > 0
-                if not busy:
-                    outcome = self.answerer.ask(text, previous)
             finally:
-                self.slots.release()
+                if busy:  # no fresh call left, or the check raised: the slot goes back before the 503
+                    self.slots.release()
         if busy:
             return self._served(client, visit_id, kind, text, prev_id, _desk_fallback("busy", kind, t0), "none", 503)
-        if outcome.outcome == "answer":
-            self._put(key, outcome)
-        return self._served(client, visit_id, kind, text, prev_id, outcome, "model")
+        return Pending(visit_id, kind, text, prev_id, client, previous, key, t0)
+
+    def finish(self, p: Pending) -> Served:
+        """Steps 6 and 7: the Answerer, the cache, the log. The slot is released however this ends."""
+        try:
+            outcome = self.answerer.ask(p.text, p.previous)
+            if outcome.outcome == "answer":
+                self._put(p.key, outcome)
+            return self._served(p.client, p.visit_id, p.kind, p.text, p.prev_id, outcome, "model")
+        finally:
+            self.release(p)
+
+    def release(self, p: Pending) -> None:
+        """Give back the Pending's slot, once. Safe to call again, and from another thread."""
+        with p._lock:
+            if p._released:
+                return
+            p._released = True
+        self.slots.release()
 
     def health(self) -> dict:
         """What /health shows: the running code, corpus, index and template, the models, whether the budget still
