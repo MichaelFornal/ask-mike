@@ -128,8 +128,8 @@ def test_what_was_asked_is_the_question_or_the_requirements_never_the_posting():
 def test_next_step_and_fixed_emails_are_the_only_links_made_from_text():
     parts = pages.linked(NEXT_STEP)
     assert "".join(t for t, _ in parts) == NEXT_STEP
-    assert [(t, h) for t, h in parts if h] == [("https://forn.al/resume.pdf", "https://forn.al/resume.pdf"),
-                                               ("mike@forn.al", "mailto:mike@forn.al")]
+    assert [(t, h) for t, h in parts if h] == [("mike@forn.al", "mailto:mike@forn.al"),
+                                               ("https://forn.al/resume.pdf", "https://forn.al/resume.pdf")]
     assert pages.linked(HANDOFF_TEXT) == [("That one's for Mike: ", ""), ("mike@forn.al", "mailto:mike@forn.al"),
                                           (".", "")]
     # a claim that names a URL or an address shows it as text, never as a link
@@ -138,7 +138,15 @@ def test_next_step_and_fixed_emails_are_the_only_links_made_from_text():
     assert p.items("ol") == [f"{url.text} [{U0}]"]
     assert [h for h, _ in p.links if h not in ("#main", "/", "/results", "https://forn.al/")
             and not h.startswith("/evidence/")
-            ] == ["https://forn.al/resume.pdf", "mailto:mike@forn.al"]  # NEXT_STEP's two, nothing from the claim
+            ] == ["mailto:mike@forn.al", "https://forn.al/resume.pdf"]  # NEXT_STEP's two, nothing from the claim
+
+
+def test_next_step_leads_with_the_email():
+    assert NEXT_STEP == "Email Mike: mike@forn.al · Résumé: https://forn.al/resume.pdf"
+    page = pages.answer_page(out(kept=(Claim("direct", "", "", "Mike wrote it.", (U0,)),)), CORPUS,
+                             "Has Mike written an invented importer?", VISIT)
+    para = page.split('<p class="next">', 1)[1].split("</p>", 1)[0]
+    assert [h for h, _ in Page(para).links] == ["mailto:mike@forn.al", "https://forn.al/resume.pdf"]
 
 
 def test_stylesheet_is_the_dtd_copy_with_provenance_and_a_versioned_link():

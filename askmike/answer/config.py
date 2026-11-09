@@ -23,7 +23,7 @@ MAX_TOKENS = 8000
 
 # Fixed display strings (placeholder copy until M4)
 HANDOFF_TEXT = "That one's for Mike: mike@forn.al."
-NEXT_STEP = "Resume: https://forn.al/resume.pdf · Email: mike@forn.al"
+NEXT_STEP = "Email Mike: mike@forn.al · Résumé: https://forn.al/resume.pdf"
 OFF_TOPIC_TEXT = ("Ask Mike answers questions about Mike's work and how it fits a role. "
                   "Ask about his experience, or paste a job description.")
 EMPTY_TEXT = "Ask a question about Mike, or paste a job description."
